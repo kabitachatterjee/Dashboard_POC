@@ -78,7 +78,7 @@ function add (token, post) {
       voteScore: 1,
       deleted: false,
       commentCount: 0
-    }
+    };
 
     res(posts[post.id])
   })
@@ -91,10 +91,10 @@ function vote (token, id, option) {
     switch(option) {
         case "upVote":
             post.voteScore = post.voteScore + 1;
-            break
+            break;
         case "downVote":
             post.voteScore = post.voteScore - 1;
-            break
+            break;
         default:
             console.log(`posts.vote received incorrect parameter: ${option}`)
     }
