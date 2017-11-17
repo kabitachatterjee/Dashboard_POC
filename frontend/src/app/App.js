@@ -1,21 +1,48 @@
 import React, { Component } from 'react';
-import logo from '../images/logo.svg';
 import './App.css';
+import {connect} from "react-redux";
 
 class App extends Component {
+  state = {
+
+  };
+
+
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+
       </div>
     );
   }
 }
 
-export default App;
+
+
+function mapStateToProps ({ food, calendar }) {
+
+	return {
+		calendar: dayOrder.map((day) => ({
+			day,
+			meals: Object.keys(calendar[day]).reduce((meals, meal) => {
+				meals[meal] = calendar[day][meal]
+					? food[calendar[day][meal]]
+					: null;
+
+				return meals
+			}, {})
+		})),
+	}
+}
+
+function mapDispatchToProps (dispatch) {
+	return {
+		selectRecipe: (data) => dispatch(addRecipe(data)),
+	}
+}
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(App)
