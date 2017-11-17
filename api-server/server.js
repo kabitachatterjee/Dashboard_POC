@@ -231,7 +231,7 @@ app.put('/posts/:id', bodyParser.json(), (req, res) => {
               })
           }
       )
-})
+});
 
 app.get('/posts/:id/comments', (req, res) => {
     comments.getByParent(req.token, req.params.id)
@@ -251,7 +251,7 @@ app.get('/comments/:id', (req, res) => {
       .then(
           (data) => res.send(data),
           (error) => {
-              console.error(error)
+              console.error(error);
               res.status(500).send({
                   error: 'There was an error.'
               })
