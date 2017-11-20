@@ -4,8 +4,30 @@ body {
   font-family: sans-serif;
 }
 
+.mainBody {
+    width: 100%;
+    flex-grow: 1;
+    padding: 24px;
+    height: calc(100% - 56px);
+    margin-top: 56px;
+    background-color: #fafafa;
+}
 
-.main {
-  display: flex;
-  flex-direction: row;
+.avatar {
+    background-color: orangered;
+}
+
+.card {
+    max-width: 90%;
+}
+
+.menuButton{
+    margin-left: -12px;
+    margin-right: 20px;
+}
+
+.sidebarList {
+    width: 170px;
+    padding-top: 40px;
+    padding-left: 17px;
 }

@@ -8,14 +8,23 @@ import {
 	BrowserRouter as Router,
 	Route,
 } from 'react-router-dom'
-// import configureStore from './store/configureStore';
+import {createStore, applyMiddleware, compose} from 'redux';
+import {logger} from 'redux-logger';
+import { rootReducer } from './app/reducers';
 
 
-// const store = configureStore();
 
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(
+	rootReducer,
+	composeEnhancers(
+		applyMiddleware(logger)
+	)
+);
 
 ReactDOM.render(
-	<Provider >
+	<Provider store={store}>
 		<Router>
 			<Route path="/" component={App}>
 			</Route>

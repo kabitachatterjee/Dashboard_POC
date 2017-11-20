@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PostContainer from "./PostContainer";
 
+
 class Posts extends Component {
 
 
@@ -9,7 +10,8 @@ class Posts extends Component {
 			<div>
 				<PostContainer/>
 				<PostContainer/>
-
+				<PostContainer/>
+				<PostContainer/>
 			</div>
 		)
 	}
