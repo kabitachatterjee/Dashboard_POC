@@ -37,8 +37,7 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-	classes: PropTypes.object.isRequired,
-	theme: PropTypes.object.isRequired,
+	toggleDrawer: PropTypes.func.isRequired,
 };
 
 export default Header;

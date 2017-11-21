@@ -3,12 +3,13 @@ import './App.css';
 import {connect} from "react-redux";
 import Header from "./Header";
 import Posts from "../posts/Posts";
-import {Typography} from "material-ui";
+import {getAllPosts} from "../posts/PostAction";
 
 
 import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import {bindActionCreators} from "redux";
 
 class App extends Component {
 	state = {
@@ -20,6 +21,13 @@ class App extends Component {
 			left: open,
 		});
 	};
+
+	componentDidMount(){
+		this.props.getAllPosts();
+
+		console.log();
+
+	}
 
 	render() {
 		const {theme, classes} = this.props;
@@ -56,29 +64,11 @@ class App extends Component {
 }
 
 
-// function mapStateToProps () {
-//
-// 	return {
-// 		// calendar: dayOrder.map((day) => ({
-// 		// 	day,
-// 		// 	meals: Object.keys(calendar[day]).reduce((meals, meal) => {
-// 		// 		meals[meal] = calendar[day][meal]
-// 		// 			? food[calendar[day][meal]]
-// 		// 			: null;
-// 		//
-// 		// 		return meals
-// 		// 	}, {})
-// 		// })),
-// 	}
-// }
-
-function mapStateToProps (posts) {
-	return {
-		posts,
-	}
+function mapStateToProps (dispatch) {
+	return bindActionCreators({getAllPosts},(dispatch));
 }
 
 export default connect(
-	mapStateToProps,
-	// mapDispatchToProps
+	null,
+	mapStateToProps
 )(App);
