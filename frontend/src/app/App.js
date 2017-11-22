@@ -25,8 +25,6 @@ class App extends Component {
 	componentDidMount(){
 		this.props.getAllPosts();
 
-		console.log();
-
 	}
 
 	render() {
