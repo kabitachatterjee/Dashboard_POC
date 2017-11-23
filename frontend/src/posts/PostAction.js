@@ -15,7 +15,7 @@ export function getAllPosts() {
 	const request = fetch(url, myInit).then((response) => response.json())
 		.then((data) => {
 		console.log("DATA", data);
-		request = data;
+		return data;
 	});
 
 	return {
