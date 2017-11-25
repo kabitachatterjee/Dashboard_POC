@@ -1,26 +1,77 @@
-export const GET_ALL_POSTS = "GET_ALL_POSTS";
+import fetch from 'cross-fetch';
 
-export function getAllPosts() {
-	const url = `http://localhost:3001/posts`;
-	let myHeaders = new Headers();
-	myHeaders.append("Authorization", "whatever-you-want");
+export const REQUEST_POSTS = 'REQUEST_POSTS';
+export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
+export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 
-	const myInit = {
-		method: 'GET',
-		headers: myHeaders,
-		mode: 'cors',
-		cache: 'default'
-	};
-
-	const request = fetch(url, myInit).then((response) => response.json())
-		.then((data) => {
-		console.log("DATA", data);
-		return data;
-	});
-
+export function selectSubreddit(subreddit) {
 	return {
-		type: GET_ALL_POSTS,
-		payload: request,
+		type: SELECT_SUBREDDIT,
+		subreddit
 	}
 }
 
+export function invalidateSubreddit(subreddit) {
+	return {
+		type: INVALIDATE_SUBREDDIT,
+		subreddit
+	}
+}
+
+function requestPosts(subreddit) {
+	return {
+		type: REQUEST_POSTS,
+		subreddit
+	}
+}
+
+function receivePosts(subreddit, json) {
+	return {
+		type: RECEIVE_POSTS,
+		subreddit,
+		posts: json,
+		receivedAt: Date.now()
+	}
+}
+
+function fetchPosts(subreddit) {
+	return dispatch => {
+		dispatch(requestPosts(subreddit));
+		let myHeaders = new Headers();
+		const myInit = {
+			method: 'GET',
+			headers: myHeaders,
+			mode: 'cors',
+			cache: 'default'
+		};
+		myHeaders.append("Authorization", "whatever-you-want");
+
+		return fetch(`http://localhost:3001/posts`, myHeaders)
+			.then(response => {
+				const total = response.json();
+				console.log(total, "????");
+				return total;
+			})
+			.then(json => dispatch(receivePosts(subreddit, json)))
+	}
+}
+
+function shouldFetchPosts(state, subreddit) {
+	const posts = state.postsBySubreddit[subreddit];
+	if (!posts) {
+		return true
+	} else if (posts.isFetching) {
+		return false
+	} else {
+		return posts.didInvalidate
+	}
+}
+
+export function fetchPostsIfNeeded(subreddit) {
+	return (dispatch, getState) => {
+		if (shouldFetchPosts(getState(), subreddit)) {
+			return dispatch(fetchPosts(subreddit))
+		}
+	}
+}
