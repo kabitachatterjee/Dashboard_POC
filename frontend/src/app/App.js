@@ -3,13 +3,14 @@ import './App.css';
 import {connect} from "react-redux";
 import Header from "./Header";
 import Posts from "../posts/Posts";
-import {getAllPosts} from "../posts/PostAction";
-
+import {  selectSubreddit,
+	fetchPostsIfNeeded,
+	invalidateSubreddit
+} from "../posts/PostAction";
 
 import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
-import {bindActionCreators} from "redux";
 
 class App extends Component {
 	state = {
@@ -23,8 +24,8 @@ class App extends Component {
 	};
 
 	componentDidMount(){
-		this.props.getAllPosts();
-
+		const { dispatch, selectedSubreddit } = this.props;
+		dispatch(fetchPostsIfNeeded(selectedSubreddit))
 	}
 
 	render() {
@@ -62,11 +63,27 @@ class App extends Component {
 }
 
 
-function mapStateToProps (dispatch) {
-	return bindActionCreators({getAllPosts},(dispatch));
+
+function mapStateToProps(state) {
+	const { selectedSubreddit, postsBySubreddit } = state;
+	const {
+		isFetching,
+		lastUpdated,
+		items: posts
+	} = postsBySubreddit[selectedSubreddit] || {
+		isFetching: true,
+		items: []
+	};
+
+	return {
+		selectedSubreddit,
+		posts,
+		isFetching,
+		lastUpdated
+	}
 }
 
+
 export default connect(
-	null,
 	mapStateToProps
 )(App);
