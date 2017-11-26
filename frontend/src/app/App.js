@@ -17,6 +17,10 @@ class App extends Component {
 		left: false,
 	};
 
+	/**
+	 *
+	 * @param open
+	 */
 	toggleDrawer = (open) => () => {
 		this.setState({
 			left: open,
@@ -29,7 +33,7 @@ class App extends Component {
 	}
 
 	render() {
-		const {theme, classes} = this.props;
+		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated} = this.props;
 
 		return (
 			<div className='main'>
@@ -54,7 +58,12 @@ class App extends Component {
 				</Drawer>
 				<div className='mainBody'>
 					<main>
-						<Posts/>
+						{isFetching && posts.length === 0 && <h2>Loading...</h2>}
+						{!isFetching && posts.length === 0 && <h2>Empty.</h2>}
+						{posts.length > 0 &&
+						<div style={{ opacity: isFetching ? 0.5 : 1 }}>
+							<Posts posts={posts} />
+						</div>}
 					</main>
 				</div>
 			</div>

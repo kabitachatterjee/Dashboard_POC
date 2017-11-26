@@ -5,6 +5,11 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 
+/**
+ *
+ * @param subreddit
+ * @returns {{type: string, subreddit: *}}
+ */
 export function selectSubreddit(subreddit) {
 	return {
 		type: SELECT_SUBREDDIT,
@@ -12,6 +17,11 @@ export function selectSubreddit(subreddit) {
 	}
 }
 
+/**
+ *
+ * @param subreddit
+ * @returns {{type: string, subreddit: *}}
+ */
 export function invalidateSubreddit(subreddit) {
 	return {
 		type: INVALIDATE_SUBREDDIT,
@@ -19,6 +29,11 @@ export function invalidateSubreddit(subreddit) {
 	}
 }
 
+/**
+ *
+ * @param subreddit
+ * @returns {{type: string, subreddit: *}}
+ */
 function requestPosts(subreddit) {
 	return {
 		type: REQUEST_POSTS,
@@ -26,6 +41,12 @@ function requestPosts(subreddit) {
 	}
 }
 
+/**
+ *
+ * @param subreddit
+ * @param json
+ * @returns {{type: string, subreddit: *, posts: *, receivedAt: number}}
+ */
 function receivePosts(subreddit, json) {
 	return {
 		type: RECEIVE_POSTS,
@@ -35,39 +56,42 @@ function receivePosts(subreddit, json) {
 	}
 }
 
+/**
+ *
+ * @param subreddit
+ * @returns {function(*)}
+ */
 function fetchPosts(subreddit) {
 	return dispatch => {
 		dispatch(requestPosts(subreddit));
-		let myHeaders = new Headers();
-		const myInit = {
-			method: 'GET',
-			headers: myHeaders,
-			mode: 'cors',
-			cache: 'default'
-		};
-		myHeaders.append("Authorization", "whatever-you-want");
-
-		return fetch(`http://localhost:3001/posts`, myHeaders)
-			.then(response => {
-				const total = response.json();
-				console.log(total, "????");
-				return total;
-			})
+		return fetch(`http://localhost:3001/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
+			.then(response => response.json())
 			.then(json => dispatch(receivePosts(subreddit, json)))
 	}
 }
 
+/**
+ *
+ * @param state
+ * @param subreddit
+ * @returns {boolean}
+ */
 function shouldFetchPosts(state, subreddit) {
 	const posts = state.postsBySubreddit[subreddit];
 	if (!posts) {
 		return true
 	} else if (posts.isFetching) {
-		return false
+		return false;
 	} else {
-		return posts.didInvalidate
+		return posts.didInvalidate;
 	}
 }
 
+/**
+ *
+ * @param subreddit
+ * @returns {function(*, *)}
+ */
 export function fetchPostsIfNeeded(subreddit) {
 	return (dispatch, getState) => {
 		if (shouldFetchPosts(getState(), subreddit)) {

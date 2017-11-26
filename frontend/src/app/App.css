@@ -26,3 +26,21 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.cardHeader {
+  display: flex;
+}
+
+.voteArea {
+  display: flex;
+  min-width: 25px;
+  flex-direction: column;
+  padding-left: 13px;
+  justify-content: center;
+}
+
+.totalscore {
+  display: flex;
+  justify-content: center;
+}
