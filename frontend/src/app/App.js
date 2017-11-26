@@ -8,9 +8,12 @@ import {  selectSubreddit,
 	invalidateSubreddit
 } from "../posts/PostAction";
 
+import {fetchCategoriesFirst} from "../categories/CategoryAction";
+
 import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import Categories from "../categories/CategoryContainer";
 
 class App extends Component {
 	state = {
@@ -22,6 +25,7 @@ class App extends Component {
 	 * @param open
 	 */
 	toggleDrawer = (open) => () => {
+		this.props.dispatch(fetchCategoriesFirst());
 		this.setState({
 			left: open,
 		});
@@ -29,11 +33,11 @@ class App extends Component {
 
 	componentDidMount(){
 		const { dispatch, selectedSubreddit } = this.props;
-		dispatch(fetchPostsIfNeeded(selectedSubreddit))
+		dispatch(fetchPostsIfNeeded(selectedSubreddit));
 	}
 
 	render() {
-		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated} = this.props;
+		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
 
 		return (
 			<div className='main'>
@@ -52,7 +56,7 @@ class App extends Component {
 							<List>Test</List>
 							<Divider/>
 							<h3>Categories</h3>
-							<List>Test</List>
+							<Categories categories={categories}/>
 						</div>
 					</div>
 				</Drawer>

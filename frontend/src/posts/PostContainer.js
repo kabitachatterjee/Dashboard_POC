@@ -12,7 +12,6 @@ import Avatar from 'material-ui/Avatar';
 
 
 const PostContainer = (props) => {
-	console.log(props.post, "!!!");
 	return(
 	<div>
 		<Card className='card'>
