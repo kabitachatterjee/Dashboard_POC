@@ -4,30 +4,45 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import FavoriteIcon from 'material-ui-icons/Favorite';
+import Upvote from 'material-ui-icons/KeyboardArrowUp';
+import Downvote from 'material-ui-icons/KeyboardArrowDown';
+
 import Avatar from 'material-ui/Avatar';
 
 
-const PostContainer = () => (
 
+const PostContainer = (props) => {
+	return(
 	<div>
-
 		<Card className='card'>
-			<CardHeader
-				avatar={
-					<Avatar className='avatar' aria-label="Recipe">
-						R
-					</Avatar>
-				}
-				title="Author"
-				subheader="September 14, 2016"
-			/>
+			<div className='cardHeader'>
+				<div className='voteArea'>
+					<div className='arrow-up'>
+						<Upvote onClick={props.upVote}/>
+					</div>
+					<div className='totalscore'>
+						{props.post.voteScore}
+					</div>
+					<div className='arrow-down'>
+						<Downvote onClick={props.downVote}/>
+					</div>
+				</div>
+				<CardHeader
+					avatar={
+						<Avatar className='avatar' aria-label="Recipe">
+							R
+						</Avatar>
+					}
+					title={props.post.author}
+					subheader={props.post.timestamp}
+				/>
+			</div>
 			<CardContent>
 				<Typography type="headline" component="h2">
-					Post Title
+					{props.post.title}
 				</Typography>
 				<Typography component="p">
-					Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-					across all continents except Antarctica
+					{props.post.body}
 				</Typography>
 			</CardContent>
 			<CardActions>
@@ -35,7 +50,7 @@ const PostContainer = () => (
 					<FavoriteIcon />
 				</IconButton>
 				<Button dense color="primary">
-					Comments
+					{props.post.commentCount} Comments
 				</Button>
 				<Button dense color="primary">
 					Edit
@@ -50,6 +65,6 @@ const PostContainer = () => (
 			</CardActions>
 		</Card>
 	</div>
-);
+)};
 
 export default PostContainer;

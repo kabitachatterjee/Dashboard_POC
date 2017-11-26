@@ -8,16 +8,24 @@ import {  selectSubreddit,
 	invalidateSubreddit
 } from "../posts/PostAction";
 
+import {fetchCategoriesFirst} from "../categories/CategoryAction";
+
 import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import Categories from "../categories/CategoryContainer";
 
 class App extends Component {
 	state = {
 		left: false,
 	};
 
+	/**
+	 *
+	 * @param open
+	 */
 	toggleDrawer = (open) => () => {
+		this.props.dispatch(fetchCategoriesFirst());
 		this.setState({
 			left: open,
 		});
@@ -25,11 +33,11 @@ class App extends Component {
 
 	componentDidMount(){
 		const { dispatch, selectedSubreddit } = this.props;
-		dispatch(fetchPostsIfNeeded(selectedSubreddit))
+		dispatch(fetchPostsIfNeeded(selectedSubreddit));
 	}
 
 	render() {
-		const {theme, classes} = this.props;
+		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
 
 		return (
 			<div className='main'>
@@ -48,13 +56,18 @@ class App extends Component {
 							<List>Test</List>
 							<Divider/>
 							<h3>Categories</h3>
-							<List>Test</List>
+							<Categories categories={categories}/>
 						</div>
 					</div>
 				</Drawer>
 				<div className='mainBody'>
 					<main>
-						<Posts/>
+						{isFetching && posts.length === 0 && <h2>Loading...</h2>}
+						{!isFetching && posts.length === 0 && <h2>Empty.</h2>}
+						{posts.length > 0 &&
+						<div style={{ opacity: isFetching ? 0.5 : 1 }}>
+							<Posts posts={posts} />
+						</div>}
 					</main>
 				</div>
 			</div>
