@@ -78,7 +78,7 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-	const { selectedSubreddit, postsBySubreddit } = state;
+	const { selectedSubreddit, postsBySubreddit, allCategories } = state;
 	const {
 		isFetching,
 		lastUpdated,
@@ -88,11 +88,14 @@ function mapStateToProps(state) {
 		items: []
 	};
 
+const categories = allCategories.items;
+
 	return {
 		selectedSubreddit,
 		posts,
 		isFetching,
-		lastUpdated
+		lastUpdated,
+		categories
 	}
 }
 
