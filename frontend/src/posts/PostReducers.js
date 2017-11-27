@@ -2,7 +2,9 @@ import {
 	SELECT_SUBREDDIT,
 	INVALIDATE_SUBREDDIT,
 	REQUEST_POSTS,
-	RECEIVE_POSTS
+	RECEIVE_POSTS,
+	REQUEST_COMMENTS,
+	RECEIVE_COMMENTS,
 } from './PostAction'
 
 export function selectedSubreddit(state = 'reactjs', action) {
@@ -57,3 +59,35 @@ function posts(
 	}
 }
 
+export function commentsByPostId(state = {}, action) {
+	switch (action.type) {
+		case RECEIVE_COMMENTS:
+		case REQUEST_COMMENTS:
+			return Object.assign({}, state, {
+				[action.subreddit]: posts(state[action.subreddit], action)
+			});
+		default:
+			return state
+	}
+}
+
+function comments(
+	state = {
+		comments: []
+	},
+	action
+) {
+	switch (action.type) {
+		case REQUEST_COMMENTS:
+			return Object.assign({}, state, {
+				isFetching: true,
+				didInvalidate: false
+			});
+		case RECEIVE_COMMENTS:
+			return Object.assign({}, state, {
+				comments: action.comments,
+			});
+		default:
+			return state
+	}
+}

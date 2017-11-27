@@ -2,6 +2,8 @@ import fetch from 'cross-fetch';
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 
@@ -56,6 +58,21 @@ function receivePosts(subreddit, json) {
 	}
 }
 
+function requestComments(postId){
+	return {
+		type: REQUEST_COMMENTS,
+		postId
+	}
+}
+
+function receiveComments(postId, json){
+	return {
+		type: RECEIVE_COMMENTS,
+		postId,
+		comments: json
+	}
+}
+
 /**
  *
  * @param subreddit
@@ -69,6 +86,7 @@ function fetchPosts(subreddit) {
 			.then(json => dispatch(receivePosts(subreddit, json)))
 	}
 }
+
 
 /**
  *
@@ -99,3 +117,16 @@ export function fetchPostsIfNeeded(subreddit) {
 		}
 	}
 }
+
+
+
+function fetchComments(postId) {
+	return dispatch => {
+		dispatch(requestComments(postId));
+		return fetch(`localhost:3001/posts/${postId}/comments`, {headers: { 'Authorization': 'whatever-you-want'}})
+			.then(response => response.json())
+			.then(json => dispatch(receiveComments(postId, json)))
+	}
+}
+
+

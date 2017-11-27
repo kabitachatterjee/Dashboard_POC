@@ -1,14 +1,6 @@
 import React, {Component} from 'react';
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import Divider from 'material-ui/Divider';
 import List from 'material-ui/List';
-import Drawer from 'material-ui/Drawer';
-import {IconButton} from "material-ui";
-import classNames from 'classnames';
-
-
-
 class Sidebar extends Component {
 
 
