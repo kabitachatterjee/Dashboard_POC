@@ -4,9 +4,6 @@ import PostContainer from "./PostContainer";
 
 class Posts extends Component {
 
-
-
-
 	render(){
 		const {posts} = this.props;
 		return (

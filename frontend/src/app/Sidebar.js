@@ -17,27 +17,20 @@ class Sidebar extends Component {
 
 		return(
 		<div>
-			<Drawer
-				type="permanent"
-				classes={{
-					paper: classNames(classes.drawerPaper, ! sidebarStatus && classes.drawerPaperClose),
-				}}
-				open={ sidebarStatus}
+			<div
+				tabIndex={0}
+				role="button"
+				onClick={this.toggleDrawer( false)}
+				onKeyDown={this.toggleDrawer(false)}
 			>
-				<div className={classes.drawerInner}>
-					<div className={classes.drawerHeader}>
-						<IconButton onClick={this.handleDrawerClose}>
-							{theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-						</IconButton>
-					</div>
-					<Divider />
-					<List>BLAH</List>
-					<List>BLAH</List>
-					<Divider />
-					<List>BLAH</List>
-
+				<div className='sidebarList'>
+					<h3>Navigation</h3>
+					<List>Test</List>
+					<Divider/>
+					<h3>Categories</h3>
+					<Categories categories={categories}/>
 				</div>
-			</Drawer>
+			</div>
 		</div>
 		)
 	}

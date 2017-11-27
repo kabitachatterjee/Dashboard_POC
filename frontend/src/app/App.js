@@ -42,7 +42,9 @@ class App extends Component {
 		return (
 			<div className='main'>
 				<div className='header'>
-					<Header toggleDrawer={this.toggleDrawer}/>
+					<Header
+						toggleDrawer={this.toggleDrawer}
+					/>
 				</div>
 				<Drawer open={this.state.left} onRequestClose={this.toggleDrawer(false)}>
 					<div
@@ -53,7 +55,8 @@ class App extends Component {
 					>
 						<div className='sidebarList'>
 							<h3>Navigation</h3>
-							<List>Test</List>
+							<List>Home</List>
+							<List>Add Posts</List>
 							<Divider/>
 							<h3>Categories</h3>
 							<Categories categories={categories}/>

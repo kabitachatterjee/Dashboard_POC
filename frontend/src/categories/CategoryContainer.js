@@ -1,23 +1,23 @@
 import React, {Component} from 'react';
-import List from 'material-ui/List';
+import {List, ListItem} from 'material-ui/List';
 
 
 class Categories extends Component {
 
-	render(){
-		console.log("CATEGORIES", this.props)
-		// const {categories} = this.props.categories;
+	redirectCategory = (url) => {
+		console.log(url, "!!!");
+	};
+
+	render() {
+		const {categories} = this.props;
 		return (
 			<div>
-				{this.props.length === 0 &&
-				<div>
-					<p>No Posts</p>
-				</div>}
+				<List>
+				{this.props.categories && categories.map((item, i) => (<ListItem key={i} onClick={this.redirectCategory(item.path)} >{item.name}</ListItem>))}
+				</List>
 			</div>
 		)
 	}
 }
 
 export default Categories;
-
-// {/*{categories.length && 	categories.map((item, i) => <List>item</List>)}*/}
