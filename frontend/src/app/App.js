@@ -39,7 +39,7 @@ class App extends Component {
 	}
 
 	render() {
-		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
+		const { selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
 
 		return (
 			<div className='main'>

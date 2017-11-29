@@ -17,17 +17,14 @@ class AddPost extends Component {
 		return(
 			<div>
 				<TextField
-					defaultValue="Title"
 					label="Title"
 				/>
 				<br/>
 				<TextField
-					defaultValue="Author"
 					label="Author"
 				/>
 				<br/>
 				<TextField
-					defaultValue="Body"
 					label="Body"
 				/>
 				<br/>

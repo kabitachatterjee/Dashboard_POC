@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import PostContainer from "./PostContainer";
-import fetch from 'cross-fetch';
 
 class PostDetails extends Component {
 	state = {
