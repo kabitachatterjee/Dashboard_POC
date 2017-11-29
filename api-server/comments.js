@@ -28,7 +28,7 @@ const defaultData = {
 
 function getData (token) {
   let data = db[token];
-  if (data === null) {
+  if (data == null) {
     data = db[token] = clone(defaultData)
   }
   return data
@@ -38,7 +38,7 @@ function getByParent (token, parentId) {
   return new Promise((res) => {
     let comments = getData(token);
     let keys = Object.keys(comments);
-    filtered_keys = keys.filter(key => comments[key].parentId === parentId && !comments[key].deleted)
+    filtered_keys = keys.filter(key => comments[key].parentId === parentId && !comments[key].deleted);
     res(filtered_keys.map(key => comments[key]))
   })
 }
@@ -81,10 +81,10 @@ function vote (token, id, option) {
     switch(option) {
         case "upVote":
             comment.voteScore = comment.voteScore + 1;
-            break
+            break;
         case "downVote":
             comment.voteScore = comment.voteScore - 1;
-            break
+            break;
         default:
             console.log(`comments.vote received incorrect parameter: ${option}`)
     }

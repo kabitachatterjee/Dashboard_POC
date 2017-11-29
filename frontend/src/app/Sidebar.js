@@ -1,14 +1,6 @@
 import React, {Component} from 'react';
-import ChevronLeftIcon from 'material-ui-icons/ChevronLeft';
-import ChevronRightIcon from 'material-ui-icons/ChevronRight';
 import Divider from 'material-ui/Divider';
 import List from 'material-ui/List';
-import Drawer from 'material-ui/Drawer';
-import {IconButton} from "material-ui";
-import classNames from 'classnames';
-
-
-
 class Sidebar extends Component {
 
 
@@ -17,27 +9,20 @@ class Sidebar extends Component {
 
 		return(
 		<div>
-			<Drawer
-				type="permanent"
-				classes={{
-					paper: classNames(classes.drawerPaper, ! sidebarStatus && classes.drawerPaperClose),
-				}}
-				open={ sidebarStatus}
+			<div
+				tabIndex={0}
+				role="button"
+				onClick={this.toggleDrawer( false)}
+				onKeyDown={this.toggleDrawer(false)}
 			>
-				<div className={classes.drawerInner}>
-					<div className={classes.drawerHeader}>
-						<IconButton onClick={this.handleDrawerClose}>
-							{theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-						</IconButton>
-					</div>
-					<Divider />
-					<List>BLAH</List>
-					<List>BLAH</List>
-					<Divider />
-					<List>BLAH</List>
-
+				<div className='sidebarList'>
+					<h3>Navigation</h3>
+					<List>Test</List>
+					<Divider/>
+					<h3>Categories</h3>
+					<Categories categories={categories}/>
 				</div>
-			</Drawer>
+			</div>
 		</div>
 		)
 	}

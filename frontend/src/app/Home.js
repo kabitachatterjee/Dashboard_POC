@@ -15,9 +15,8 @@ import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Categories from "../categories/CategoryContainer";
 import PostDetails from "../posts/PostDetails";
-import AddPost from "../posts/AddPost";
 
-class App extends Component {
+class Home extends Component {
 	state = {
 		left: false,
 	};
@@ -39,7 +38,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
+		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
 
 		return (
 			<div className='main'>
@@ -74,9 +73,8 @@ class App extends Component {
 							<Posts posts={posts} />
 						</div>}
 					</main>
-					<AddPost/>
-
 				</div>
+				<PostDetails/>
 			</div>
 		);
 	}
@@ -95,7 +93,7 @@ function mapStateToProps(state) {
 		items: []
 	};
 
-const categories = allCategories.items;
+	const categories = allCategories.items;
 
 	return {
 		selectedSubreddit,
@@ -109,4 +107,4 @@ const categories = allCategories.items;
 
 export default connect(
 	mapStateToProps
-)(App);
+)(Home);
