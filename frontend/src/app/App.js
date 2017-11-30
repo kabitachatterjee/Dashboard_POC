@@ -14,8 +14,6 @@ import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Categories from "../categories/CategoryContainer";
-import PostDetails from "../posts/PostDetails";
-import AddPost from "../posts/AddPost";
 
 class App extends Component {
 	state = {
@@ -39,7 +37,7 @@ class App extends Component {
 	}
 
 	render() {
-		const { selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
+		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
 
 		return (
 			<div className='main'>
@@ -58,7 +56,6 @@ class App extends Component {
 						<div className='sidebarList'>
 							<h3>Navigation</h3>
 							<List>Home</List>
-							<List>Add Posts</List>
 							<Divider/>
 							<h3>Categories</h3>
 							<Categories categories={categories}/>
@@ -74,8 +71,6 @@ class App extends Component {
 							<Posts posts={posts} />
 						</div>}
 					</main>
-					<AddPost/>
-
 				</div>
 			</div>
 		);
