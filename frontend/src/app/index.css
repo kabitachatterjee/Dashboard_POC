@@ -33,5 +33,19 @@ body {
 }
 
 .formControl {
-    min-width: 120px,
+    min-width: 120px;
+}
+
+.commentArea {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.commentArea_textbox{
+    width: 500px;
+    height: 100px;
+}
+
+.formControl {
+    minWidth: 120;
 }

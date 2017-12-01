@@ -11,7 +11,7 @@ import {  selectSubreddit,
 import {fetchCategoriesFirst} from "../categories/CategoryAction";
 
 import Drawer from 'material-ui/Drawer';
-import List from 'material-ui/List';
+import List, { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Categories from "../categories/CategoryContainer";
 
@@ -55,7 +55,11 @@ class App extends Component {
 					>
 						<div className='sidebarList'>
 							<h3>Navigation</h3>
-							<List>Home</List>
+							<List>
+								<ListItem button>
+									<ListItemText primary="Home" />
+								</ListItem>
+							</List>
 							<Divider/>
 							<h3>Categories</h3>
 							<Categories categories={categories}/>

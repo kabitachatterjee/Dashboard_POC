@@ -14,7 +14,7 @@ import Drawer from 'material-ui/Drawer';
 import List from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Categories from "../categories/CategoryContainer";
-import PostDetails from "../posts/PostDetails";
+import PostDetails from "../detailPost/PostDetails";
 
 class Home extends Component {
 	state = {
