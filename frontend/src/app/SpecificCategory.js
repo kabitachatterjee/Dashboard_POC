@@ -94,7 +94,7 @@ function mapStateToProps(state) {
 		items: []
 	};
 
-const categories = allCategories.items;
+	const categories = allCategories.items;
 
 	return {
 		selectedSubreddit,
