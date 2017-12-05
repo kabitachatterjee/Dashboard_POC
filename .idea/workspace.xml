@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fcba88f4-1bf0-4267-8993-6f9df75eca66" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/api-server/server.js" afterPath="$PROJECT_DIR$/api-server/server.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/app/SpecificCategory.js" afterPath="$PROJECT_DIR$/frontend/src/app/SpecificCategory.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/app/reducers.js" afterPath="$PROJECT_DIR$/frontend/src/app/reducers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/categories/CategoryAction.js" afterPath="$PROJECT_DIR$/frontend/src/categories/CategoryAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/categories/CategoryReducers.js" afterPath="$PROJECT_DIR$/frontend/src/categories/CategoryReducers.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/posts/PostAction.js" afterPath="$PROJECT_DIR$/frontend/src/posts/PostAction.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/posts/PostReducers.js" afterPath="$PROJECT_DIR$/frontend/src/posts/PostReducers.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -38,20 +31,28 @@
       <file leaf-file-name="PostReducers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostReducers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#123#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="75">
+              <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="reducers.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PostAction.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostAction.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="117" column="80" lean-forward="false" selection-start-line="117" selection-start-column="80" selection-end-line="117" selection-end-column="80" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="reducers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/app/reducers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="165">
+              <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
               <folding>
                 <element signature="e#0#40#0" expanded="true" />
               </folding>
@@ -62,8 +63,8 @@
       <file leaf-file-name="CategoryReducers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/frontend/src/categories/CategoryReducers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="32" />
+            <state relative-caret-position="210">
+              <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
               <folding>
                 <element signature="e#0#94#0" expanded="true" />
               </folding>
@@ -76,16 +77,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
               <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostAction.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostAction.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -106,8 +97,8 @@
       <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api-server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-140">
-              <caret line="114" column="29" lean-forward="true" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
+            <state relative-caret-position="398">
+              <caret line="72" column="24" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
               <folding>
                 <marker date="1512492622728" expanded="true" signature="421:2760" ph="..." />
               </folding>
@@ -218,11 +209,11 @@
         <option value="$PROJECT_DIR$/frontend/src/index.js" />
         <option value="$PROJECT_DIR$/api-server/server.js" />
         <option value="$PROJECT_DIR$/frontend/src/app/SpecificCategory.js" />
-        <option value="$PROJECT_DIR$/frontend/src/posts/PostAction.js" />
         <option value="$PROJECT_DIR$/frontend/src/categories/CategoryAction.js" />
         <option value="$PROJECT_DIR$/frontend/src/categories/CategoryReducers.js" />
         <option value="$PROJECT_DIR$/frontend/src/posts/PostReducers.js" />
         <option value="$PROJECT_DIR$/frontend/src/app/reducers.js" />
+        <option value="$PROJECT_DIR$/frontend/src/posts/PostAction.js" />
       </list>
     </option>
   </component>
@@ -373,12 +364,12 @@
       <option name="presentableId" value="Default" />
       <updated>1510805212760</updated>
       <workItem from="1510805213887" duration="58525000" />
-      <workItem from="1512363332886" duration="6021000" />
+      <workItem from="1512363332886" duration="6642000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64546000" />
+    <option name="totallyTimeSpent" value="65167000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -447,9 +438,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1335">
           <caret line="89" column="12" lean-forward="true" selection-start-line="89" selection-start-column="12" selection-end-line="89" selection-end-column="12" />
-          <folding>
-            <element signature="e#0#123#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -738,16 +727,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api-server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-140">
-          <caret line="114" column="29" lean-forward="true" selection-start-line="114" selection-start-column="29" selection-end-line="114" selection-end-column="29" />
-          <folding>
-            <marker date="1512492622728" expanded="true" signature="421:2760" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/app/SpecificCategory.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="293">
@@ -755,14 +734,6 @@
           <folding>
             <element signature="e#0#39#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostAction.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -776,31 +747,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/categories/CategoryReducers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="32" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="32" />
+        <state relative-caret-position="210">
+          <caret line="14" column="39" lean-forward="false" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
           <folding>
             <element signature="e#0#94#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostReducers.js">
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/reducers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+        <state relative-caret-position="165">
+          <caret line="11" column="27" lean-forward="true" selection-start-line="11" selection-start-column="27" selection-end-line="11" selection-end-column="27" />
           <folding>
-            <element signature="e#0#123#0" expanded="true" />
+            <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/reducers.js">
+    <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostReducers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="0" lean-forward="true" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+        <state relative-caret-position="75">
+          <caret line="5" column="19" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api-server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="72" column="24" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
           <folding>
-            <element signature="e#0#40#0" expanded="true" />
+            <marker date="1512492622728" expanded="true" signature="421:2760" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="117" column="80" lean-forward="false" selection-start-line="117" selection-start-column="80" selection-end-line="117" selection-end-column="80" />
+          <folding />
         </state>
       </provider>
     </entry>

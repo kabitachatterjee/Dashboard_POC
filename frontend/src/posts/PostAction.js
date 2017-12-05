@@ -5,6 +5,9 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
+
+export const DELETE_POST = 'DELETE_POST';
+
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 
 export function createPost(postDetails){
@@ -14,6 +17,12 @@ export function createPost(postDetails){
 	}
 }
 
+export function deletePost(postId){
+	return {
+		type: DELETE_POST,
+		postId
+	}
+}
 
 /**
  *
@@ -101,7 +110,15 @@ export function fetchAllPosts() {
 	}
 }
 
-
+export function deletePostAction(postId){
+	return dispatch => {
+		dispatch(deletePost(postId));
+		return fetch(`http://localhost:3001/posts/${postId}`, {headers: { 'Authorization': 'whatever-you-want'}} )
+			.then(response => response.json())
+			//TODO(michaelhuy): receivePosts of last category, so "selectedCategory"??
+			.then(json => dispatch(receivePosts('all', json)))
+	}
+}
 
 
 function fetchComments(postId) {
@@ -112,5 +129,4 @@ function fetchComments(postId) {
 			.then(json => dispatch(receiveComments(postId, json)))
 	}
 }
-
 
