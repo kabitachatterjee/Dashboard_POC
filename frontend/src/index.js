@@ -11,6 +11,8 @@ import {
 } from 'react-router-dom'
 import configureStore from './store/configureStore';
 import PostDetails from "./detailPost/PostDetails";
+import SpecificCategory from "./app/SpecificCategory";
+import NotFound from "./NotFound";
 
 const store = configureStore();
 
@@ -18,8 +20,10 @@ ReactDOM.render(
 	<Provider store={store}>
 		<Router>
 			<Switch>
-			<Route exact path="/" component={App}/>
-			<Route path="/posts" component={PostDetails}/>
+				<Route exact path="/" component={App}/>
+				<Route path="/posts" component={PostDetails}/>
+				<Route path="/category/:categories" component={SpecificCategory}/>
+				<Route component={NotFound} />
 			</Switch>
 		</Router>
 	</Provider>,

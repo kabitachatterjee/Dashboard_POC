@@ -89,10 +89,10 @@ function receiveComments(postId, json){
  * @param subreddit
  * @returns {function(*)}
  */
-function fetchPosts(subreddit) {
+export function fetchPosts(subreddit) {
 	return dispatch => {
 		dispatch(requestPosts(subreddit));
-		return fetch(`http://localhost:3001/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
+		return fetch(`http://localhost:3001/${subreddit}/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
 			.then(response => response.json())
 			.then(json => dispatch(receivePosts(subreddit, json)))
 	}
@@ -101,33 +101,19 @@ function fetchPosts(subreddit) {
 
 /**
  *
- * @param state
  * @param subreddit
- * @returns {boolean}
+ * @returns {function(*)}
  */
-function shouldFetchPosts(state, subreddit) {
-	const posts = state.postsBySubreddit[subreddit];
-	if (!posts) {
-		return true
-	} else if (posts.isFetching) {
-		return false;
-	} else {
-		return posts.didInvalidate;
+export function fetchAllPosts() {
+	return dispatch => {
+		dispatch(requestPosts());
+		return fetch(`http://localhost:3001/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
+			.then(response => response.json())
+			.then(json => dispatch(receivePosts('all', json)))
 	}
 }
 
-/**
- *
- * @param subreddit
- * @returns {function(*, *)}
- */
-export function fetchPostsIfNeeded(subreddit) {
-	return (dispatch, getState) => {
-		if (shouldFetchPosts(getState(), subreddit)) {
-			return dispatch(fetchPosts(subreddit))
-		}
-	}
-}
+
 
 
 function fetchComments(postId) {
