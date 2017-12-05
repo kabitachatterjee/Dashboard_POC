@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import Header from "./Header";
 import Posts from "../posts/Posts";
 import {  selectSubreddit,
-	fetchAllPosts,
+	fetchPosts,
 	invalidateSubreddit
 } from "../posts/PostAction";
 
@@ -33,12 +33,13 @@ class App extends Component {
 
 	componentDidMount(){
 		const { dispatch, selectedSubreddit } = this.props;
-		dispatch(fetchAllPosts());
+		console.log('selectedSubreddit', selectedSubreddit)
+		console.log('props', this.props)
+		dispatch(fetchPosts('react'));
 	}
 
 	render() {
 		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
-
 		return (
 			<div className='main'>
 				<div className='header'>

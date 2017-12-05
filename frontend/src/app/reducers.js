@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import { postsBySubreddit, selectedSubreddit} from "../posts/PostReducers";
-import { allCategories } from "../categories/CategoryReducers"
+import { postsBySubreddit} from "../posts/PostReducers";
+import {allCategories, selectedCategory} from "../categories/CategoryReducers"
 
 
 const rootReducer = combineReducers({
 	postsBySubreddit,
-	selectedSubreddit,
+	selectedCategory,
 	allCategories
 });
 

@@ -1,8 +1,16 @@
 import {
 	REQUEST_CATEGORIES,
-	RECEIVE_CATEGORIES
+	RECEIVE_CATEGORIES, SELECT_CATEGORY,
 } from './CategoryAction';
 
+export function selectedCategory(state = 'react', action) {
+	switch (action.type) {
+		case SELECT_CATEGORY:
+			return action.subreddit;
+		default:
+			return state
+	}
+}
 
 export function allCategories(state = {}, action){
 	switch (action.type) {

@@ -5,7 +5,6 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
-export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 
 export function createPost(postDetails){
@@ -15,17 +14,6 @@ export function createPost(postDetails){
 	}
 }
 
-/**
- *
- * @param subreddit
- * @returns {{type: string, subreddit: *}}
- */
-export function selectSubreddit(subreddit) {
-	return {
-		type: SELECT_SUBREDDIT,
-		subreddit
-	}
-}
 
 /**
  *
@@ -89,12 +77,12 @@ function receiveComments(postId, json){
  * @param subreddit
  * @returns {function(*)}
  */
-export function fetchPosts(subreddit) {
+export function fetchPosts(postId) {
 	return dispatch => {
-		dispatch(requestPosts(subreddit));
-		return fetch(`http://localhost:3001/${subreddit}/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
+		dispatch(requestPosts(postId));
+		return fetch(`http://localhost:3001/${postId}/categories`, {headers: { 'Authorization': 'whatever-you-want'}} )
 			.then(response => response.json())
-			.then(json => dispatch(receivePosts(subreddit, json)))
+			.then(json => dispatch(receivePosts(postId, json)))
 	}
 }
 
