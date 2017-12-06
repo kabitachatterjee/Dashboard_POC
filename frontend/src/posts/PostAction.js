@@ -5,7 +5,9 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
-export const SELECT_SUBREDDIT = 'SELECT_SUBREDDIT';
+
+export const DELETE_POST = 'DELETE_POST';
+
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 
 export function createPost(postDetails){
@@ -15,15 +17,10 @@ export function createPost(postDetails){
 	}
 }
 
-/**
- *
- * @param subreddit
- * @returns {{type: string, subreddit: *}}
- */
-export function selectSubreddit(subreddit) {
+export function deletePost(postId){
 	return {
-		type: SELECT_SUBREDDIT,
-		subreddit
+		type: DELETE_POST,
+		postId
 	}
 }
 
@@ -85,16 +82,16 @@ function receiveComments(postId, json){
 
 
 /**
- *
+ * Fetch posts for a specific category.
  * @param subreddit
  * @returns {function(*)}
  */
-export function fetchPosts(subreddit) {
+export function fetchPostsForCategory(category) {
 	return dispatch => {
-		dispatch(requestPosts(subreddit));
-		return fetch(`http://localhost:3001/${subreddit}/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
+		dispatch(requestPosts(category));
+		return fetch(`http://localhost:3001/${category}/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
 			.then(response => response.json())
-			.then(json => dispatch(receivePosts(subreddit, json)))
+			.then(json => dispatch(receivePosts(category, json)))
 	}
 }
 
@@ -113,7 +110,15 @@ export function fetchAllPosts() {
 	}
 }
 
-
+export function deletePostAction(postId){
+	return dispatch => {
+		dispatch(deletePost(postId));
+		return fetch(`http://localhost:3001/posts/${postId}`, {headers: { 'Authorization': 'whatever-you-want'}} )
+			.then(response => response.json())
+			//TODO(michaelhuy): receivePosts of last category, so "selectedCategory"??
+			.then(json => dispatch(receivePosts('all', json)))
+	}
+}
 
 
 function fetchComments(postId) {
@@ -124,5 +129,4 @@ function fetchComments(postId) {
 			.then(json => dispatch(receiveComments(postId, json)))
 	}
 }
-
 

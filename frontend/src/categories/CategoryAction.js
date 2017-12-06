@@ -2,6 +2,8 @@ import fetch from 'cross-fetch';
 
 export const REQUEST_CATEGORIES = 'REQUEST_CATEGORIES';
 export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
+export const SELECT_CATEGORY = 'SELECT_CATEGORY';
+
 
 function requestCategories(subreddit){
 	return {
@@ -14,6 +16,18 @@ function receiveCategories(json){
 	return {
 		type: RECEIVE_CATEGORIES,
 		categories: json,
+	}
+}
+
+/**
+ *
+ * @param category
+ * @returns {{type: string, category: *}}
+ */
+export function selectCategory(category) {
+	return {
+		type: SELECT_CATEGORY,
+		category
 	}
 }
 

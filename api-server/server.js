@@ -206,8 +206,8 @@ app.delete('/posts/:id', (req, res) => {
 });
 
 app.post('/posts/:id', bodyParser.json(), (req, res) => {
-    const { option } = req.body
-    const id = req.params.id
+    const { option } = req.body;
+    const id = req.params.id;
     posts.vote(req.token, id, option)
       .then(
           (data) => res.send(data),
@@ -225,7 +225,7 @@ app.put('/posts/:id', bodyParser.json(), (req, res) => {
       .then(
         (data) => res.send(data),
           (error) => {
-              console.error(error)
+              console.error(error);
               res.status(500).send({
                   error: 'There was an error.'
               })
@@ -257,61 +257,61 @@ app.get('/comments/:id', (req, res) => {
               })
           }
       )
-})
+});
 
 app.put('/comments/:id', bodyParser.json(), (req, res) => {
     comments.edit(req.token, req.params.id, req.body)
       .then(
         (data) => res.send(data),
           (error) => {
-              console.error(error)
+              console.error(error);
               res.status(500).send({
                   error: 'There was an error.'
               })
           }
       )
-})
+});
 
 app.post('/comments', bodyParser.json(), (req, res) => {
     comments.add(req.token, req.body)
       .then(
           (data) => res.send(data),
           (error) => {
-              console.error(error)
+              console.error(error);
               res.status(500).send({
                   error: 'There was an error.'
               })
           }
       )
-})
+});
 
 app.post('/comments/:id', bodyParser.json(), (req, res) => {
-    const { option } = req.body
+    const { option } = req.body;
     comments.vote(req.token, req.params.id, option)
       .then(
           (data) => res.send(data),
           (error) => {
-              console.error(error)
+              console.error(error);
               res.status(500).send({
                   error: 'There was an error.'
               })
           }
       )
-})
+});
 
 app.delete('/comments/:id', (req, res) => {
     comments.disable(req.token, req.params.id)
       .then(
           (data) => res.send(data),
           (error) => {
-              console.error(error)
+              console.error(error);
               res.status(500).send({
                   error: 'There was an error.'
               })
           }
       )
-})
+});
 
 app.listen(config.port, () => {
   console.log('Server listening on port %s, Ctrl+C to stop', config.port)
-})
+});
