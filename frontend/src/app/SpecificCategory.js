@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import Header from "./Header";
 import Posts from "../posts/Posts";
 import {  selectSubreddit,
-	fetchPosts,
+	fetchPostsForCategory,
 	invalidateSubreddit
 } from "../posts/PostAction";
 
@@ -35,7 +35,7 @@ class App extends Component {
 		const { dispatch, selectedSubreddit } = this.props;
 		console.log('selectedSubreddit', selectedSubreddit)
 		console.log('props', this.props)
-		dispatch(fetchPosts('react'));
+		dispatch(fetchPostsForCategory('react'));
 	}
 
 	render() {
