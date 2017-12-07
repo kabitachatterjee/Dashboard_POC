@@ -3,13 +3,8 @@ import './App.css';
 import {connect} from "react-redux";
 import Header from "./Header";
 import Posts from "../posts/Posts";
-import {  selectSubreddit,
-	fetchAllPosts,
-	invalidateSubreddit
-} from "../posts/PostAction";
-
+import {fetchAllPosts} from "../posts/PostAction";
 import {fetchCategoriesFirst} from "../categories/CategoryAction";
-
 import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
@@ -38,7 +33,6 @@ class App extends Component {
 
 	render() {
 		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
-
 		return (
 			<div className='main'>
 				<div className='header'>
@@ -84,20 +78,16 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-	const { selectedSubreddit, postsBySubreddit, allCategories } = state;
-	const {
-		isFetching,
-		lastUpdated,
-		items: posts
-	} = postsBySubreddit[selectedSubreddit] || {
+	const { selectedCategory, postsByCategory, allCategories } = state;
+
+	const { isFetching, lastUpdated, items: posts } = postsByCategory[selectedCategory] ||
+	{
 		isFetching: true,
 		items: []
 	};
-
-const categories = allCategories.items;
-
+	const categories = allCategories.items;
 	return {
-		selectedSubreddit,
+		selectedCategory,
 		posts,
 		isFetching,
 		lastUpdated,

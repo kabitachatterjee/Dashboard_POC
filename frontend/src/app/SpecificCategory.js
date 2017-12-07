@@ -3,10 +3,7 @@ import './App.css';
 import {connect} from "react-redux";
 import Header from "./Header";
 import Posts from "../posts/Posts";
-import {  selectSubreddit,
-	fetchPostsForCategory,
-	invalidateSubreddit
-} from "../posts/PostAction";
+import { fetchPostsForCategory} from "../posts/PostAction";
 
 import {fetchCategoriesFirst} from "../categories/CategoryAction";
 
@@ -33,10 +30,10 @@ class App extends Component {
 
 	componentDidMount(){
 		const { dispatch, selectedSubreddit } = this.props;
-		console.log('selectedSubreddit', selectedSubreddit)
-		console.log('props', this.props)
-		dispatch(fetchPostsForCategory('react'));
+		dispatch(fetchPostsForCategory('all'));
 	}
+
+
 
 	render() {
 		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
@@ -85,12 +82,12 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-	const { selectedSubreddit, postsBySubreddit, allCategories } = state;
+	const { selectedSubreddit, postsByCategory, allCategories } = state;
 	const {
 		isFetching,
 		lastUpdated,
 		items: posts
-	} = postsBySubreddit[selectedSubreddit] || {
+	} = postsByCategory[selectedSubreddit] || {
 		isFetching: true,
 		items: []
 	};

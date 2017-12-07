@@ -22,10 +22,12 @@ ReactDOM.render(
 			<Switch>
 				<Route exact path="/" component={App}/>
 				<Route path="/posts" component={PostDetails}/>
-				<Route path="/category/:categories" component={SpecificCategory}/>
 				<Route component={NotFound} />
 			</Switch>
 		</Router>
 	</Provider>,
 	document.getElementById('root'));
 registerServiceWorker();
+
+{/*<Route path="/category/:categories" component={SpecificCategory}/>*/}
+
