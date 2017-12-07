@@ -6,7 +6,7 @@ import {
 export function selectedCategory(state = 'react', action) {
 	switch (action.type) {
 		case SELECT_CATEGORY:
-			return action.subreddit;
+			return action.category;
 		default:
 			return state
 	}

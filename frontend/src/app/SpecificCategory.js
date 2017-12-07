@@ -8,7 +8,7 @@ import {  selectSubreddit,
 	invalidateSubreddit
 } from "../posts/PostAction";
 
-import {fetchCategoriesFirst} from "../categories/CategoryAction";
+import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
 
 import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemText } from 'material-ui/List';
@@ -37,6 +37,10 @@ class App extends Component {
 		console.log('props', this.props)
 		dispatch(fetchPostsForCategory('react'));
 	}
+
+	selectCategoryOnClick = () => {
+		selectCategory('react');
+	};
 
 	render() {
 		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
@@ -76,6 +80,7 @@ class App extends Component {
 							<Posts posts={posts} />
 						</div>}
 					</main>
+					<button onClick={this.selectCategoryOnClick}>Click</button>
 				</div>
 			</div>
 		);
