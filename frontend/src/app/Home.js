@@ -83,12 +83,12 @@ class Home extends Component {
 
 
 function mapStateToProps(state) {
-	const { selectedSubreddit, postsBySubreddit, allCategories } = state;
+	const { selectedSubreddit, postsByCategory, allCategories } = state;
 	const {
 		isFetching,
 		lastUpdated,
 		items: posts
-	} = postsBySubreddit[selectedSubreddit] || {
+	} = postsByCategory[selectedSubreddit] || {
 		isFetching: true,
 		items: []
 	};

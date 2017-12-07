@@ -5,7 +5,6 @@ export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
-
 export const DELETE_POST = 'DELETE_POST';
 
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
@@ -52,18 +51,16 @@ function requestPosts(subreddit) {
  *
  * @param subreddit
  * @param json
- * @returns {{type: string, subreddit: *, posts: *, receivedAt: number}}
+ * @returns {{type: string, category: *, posts: *, receivedAt: number}}
  */
-function receivePosts(subreddit, json) {
+function receivePosts(category, json) {
 	return {
 		type: RECEIVE_POSTS,
-		subreddit,
+		category,
 		posts: json,
 		receivedAt: Date.now()
 	}
 }
-
-
 
 function requestComments(postId){
 	return {
@@ -80,7 +77,6 @@ function receiveComments(postId, json){
 	}
 }
 
-
 /**
  * Fetch posts for a specific category.
  * @param subreddit
@@ -89,7 +85,7 @@ function receiveComments(postId, json){
 export function fetchPostsForCategory(category) {
 	return dispatch => {
 		dispatch(requestPosts(category));
-		return fetch(`http://localhost:3001/${category}/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
+		return fetch(`http://localhost:3001/${category}/posts`, {headers: { 'Authorization': 'whatever-you-want'}})
 			.then(response => response.json())
 			.then(json => dispatch(receivePosts(category, json)))
 	}

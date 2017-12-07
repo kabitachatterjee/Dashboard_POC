@@ -3,12 +3,9 @@ import './App.css';
 import {connect} from "react-redux";
 import Header from "./Header";
 import Posts from "../posts/Posts";
-import {  selectSubreddit,
-	fetchPostsForCategory,
-	invalidateSubreddit
-} from "../posts/PostAction";
+import { fetchPostsForCategory} from "../posts/PostAction";
 
-import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
+import {fetchCategoriesFirst} from "../categories/CategoryAction";
 
 import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemText } from 'material-ui/List';
@@ -33,14 +30,10 @@ class App extends Component {
 
 	componentDidMount(){
 		const { dispatch, selectedSubreddit } = this.props;
-		console.log('selectedSubreddit', selectedSubreddit)
-		console.log('props', this.props)
-		dispatch(fetchPostsForCategory('react'));
+		dispatch(fetchPostsForCategory('all'));
 	}
 
-	selectCategoryOnClick = () => {
-		selectCategory('react');
-	};
+
 
 	render() {
 		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
@@ -80,7 +73,6 @@ class App extends Component {
 							<Posts posts={posts} />
 						</div>}
 					</main>
-					<button onClick={this.selectCategoryOnClick}>Click</button>
 				</div>
 			</div>
 		);
@@ -90,12 +82,12 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-	const { selectedSubreddit, postsBySubreddit, allCategories } = state;
+	const { selectedSubreddit, postsByCategory, allCategories } = state;
 	const {
 		isFetching,
 		lastUpdated,
 		items: posts
-	} = postsBySubreddit[selectedSubreddit] || {
+	} = postsByCategory[selectedSubreddit] || {
 		isFetching: true,
 		items: []
 	};

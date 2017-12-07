@@ -8,13 +8,13 @@ import {
 
 
 
-export function postsBySubreddit(state = {}, action) {
+export function postsByCategory(state = {}, action) {
 	switch (action.type) {
 		case INVALIDATE_SUBREDDIT:
 		case RECEIVE_POSTS:
 		case REQUEST_POSTS:
 			return Object.assign({}, state, {
-				[action.subreddit]: posts(state[action.subreddit], action)
+				[action.category]: posts(state[action.category], action)
 			});
 		default:
 			return state
@@ -47,7 +47,7 @@ function posts(
 				lastUpdated: action.receivedAt
 			});
 		default:
-			return state
+			return state;
 	}
 }
 

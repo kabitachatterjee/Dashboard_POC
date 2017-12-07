@@ -3,9 +3,10 @@ import {
 	RECEIVE_CATEGORIES, SELECT_CATEGORY,
 } from './CategoryAction';
 
-export function selectedCategory(state = 'react', action) {
+export function selectedCategory(state = 'all', action) {
 	switch (action.type) {
 		case SELECT_CATEGORY:
+			console.log("ACTION", action)
 			return action.category;
 		default:
 			return state
