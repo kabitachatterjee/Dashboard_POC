@@ -2,17 +2,18 @@ import React, {Component} from 'react';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import connect from "react-redux/es/connect/connect";
 import {selectCategory} from "./CategoryAction";
+import {fetchPostsForCategory} from "../posts/PostAction";
 
 
 class Categories extends Component {
-
 	selectNewCategory = (event) => {
-		this.props.dispatch(selectCategory(event.target.textContent));
+		const { dispatch, selectedCategory } = this.props;
+		dispatch(selectCategory(event.target.textContent));
+		dispatch(fetchPostsForCategory(event.target.textContent));
 	};
 
 	render() {
 		const {categories} = this.props;
-
 		return (
 			<div>
 				<List>
@@ -29,8 +30,18 @@ class Categories extends Component {
 }
 
 function mapStateToProps(state){
-	console.log("STATE", state);
-	return state;
+	const { selectedCategory, postsByCategory } = state;
+	const { isFetching, lastUpdated, items: posts } = postsByCategory[selectedCategory] ||
+	{
+		isFetching: true,
+		items: []
+	};
+
+	console.log(state, "!!")
+
+	return {
+		posts,
+	};
 }
 
 export default connect(mapStateToProps)(Categories);

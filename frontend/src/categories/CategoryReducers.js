@@ -6,7 +6,6 @@ import {
 export function selectedCategory(state = 'all', action) {
 	switch (action.type) {
 		case SELECT_CATEGORY:
-			console.log("ACTION", action)
 			return action.category;
 		default:
 			return state
