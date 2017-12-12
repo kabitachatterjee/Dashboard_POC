@@ -4,9 +4,22 @@ import {
 	RECEIVE_POSTS,
 	REQUEST_COMMENTS,
 	RECEIVE_COMMENTS,
+	UPVOTE_POST,
+	DOWNVOTE_POST
 } from './PostAction'
 
-
+// Changes the vote count in the post?
+export function votesByPostId(state={}, action){
+	switch (action.type) {
+		case UPVOTE_POST:
+		case DOWNVOTE_POST:
+			return Object.assign({}, state, {
+				[action.id]: posts(state[action.category], action)
+			});
+		default:
+			return state
+	}
+}
 
 export function postsByCategory(state = {}, action) {
 	switch (action.type) {

@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 import Header from "./Header";
 import Posts from "../posts/Posts";
 import {fetchAllPosts} from "../posts/PostAction";
-import {fetchCategoriesFirst} from "../categories/CategoryAction";
+import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
 import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
@@ -15,21 +15,30 @@ class App extends Component {
 		left: false,
 	};
 
+	componentDidMount(){
+		const { dispatch, selectedSubreddit } = this.props;
+		dispatch(fetchAllPosts());
+	}
+
 	/**
 	 *
 	 * @param open
 	 */
 	toggleDrawer = (open) => () => {
-		this.props.dispatch(fetchCategoriesFirst());
+		fetchAllPosts();
 		this.setState({
 			left: open,
 		});
 	};
 
-	componentDidMount(){
-		const { dispatch, selectedSubreddit } = this.props;
-		dispatch(fetchAllPosts());
-	}
+	/**
+	 * Changes the selected category to 'all' and fetches all
+	 * the posts.
+	 */
+	fetchAllPosts = () => {
+		this.props.dispatch(selectCategory('all'));
+		this.props.dispatch(fetchCategoriesFirst());
+	};
 
 	render() {
 		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
@@ -51,7 +60,7 @@ class App extends Component {
 							<h3>Navigation</h3>
 							<List>
 								<ListItem button>
-									<ListItemText primary="Home" />
+									<ListItemText primary="Home" onClick={this.fetchAllPosts}/>
 								</ListItem>
 							</List>
 							<Divider/>

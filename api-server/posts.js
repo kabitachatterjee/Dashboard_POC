@@ -39,7 +39,7 @@ function getByCategory (token, category) {
   return new Promise((res) => {
     let posts = getData(token);
     let keys = Object.keys(posts);
-    let filtered_keys = keys.filter(key => posts[key].category === category && !posts[key].deleted)
+    let filtered_keys = keys.filter(key => posts[key].category === category && !posts[key].deleted);
     res(filtered_keys.map(key => posts[key]))
   })
 }

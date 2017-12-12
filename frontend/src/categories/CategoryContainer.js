@@ -7,7 +7,7 @@ import {fetchPostsForCategory} from "../posts/PostAction";
 
 class Categories extends Component {
 	selectNewCategory = (event) => {
-		const { dispatch, selectedCategory } = this.props;
+		const { dispatch }= this.props;
 		dispatch(selectCategory(event.target.textContent));
 		dispatch(fetchPostsForCategory(event.target.textContent));
 	};
@@ -31,13 +31,11 @@ class Categories extends Component {
 
 function mapStateToProps(state){
 	const { selectedCategory, postsByCategory } = state;
-	const { isFetching, lastUpdated, items: posts } = postsByCategory[selectedCategory] ||
+	const { items: posts } = postsByCategory[selectedCategory] ||
 	{
 		isFetching: true,
 		items: []
 	};
-
-	console.log(state, "!!")
 
 	return {
 		posts,
