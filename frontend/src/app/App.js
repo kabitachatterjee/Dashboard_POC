@@ -9,7 +9,6 @@ import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemText } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Categories from "../categories/CategoryContainer";
-import {selectedCategory} from "../categories/CategoryReducers";
 
 class App extends Component {
 	state = {
@@ -33,7 +32,8 @@ class App extends Component {
 	};
 
 	/**
-	 *
+	 * Changes the selected category to 'all' and fetches all
+	 * the posts.
 	 */
 	fetchAllPosts = () => {
 		this.props.dispatch(selectCategory('all'));

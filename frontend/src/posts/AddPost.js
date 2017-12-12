@@ -47,6 +47,6 @@ class AddPost extends Component {
 		);
 	}
 
-};
+}
 
 export default AddPost;

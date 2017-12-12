@@ -6,8 +6,23 @@ export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const DELETE_POST = 'DELETE_POST';
-
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
+export const UPVOTE_POST = 'UPVOTE_POST';
+export const DOWNVOTE_POST = 'DOWNVOTE_POST';
+
+export function upVote(postId){
+	return {
+		type: UPVOTE_POST,
+		postId
+	}
+}
+
+export function downVote(postId){
+	return {
+		type: DOWNVOTE_POST,
+		postId
+	}
+}
 
 export function createPost(postDetails){
 	return {
@@ -86,11 +101,29 @@ export function fetchPostsForCategory(category) {
 	return dispatch => {
 		dispatch(requestPosts(category));
 		return fetch(`http://localhost:3001/${category}/posts`, {headers: { 'Authorization': 'whatever-you-want'}})
-			.then(response => response.json())
+			.then(response => {
+				console.log("RESPONSE");
+				response.json()
+			})
 			.then(json => dispatch(receivePosts(category, json)))
 	}
 }
+{
 
+}
+
+export function upVoteForPostId(postId){
+	return dispatch => {
+		dispatch(upVote(postId));
+		return fetch(`http://localhost:3001/posts/${postId}`, {
+			headers: { 'Authorization': 'whatever-you-want'},
+			method: 'post',
+			option: 'upVote',
+		})
+			.then(response => response.json())
+			.then(json => console.log("JSON", json))
+	}
+}
 
 /**
  *

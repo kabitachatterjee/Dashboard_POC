@@ -44,3 +44,7 @@
   display: flex;
   justify-content: center;
 }
+
+.voteCursor{
+  cursor: pointer;
+}
