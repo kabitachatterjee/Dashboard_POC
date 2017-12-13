@@ -101,10 +101,7 @@ export function fetchPostsForCategory(category) {
 	return dispatch => {
 		dispatch(requestPosts(category));
 		return fetch(`http://localhost:3001/${category}/posts`, {headers: { 'Authorization': 'whatever-you-want'}})
-			.then(response => {
-				console.log("RESPONSE");
-				response.json()
-			})
+			.then(response => response.json())
 			.then(json => dispatch(receivePosts(category, json)))
 	}
 }

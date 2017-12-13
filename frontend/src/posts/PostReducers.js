@@ -12,12 +12,16 @@ import {
 export function votesByPostId(state={}, action){
 	switch (action.type) {
 		case UPVOTE_POST:
+			// Change the vote count
+			return Object.assign({}, state, {
+				[action.category]: posts(state[action.category], action)
+			});
 		case DOWNVOTE_POST:
 			return Object.assign({}, state, {
-				[action.id]: posts(state[action.category], action)
+				[action.category]: posts(state[action.category], action)
 			});
 		default:
-			return state
+			return state;
 	}
 }
 
