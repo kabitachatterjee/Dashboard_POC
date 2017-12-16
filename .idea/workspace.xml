@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="fcba88f4-1bf0-4267-8993-6f9df75eca66" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/detailPost/PostDetails.js" afterPath="$PROJECT_DIR$/frontend/src/detailPost/PostDetails.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/index.js" afterPath="$PROJECT_DIR$/frontend/src/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/posts/PostAction.js" afterPath="$PROJECT_DIR$/frontend/src/posts/PostAction.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/posts/PostContainer.js" afterPath="$PROJECT_DIR$/frontend/src/posts/PostContainer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/frontend/src/posts/PostReducers.js" afterPath="$PROJECT_DIR$/frontend/src/posts/PostReducers.js" />
@@ -18,114 +20,158 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/app/App.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="348">
-              <caret line="67" column="51" lean-forward="true" selection-start-line="67" selection-start-column="51" selection-end-line="67" selection-end-column="51" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CategoryContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/categories/CategoryContainer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-                <marker date="1512796628254" expanded="true" signature="559:807" ph="..." />
-                <marker date="1512796628254" expanded="true" signature="570:797" ph="..." />
-                <marker date="1512796628254" expanded="true" signature="661:771" ph="..." />
-                <marker date="1512796628254" expanded="true" signature="754:760" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Home.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/app/Home.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-              <folding>
-                <element signature="e#0#39#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api-server/server.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="103">
-              <caret line="56" column="9" lean-forward="false" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="19" />
-              <folding>
-                <marker date="1512796514430" expanded="true" signature="423:2762" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostAction.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostAction.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1224">
-              <caret line="104" column="41" lean-forward="false" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostReducers.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostReducers.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
-              <folding>
-                <element signature="e#0#152#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PostContainer.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostContainer.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="16" column="46" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/app/App.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="720">
-              <caret line="48" column="17" lean-forward="true" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/frontend/src/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/frontend/src/app/App.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="192">
+                  <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+                  <folding>
+                    <element signature="e#0#39#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PostDetails.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/frontend/src/detailPost/PostDetails.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="347">
+                  <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+                  <folding>
+                    <element signature="e#0#39#0" expanded="true" />
+                    <marker date="1513227633585" expanded="true" signature="1555:2690" ph="..." />
+                    <marker date="1513227633585" expanded="true" signature="1628:2684" ph="..." />
+                    <marker date="1513227633585" expanded="true" signature="1666:2280" ph="..." />
+                    <marker date="1513227633585" expanded="true" signature="1698:2269" ph="..." />
+                    <marker date="1513227633585" expanded="true" signature="1729:2257" ph="..." />
+                    <marker date="1513227633585" expanded="true" signature="1774:2244" ph="..." />
+                    <marker date="1513227633585" expanded="true" signature="1850:1994" ph="..." />
+                    <marker date="1513227633585" expanded="true" signature="2314:2545" ph="..." />
+                    <marker date="1513227633585" expanded="true" signature="2330:2534" ph="..." />
+                    <marker date="1513227633585" expanded="true" signature="2584:2680" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CategoryContainer.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/frontend/src/categories/CategoryContainer.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="329">
+                  <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+                  <folding>
+                    <element signature="e#0#39#0" expanded="true" />
+                    <marker date="1512796628254" expanded="true" signature="559:807" ph="..." />
+                    <marker date="1512796628254" expanded="true" signature="570:797" ph="..." />
+                    <marker date="1512796628254" expanded="true" signature="661:771" ph="..." />
+                    <marker date="1512796628254" expanded="true" signature="754:760" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Home.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/frontend/src/app/Home.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="276">
+                  <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+                  <folding>
+                    <element signature="e#0#39#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/api-server/server.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="103">
+                  <caret line="56" column="9" lean-forward="false" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="19" />
+                  <folding>
+                    <marker date="1512796514430" expanded="true" signature="423:2762" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PostContainer.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostContainer.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="252">
+                  <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
+                  <folding>
+                    <element signature="e#0#41#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="PostReducers.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostReducers.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="135">
+                  <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#152#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="App.css" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/frontend/src/app/App.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="720">
+                  <caret line="48" column="17" lean-forward="true" selection-start-line="48" selection-start-column="10" selection-end-line="48" selection-end-column="17" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/frontend/src/index.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="345">
+                  <caret line="23" column="31" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#0#26#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file leaf-file-name="PostAction.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostAction.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="389">
+                  <caret line="157" column="35" lean-forward="false" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="App.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/frontend/src/app/App.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="250">
+                  <caret line="21" column="0" lean-forward="true" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#39#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -136,8 +182,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>post</find>
-      <find>icon</find>
       <find>materiaul</find>
       <find>FavoriteIcon</find>
       <find>console.log</find>
@@ -158,14 +202,16 @@
       <find>react</find>
       <find>allCategories</find>
       <find>console.error</find>
-      <find>dispatch</find>
       <find>props.post</find>
       <find>props.post.</find>
       <find>upvote</find>
       <find>upVoteForPostId</find>
       <find>upv</find>
+      <find>upVote</find>
       <find>requestPosts</find>
       <find>Upvote</find>
+      <find>dispatch</find>
+      <find>upVotePost</find>
     </findStrings>
     <replaceStrings>
       <replace>Header</replace>
@@ -201,10 +247,8 @@
         <option value="$PROJECT_DIR$/frontend/src/posts/AddPost.js" />
         <option value="$PROJECT_DIR$/frontend/src/posts/PostDetails.js" />
         <option value="$PROJECT_DIR$/frontend/src/app/index.css" />
-        <option value="$PROJECT_DIR$/frontend/src/detailPost/PostDetails.js" />
         <option value="$PROJECT_DIR$/frontend/src/Nofound.js" />
         <option value="$PROJECT_DIR$/api-server/server.js" />
-        <option value="$PROJECT_DIR$/frontend/src/index.js" />
         <option value="$PROJECT_DIR$/frontend/src/app/reducers.js" />
         <option value="$PROJECT_DIR$/frontend/src/app/Home.js" />
         <option value="$PROJECT_DIR$/frontend/src/app/SpecificCategory.js" />
@@ -213,9 +257,11 @@
         <option value="$PROJECT_DIR$/frontend/src/app/App.js" />
         <option value="$PROJECT_DIR$/frontend/src/categories/CategoryContainer.js" />
         <option value="$PROJECT_DIR$/frontend/src/app/App.css" />
-        <option value="$PROJECT_DIR$/frontend/src/posts/PostAction.js" />
         <option value="$PROJECT_DIR$/frontend/src/posts/PostContainer.js" />
         <option value="$PROJECT_DIR$/frontend/src/posts/PostReducers.js" />
+        <option value="$PROJECT_DIR$/frontend/src/posts/PostAction.js" />
+        <option value="$PROJECT_DIR$/frontend/src/index.js" />
+        <option value="$PROJECT_DIR$/frontend/src/detailPost/PostDetails.js" />
       </list>
     </option>
   </component>
@@ -305,6 +351,13 @@
               <item name="reactnd-project-readable-starter" type="462c0819:PsiDirectoryNode" />
               <item name="frontend" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="detailPost" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="reactnd-project-readable-starter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="reactnd-project-readable-starter" type="462c0819:PsiDirectoryNode" />
+              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -372,12 +425,12 @@
       <option name="presentableId" value="Default" />
       <updated>1510805212760</updated>
       <workItem from="1510805213887" duration="58525000" />
-      <workItem from="1512363332886" duration="21875000" />
+      <workItem from="1512363332886" duration="27913000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="80400000" />
+    <option name="totallyTimeSpent" value="86438000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -470,7 +523,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="31" lean-forward="true" selection-start-line="20" selection-start-column="31" selection-end-line="20" selection-end-column="31" />
-          <folding />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -506,6 +561,16 @@
           <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding>
             <element signature="e#0#39#0" expanded="true" />
+            <marker date="1513227633585" expanded="true" signature="1555:2690" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1628:2684" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1666:2280" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1698:2269" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1729:2257" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1774:2244" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1850:1994" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="2314:2545" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="2330:2534" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="2584:2680" ph="..." />
           </folding>
         </state>
       </provider>
@@ -658,16 +723,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/detailPost/PostDetails.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-375">
-          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/NotFound.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -730,48 +785,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="34" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/Home.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/app/App.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="348">
-          <caret line="67" column="51" lean-forward="true" selection-start-line="67" selection-start-column="51" selection-end-line="67" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/categories/CategoryContainer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-            <marker date="1512796628254" expanded="true" signature="559:807" ph="..." />
-            <marker date="1512796628254" expanded="true" signature="570:797" ph="..." />
-            <marker date="1512796628254" expanded="true" signature="661:771" ph="..." />
-            <marker date="1512796628254" expanded="true" signature="754:760" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/app/App.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="720">
@@ -790,18 +803,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostAction.js">
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/Home.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1224">
-          <caret line="104" column="41" lean-forward="false" selection-start-line="104" selection-start-column="41" selection-end-line="104" selection-end-column="41" />
-          <folding />
+        <state relative-caret-position="276">
+          <caret line="26" column="5" lean-forward="true" selection-start-line="26" selection-start-column="5" selection-end-line="26" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="31" lean-forward="false" selection-start-line="23" selection-start-column="31" selection-end-line="23" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostContainer.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="16" column="46" lean-forward="false" selection-start-line="16" selection-start-column="46" selection-end-line="16" selection-end-column="46" />
+        <state relative-caret-position="252">
+          <caret line="20" column="36" lean-forward="true" selection-start-line="20" selection-start-column="36" selection-end-line="20" selection-end-column="36" />
           <folding>
             <element signature="e#0#41#0" expanded="true" />
           </folding>
@@ -810,10 +835,62 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostReducers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="14" column="30" lean-forward="false" selection-start-line="14" selection-start-column="30" selection-end-line="14" selection-end-column="30" />
+        <state relative-caret-position="135">
+          <caret line="9" column="0" lean-forward="true" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding>
             <element signature="e#0#152#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/categories/CategoryContainer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="22" column="21" lean-forward="true" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1512796628254" expanded="true" signature="559:807" ph="..." />
+            <marker date="1512796628254" expanded="true" signature="570:797" ph="..." />
+            <marker date="1512796628254" expanded="true" signature="661:771" ph="..." />
+            <marker date="1512796628254" expanded="true" signature="754:760" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/app/App.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="192">
+          <caret line="25" column="5" lean-forward="true" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/posts/PostAction.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="389">
+          <caret line="157" column="35" lean-forward="false" selection-start-line="157" selection-start-column="35" selection-end-line="157" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/frontend/src/detailPost/PostDetails.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="29" column="27" lean-forward="true" selection-start-line="29" selection-start-column="27" selection-end-line="29" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+            <marker date="1513227633585" expanded="true" signature="1555:2690" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1628:2684" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1666:2280" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1698:2269" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1729:2257" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1774:2244" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="1850:1994" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="2314:2545" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="2330:2534" ph="..." />
+            <marker date="1513227633585" expanded="true" signature="2584:2680" ph="..." />
           </folding>
         </state>
       </provider>

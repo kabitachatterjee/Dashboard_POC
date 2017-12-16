@@ -10,14 +10,16 @@ export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 export const UPVOTE_POST = 'UPVOTE_POST';
 export const DOWNVOTE_POST = 'DOWNVOTE_POST';
 
-export function upVote(postId){
-	return {
-		type: UPVOTE_POST,
-		postId
-	}
+function upVotePost(postId){
+	console.error(postId,"!!");
+	debugger;
+	// return {
+	// 	type: UPVOTE_POST,
+	// 	postId,
+	// }
 }
 
-export function downVote(postId){
+function downVote(postId){
 	return {
 		type: DOWNVOTE_POST,
 		postId
@@ -105,19 +107,20 @@ export function fetchPostsForCategory(category) {
 			.then(json => dispatch(receivePosts(category, json)))
 	}
 }
-{
 
-}
 
 export function upVoteForPostId(postId){
 	return dispatch => {
-		dispatch(upVote(postId));
+		dispatch(upVotePost(postId));
 		return fetch(`http://localhost:3001/posts/${postId}`, {
 			headers: { 'Authorization': 'whatever-you-want'},
 			method: 'post',
-			option: 'upVote',
+			body: JSON.stringify({"option": "upVote"})
 		})
-			.then(response => response.json())
+			.then(response => {
+				console.error(response.json());
+				return response.json();
+			})
 			.then(json => console.log("JSON", json))
 	}
 }

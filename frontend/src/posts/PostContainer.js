@@ -14,7 +14,6 @@ import {upVoteForPostId} from "./PostAction";
 
 class PostContainer extends Component {
 	upVotePost = () => {
-		console.error("INSIDE", this.props.post.id)
 		upVoteForPostId(this.props.post.id);
 	};
 
