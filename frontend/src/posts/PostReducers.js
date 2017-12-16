@@ -10,6 +10,7 @@ import {
 
 // Changes the vote count in the post?
 export function votesByPostId(state={}, action){
+	console.error("Inside");
 	switch (action.type) {
 		case UPVOTE_POST:
 			// Change the vote count

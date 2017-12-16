@@ -8,24 +8,48 @@ import Select from 'material-ui/Select';
 
 class PostDetails extends Component {
 	state = {
-		item: {
-			"id": "8xf0y6ziyjabvozdd253nd",
-			"timestamp": 1467166872634,
-			"title": "Udacity is the best place to learn React",
-			"body": "Everyone says so after all.",
-			"author": "thingtwo",
-			"category": "react",
-			"voteScore": 6,
-			"deleted": false,
-			"commentCount": 2
-		},
+		item: {},
 		comments: [],
 		newComment: '',
 	};
 
-	postComment = () => {
+	componentDidMount(){
+		const postId = this.props.match.params.id;
+		const postDetails = new Promise(resolve => {
+				fetch(`http://localhost:3001/posts/${postId}`,
+					{ headers: { 'Authorization': 'whatever-you-want'}});
+			});
 
-	};
+		const postComments = new Promise(resolve => {
+				fetch(`http://localhost:3001/posts/${postId}/comments`,
+					{headers: {'Authorization': 'whatever-you-want'}});
+			});
+
+
+		Promise.all([postDetails, postComments])
+			.then((response) => {
+				// return response[1].json()
+				return response.map(item => {
+					console.log(item);
+					return item;
+				})
+			}).then((response) => response).then((now) => console.log(now))
+	}
+
+	/**
+	 *
+	 * @param postId
+	 */
+	loadData = (postId) => {
+		const postDetails = fetch(`http://localhost:3001/posts/${postId}`, { headers: { 'Authorization': 'whatever-you-want'}});
+		const postComments = fetch(`http://localhost:3001//posts/${postId}/comments`, { headers: { 'Authorization': 'whatever-you-want'}});
+
+		Promise.all([postDetails, postComments])
+			.then(function(results) {
+				console.error(results.json());
+			});
+	}
+
 
 	render() {
 		const {item} = this.state;
@@ -69,9 +93,8 @@ class PostDetails extends Component {
 					<button type="submit" onClick={this.postComment} className="save">save</button>
 				</div>
 			</div>
-	)
+		)
 	}
+}
 
-	}
-
-	export default PostDetails
+export default PostDetails
