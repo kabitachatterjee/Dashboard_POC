@@ -21,13 +21,12 @@ ReactDOM.render(
 		<Router>
 			<Switch>
 				<Route exact path="/" component={App}/>
-				<Route path="/posts/:id" component={PostDetails}/>
+				{/*<Route path="/:subreddit" component={SpecificCategory}/>*/}
+				<Route path="/category" component={PostDetails}/>
 				<Route component={NotFound} />
 			</Switch>
 		</Router>
 	</Provider>,
 	document.getElementById('root'));
 registerServiceWorker();
-
-{/*<Route path="/category/:categories" component={SpecificCategory}/>*/}
 

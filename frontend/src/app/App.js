@@ -15,7 +15,8 @@ class App extends Component {
 		left: false,
 	};
 
-	componentDidMount(){
+//TODO(michaelhuy): Doesn't load categories on initial load
+	componentWillMount(){
 		const { dispatch, selectedSubreddit } = this.props;
 		dispatch(fetchAllPosts());
 	}

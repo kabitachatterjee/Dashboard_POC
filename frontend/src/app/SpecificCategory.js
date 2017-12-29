@@ -5,7 +5,7 @@ import Header from "./Header";
 import Posts from "../posts/Posts";
 import { fetchPostsForCategory} from "../posts/PostAction";
 
-import {fetchCategoriesFirst} from "../categories/CategoryAction";
+import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
 
 import Drawer from 'material-ui/Drawer';
 import List, { ListItem, ListItemText } from 'material-ui/List';
@@ -29,14 +29,16 @@ class App extends Component {
 	};
 
 	componentDidMount(){
-		const { dispatch, selectedSubreddit } = this.props;
-		dispatch(fetchPostsForCategory('all'));
+		const { dispatch } = this.props;
+		dispatch(selectCategory(this.props.match.params.category));
+		dispatch(fetchPostsForCategory(this.props.match.params.category));
 	}
 
 
 
 	render() {
 		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
+		console.log(this.props, "!!**")
 		return (
 			<div className='main'>
 				<div className='header'>
@@ -82,25 +84,16 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-	const { selectedSubreddit, postsByCategory, allCategories } = state;
-	const {
-		isFetching,
-		lastUpdated,
-		items: posts
-	} = postsByCategory[selectedSubreddit] || {
+	const {selectedCategory, postsByCategory} = state;
+	const {items: posts} = postsByCategory[selectedCategory] ||
+	{
 		isFetching: true,
 		items: []
 	};
 
-	const categories = allCategories.items;
-
 	return {
-		selectedSubreddit,
 		posts,
-		isFetching,
-		lastUpdated,
-		categories
-	}
+	};
 }
 
 

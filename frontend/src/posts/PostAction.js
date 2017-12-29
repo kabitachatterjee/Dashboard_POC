@@ -9,6 +9,8 @@ export const DELETE_POST = 'DELETE_POST';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 export const UPVOTE_POST = 'UPVOTE_POST';
 export const DOWNVOTE_POST = 'DOWNVOTE_POST';
+export const REQUEST_SINGLE_POST = 'REQUEST_SINGLE_POST';
+export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST';
 
 function upVotePost(postId){
 	console.error(postId,"!!");
@@ -94,6 +96,21 @@ function receiveComments(postId, json){
 	}
 }
 
+function requestSinglePost(postId){
+	return {
+		type: REQUEST_SINGLE_POST,
+		postId
+	}
+}
+
+function receiveSinglePost(postId, json){
+	return {
+		type: RECEIVE_SINGLE_POST,
+		postId,
+		singlePost: json,
+	}
+}
+
 /**
  * Fetch posts for a specific category.
  * @param subreddit
@@ -147,6 +164,14 @@ export function deletePostAction(postId){
 			//TODO(michaelhuy): receivePosts of last category, so "selectedCategory"??
 			.then(json => dispatch(receivePosts('all', json)))
 	}
+}
+
+export function fetchSinglePost(postId){
+	return dispatch => {
+		dispatch(requestSinglePost(postId));
+		return fetch(`http://localhost:3001/posts/${postId}`, {headers: { 'Authorization': 'whatever-you-want'}} )
+			.then(response => response.json())
+			.then(json => dispatch(receiveSinglePost(postId, json)))	}
 }
 
 
