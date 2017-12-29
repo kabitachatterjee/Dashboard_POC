@@ -20,9 +20,7 @@ ReactDOM.render(
 	<Provider store={store}>
 		<Router>
 			<Switch>
-				<Route exact path="/" component={App}/>
-				{/*<Route path="/:subreddit" component={SpecificCategory}/>*/}
-				<Route path="/category" component={PostDetails}/>
+				<Route path="/" component={App}/>
 				<Route component={NotFound} />
 			</Switch>
 		</Router>

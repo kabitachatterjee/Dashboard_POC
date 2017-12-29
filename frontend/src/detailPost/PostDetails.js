@@ -11,12 +11,17 @@ import {fetchSinglePost} from "../posts/PostAction";
 
 
 class PostDetails extends Component {
+	state = {
+		item: {},
+		newComment: '',
+	};
 
 	componentDidMount() {
 		const postId = "8xf0y6ziyjabvozdd253nd";
 		this.props.dispatch(fetchSinglePost(postId));
 		this.props.dispatch(fetchComments(postId));
 	}
+
 
 	render() {
 		const {allComments, singlePostDetails} = this.props;
