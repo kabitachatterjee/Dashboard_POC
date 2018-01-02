@@ -5,7 +5,7 @@ import {
 	REQUEST_COMMENTS,
 	RECEIVE_COMMENTS,
 	UPVOTE_POST,
-	DOWNVOTE_POST
+	DOWNVOTE_POST, RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST
 } from './PostAction'
 
 // Changes the vote count in the post?
@@ -96,6 +96,22 @@ function comments(
 		case RECEIVE_COMMENTS:
 			return Object.assign({}, state, {
 				comments: action.comments,
+			});
+		default:
+			return state
+	}
+}
+
+
+export function singlePostDetails(state = {}, action){
+	switch(action.type){
+		case REQUEST_SINGLE_POST:
+			return Object.assign({}, state, {
+				postId: action.postId
+			});
+		case RECEIVE_SINGLE_POST:
+			return Object.assign({}, state, {
+				singlePost: action.singlePost
 			});
 		default:
 			return state

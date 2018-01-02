@@ -2,23 +2,20 @@ import React, {Component} from 'react';
 import './App.css';
 import {connect} from "react-redux";
 import Header from "./Header";
-import Posts from "../posts/Posts";
 import {fetchAllPosts} from "../posts/PostAction";
-import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
 import Drawer from 'material-ui/Drawer';
-import List, { ListItem, ListItemText } from 'material-ui/List';
+import List, {ListItem, ListItemText} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Categories from "../categories/CategoryContainer";
+import {Route, Switch} from "react-router-dom";
+import AllPosts from "../posts/AllPosts";
+import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
+import PostDetails from "../detailPost/PostDetails";
 
 class App extends Component {
 	state = {
 		left: false,
 	};
-
-	componentDidMount(){
-		const { dispatch, selectedSubreddit } = this.props;
-		dispatch(fetchAllPosts());
-	}
 
 	/**
 	 *
@@ -35,13 +32,14 @@ class App extends Component {
 	 * Changes the selected category to 'all' and fetches all
 	 * the posts.
 	 */
-	fetchAllPosts = () => {
+	componentDidMount() {
 		this.props.dispatch(selectCategory('all'));
 		this.props.dispatch(fetchCategoriesFirst());
 	};
 
+
 	render() {
-		const {theme, classes, selectedSubreddit, posts, isFetching, lastUpdated, categories} = this.props;
+		const {theme, classes, selectedSubreddit, categories} = this.props;
 		return (
 			<div className='main'>
 				<div className='header'>
@@ -53,14 +51,14 @@ class App extends Component {
 					<div
 						tabIndex={0}
 						role="button"
-						onClick={this.toggleDrawer( false)}
+						onClick={this.toggleDrawer(false)}
 						onKeyDown={this.toggleDrawer(false)}
 					>
 						<div className='sidebarList'>
 							<h3>Navigation</h3>
 							<List>
 								<ListItem button>
-									<ListItemText primary="Home" onClick={this.fetchAllPosts}/>
+									<ListItemText primary="Home" onClick={this.fetchAllCategories}/>
 								</ListItem>
 							</List>
 							<Divider/>
@@ -71,12 +69,11 @@ class App extends Component {
 				</Drawer>
 				<div className='mainBody'>
 					<main>
-						{isFetching && posts.length === 0 && <h2>Loading...</h2>}
-						{!isFetching && posts.length === 0 && <h2>Empty.</h2>}
-						{posts.length > 0 &&
-						<div style={{ opacity: isFetching ? 0.5 : 1 }}>
-							<Posts posts={posts} />
-						</div>}
+						<Switch>
+							<Route exact path="/" component={AllPosts}/>
+							{/*<Route path="/:subreddit" component={SpecificCategory}/>*/}
+							<Route path="/category" component={PostDetails}/>
+						</Switch>
 					</main>
 				</div>
 			</div>
@@ -85,21 +82,12 @@ class App extends Component {
 }
 
 
-
 function mapStateToProps(state) {
-	const { selectedCategory, postsByCategory, allCategories } = state;
+	const {selectedCategory, allCategories} = state;
 
-	const { isFetching, lastUpdated, items: posts } = postsByCategory[selectedCategory] ||
-	{
-		isFetching: true,
-		items: []
-	};
 	const categories = allCategories.items;
 	return {
 		selectedCategory,
-		posts,
-		isFetching,
-		lastUpdated,
 		categories
 	}
 }

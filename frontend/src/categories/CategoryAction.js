@@ -5,10 +5,9 @@ export const RECEIVE_CATEGORIES = 'RECEIVE_CATEGORIES';
 export const SELECT_CATEGORY = 'SELECT_CATEGORY';
 
 
-function requestCategories(subreddit){
+function requestCategories(){
 	return {
 		type: REQUEST_CATEGORIES,
-		subreddit
 	}
 }
 
