@@ -9,6 +9,8 @@ import Divider from 'material-ui/Divider';
 import Categories from "../categories/CategoryContainer";
 import {Route, Switch} from "react-router-dom";
 import AllPosts from "../posts/AllPosts";
+import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
+import PostDetails from "../detailPost/PostDetails";
 
 class App extends Component {
 	state = {
@@ -26,12 +28,11 @@ class App extends Component {
 		});
 	};
 
-
 	/**
 	 * Changes the selected category to 'all' and fetches all
 	 * the posts.
 	 */
-	fetchAllCategories = () => {
+	componentDidMount() {
 		this.props.dispatch(selectCategory('all'));
 		this.props.dispatch(fetchCategoriesFirst());
 	};
