@@ -3,6 +3,7 @@ import List, { ListItem, ListItemText } from 'material-ui/List';
 import connect from "react-redux/es/connect/connect";
 import {selectCategory} from "./CategoryAction";
 import {fetchPostsForCategory} from "../posts/PostAction";
+import {Link} from "react-router-dom";
 
 
 class Categories extends Component {
@@ -19,6 +20,7 @@ class Categories extends Component {
 				<List>
 				{this.props.categories && categories.map((item, i) => (
 					<ListItem key={i} button>
+						<Link to="/${}">Home</Link>
 						<ListItemText primary={item.name} value={item.name} onClick={this.selectNewCategory}/>
 					</ListItem>
 					)

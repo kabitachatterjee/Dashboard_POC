@@ -2,12 +2,14 @@ import React, {Component} from 'react';
 import Posts from "../posts/Posts";
 import {connect} from "react-redux";
 import {fetchAllPosts} from "./PostAction";
+import {selectCategory} from "../categories/CategoryAction";
 
 class AllPosts extends Component {
 
 //TODO(michaelhuy): Doesn't load categories on initial load
 	componentWillMount() {
 		const {dispatch} = this.props;
+		dispatch(selectCategory('all'));
 		dispatch(fetchAllPosts());
 	}
 
