@@ -7,10 +7,10 @@ import Drawer from 'material-ui/Drawer';
 import List, {ListItem, ListItemText} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Categories from "../categories/CategoryContainer";
-import {Route, Switch} from "react-router-dom";
+import {Link, Route, Switch} from "react-router-dom";
 import AllPosts from "../posts/AllPosts";
-import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
-import PostDetails from "../detailPost/PostDetails";
+import {fetchCategoriesFirst} from "../categories/CategoryAction";
+import CategorySwitch from "../categories/CategorySwitch";
 
 class App extends Component {
 	state = {
@@ -33,10 +33,8 @@ class App extends Component {
 	 * the posts.
 	 */
 	componentDidMount() {
-		this.props.dispatch(selectCategory('all'));
 		this.props.dispatch(fetchCategoriesFirst());
 	};
-
 
 	render() {
 		const {theme, classes, selectedSubreddit, categories} = this.props;
@@ -58,7 +56,7 @@ class App extends Component {
 							<h3>Navigation</h3>
 							<List>
 								<ListItem button>
-									<ListItemText primary="Home" onClick={this.fetchAllCategories}/>
+									<Link to="/">Home</Link>
 								</ListItem>
 							</List>
 							<Divider/>
@@ -71,8 +69,7 @@ class App extends Component {
 					<main>
 						<Switch>
 							<Route exact path="/" component={AllPosts}/>
-							{/*<Route path="/:subreddit" component={SpecificCategory}/>*/}
-							<Route path="/category" component={PostDetails}/>
+							<Route path="/:category" component={CategorySwitch}/>
 						</Switch>
 					</main>
 				</div>
@@ -84,8 +81,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
 	const {selectedCategory, allCategories} = state;
-
 	const categories = allCategories.items;
+
 	return {
 		selectedCategory,
 		categories

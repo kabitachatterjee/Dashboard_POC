@@ -6,7 +6,6 @@ class Sidebar extends Component {
 
 	render(){
 		const { classes, theme, sidebarStatus, categories} = this.props;
-		console.log(this.props,"!!!")
 		return(
 		<div>
 			<div
