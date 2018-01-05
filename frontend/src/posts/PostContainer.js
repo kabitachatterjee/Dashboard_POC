@@ -9,20 +9,40 @@ import Downvote from 'material-ui-icons/KeyboardArrowDown';
 
 import Avatar from 'material-ui/Avatar';
 import {upVoteForPostId} from "./PostAction";
-
-
+import {Link} from "react-router-dom";
 
 class PostContainer extends Component {
+
+	/**
+	 *
+	 */
 	upVotePost = () => {
 		upVoteForPostId(this.props.post.id);
 	};
 
+	/**
+	 *
+	 */
 	downVotePost = () => {
 		// Downvote(this.props.post.id);
 	};
 
+	/**
+	 *
+	 */
+	editPost = () => {
+
+	};
+
+	/**
+	 *
+	 */
+	deletePost = () => {
+
+	};
+
 	render() {
-		const {voteScore, author, timestamp, title, body, commentCount, } = this.props.post;
+		const {voteScore, author, timestamp, title, body, commentCount, id } = this.props.post;
 		
 		return (
 			<div>
@@ -51,7 +71,9 @@ class PostContainer extends Component {
 					</div>
 					<CardContent>
 						<Typography type="headline" component="h2">
+							<Link to={`/category/${id}`} className='navigationLinks'>
 							{title}
+							</Link>
 						</Typography>
 						<Typography component="p">
 							{body}
@@ -62,15 +84,17 @@ class PostContainer extends Component {
 							<FavoriteIcon/>
 						</IconButton>
 						<Button dense color="primary">
+							<Link to={`/category/${id}`} className='navigationLinks'>
 							{commentCount} Comments
+							</Link>
 						</Button>
-						<Button dense color="primary">
+						<Button dense color="primary" onClick={this.editPost}>
 							Edit
 						</Button>
 						<Button dense color="primary">
 							Share
 						</Button>
-						<Button dense color="primary">
+						<Button dense color="primary" onClick={this.deletePost}>
 							Delete
 						</Button>
 					</CardActions>

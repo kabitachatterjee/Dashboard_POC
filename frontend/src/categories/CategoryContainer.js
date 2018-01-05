@@ -1,47 +1,22 @@
-import React, {Component} from 'react';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import connect from "react-redux/es/connect/connect";
-import {selectCategory} from "./CategoryAction";
-import {fetchPostsForCategory} from "../posts/PostAction";
-import {Link} from "react-router-dom";
+import React from 'react';
+import List, { ListItem } from 'material-ui/List';
+import {Link, NavLink} from "react-router-dom";
 
 
-class Categories extends Component {
-	selectNewCategory = (event) => {
-		const { dispatch }= this.props;
-		dispatch(selectCategory(event.target.textContent));
-		dispatch(fetchPostsForCategory(event.target.textContent));
-	};
+const Categories = (props) => {
+	const {categories} = props;
+	return (
+		<div>
+			<List>
+			{categories && categories.map((item, i) => (
+				<ListItem key={i}>
+					<NavLink className='navigationLinks' to={`/${item.name}`}> {item.name} </NavLink>
+				</ListItem>
+				)
+			)}
+			</List>
+		</div>
+	)
+};
 
-	render() {
-		const {categories} = this.props;
-		return (
-			<div>
-				<List>
-				{this.props.categories && categories.map((item, i) => (
-					<ListItem key={i} button>
-						<Link to="/${}">Home</Link>
-						<ListItemText primary={item.name} value={item.name} onClick={this.selectNewCategory}/>
-					</ListItem>
-					)
-				)}
-				</List>
-			</div>
-		)
-	}
-}
-
-function mapStateToProps(state){
-	const { selectedCategory, postsByCategory } = state;
-	const { items: posts } = postsByCategory[selectedCategory] ||
-	{
-		isFetching: true,
-		items: []
-	};
-
-	return {
-		posts,
-	};
-}
-
-export default connect(mapStateToProps)(Categories);
+export default Categories;
