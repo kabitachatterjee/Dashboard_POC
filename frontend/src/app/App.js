@@ -7,7 +7,7 @@ import Drawer from 'material-ui/Drawer';
 import List, {ListItem, ListItemText} from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import Categories from "../categories/CategoryContainer";
-import {Link, Route, Switch} from "react-router-dom";
+import {Link, NavLink, Route, Switch} from "react-router-dom";
 import AllPosts from "../posts/AllPosts";
 import {fetchCategoriesFirst} from "../categories/CategoryAction";
 import CategorySwitch from "../categories/CategorySwitch";
@@ -55,8 +55,8 @@ class App extends Component {
 						<div className='sidebarList'>
 							<h3>Navigation</h3>
 							<List>
-								<ListItem button>
-									<Link to="/">Home</Link>
+								<ListItem>
+									<NavLink className='navigationLinks' to="/">Home</NavLink>
 								</ListItem>
 							</List>
 							<Divider/>

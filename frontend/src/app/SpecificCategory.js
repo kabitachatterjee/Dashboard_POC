@@ -6,14 +6,16 @@ import {fetchPostsForCategory} from "../posts/PostAction";
 import { selectCategory} from "../categories/CategoryAction";
 
 class SpecificCategory extends Component {
-	componentDidMount() {
+	componentWillMount() {
 		const {dispatch} = this.props;
 		dispatch(selectCategory(this.props.match.params.category));
 		dispatch(fetchPostsForCategory(this.props.match.params.category));
 	}
 
+
+
 	render() {
-		const { posts, isFetching,} = this.props;
+		const { posts, isFetching} = this.props;
 		return (
 			<div>
 				{isFetching && posts.length === 0 && <h2>Loading...</h2>}
@@ -40,5 +42,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(
-	mapStateToProps
+	mapStateToProps, null, null, {pure: false}
 )(SpecificCategory);

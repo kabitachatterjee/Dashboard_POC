@@ -48,3 +48,7 @@
 .voteCursor{
   cursor: pointer;
 }
+
+.navigationLinks {
+  text-decoration: none;
+}

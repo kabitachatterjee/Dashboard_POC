@@ -17,7 +17,7 @@ class PostDetails extends Component {
 	};
 
 	componentDidMount() {
-		const postId = "8xf0y6ziyjabvozdd253nd";
+		const postId = this.props.match.params.postId;
 		this.props.dispatch(fetchSinglePost(postId));
 		this.props.dispatch(fetchComments(postId));
 	}
@@ -25,7 +25,7 @@ class PostDetails extends Component {
 
 	render() {
 		const {allComments, singlePostDetails} = this.props;
-		const post = singlePostDetails.singlePost ? singlePostDetails.singlePost : ''
+		const post = singlePostDetails.singlePost ? singlePostDetails.singlePost : '';
 		return (
 			<div className='postDetail'>
 				{ post && <div>
