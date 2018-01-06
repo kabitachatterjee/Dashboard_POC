@@ -8,8 +8,9 @@ import Upvote from 'material-ui-icons/KeyboardArrowUp';
 import Downvote from 'material-ui-icons/KeyboardArrowDown';
 
 import Avatar from 'material-ui/Avatar';
-import {upVoteForPostId} from "./PostAction";
+import {downVoteForPostId, upVoteForPostId} from "./PostAction";
 import {Link} from "react-router-dom";
+import {connect} from "react-redux";
 
 class PostContainer extends Component {
 
@@ -17,14 +18,14 @@ class PostContainer extends Component {
 	 *
 	 */
 	upVotePost = () => {
-		upVoteForPostId(this.props.post.id);
+		this.props.dispatch(upVoteForPostId(this.props.post));
 	};
 
 	/**
 	 *
 	 */
 	downVotePost = () => {
-		// Downvote(this.props.post.id);
+		this.props.dispatch(downVoteForPostId(this.props.post));
 	};
 
 	/**
@@ -38,12 +39,10 @@ class PostContainer extends Component {
 	 *
 	 */
 	deletePost = () => {
-
 	};
 
 	render() {
 		const {voteScore, author, timestamp, title, body, commentCount, id } = this.props.post;
-		
 		return (
 			<div>
 				<Card className='card'>
@@ -104,4 +103,10 @@ class PostContainer extends Component {
 	}
 }
 
-export default PostContainer;
+function mapStateToProps(state) {
+	return {post: state.singlePostDetails.singlePost};
+}
+
+export default connect(
+	mapStateToProps,
+)(PostContainer);

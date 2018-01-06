@@ -8,24 +8,6 @@ import {
 	DOWNVOTE_POST, RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST
 } from './PostAction'
 
-// Changes the vote count in the post?
-export function votesByPostId(state={}, action){
-	console.error("Inside");
-	switch (action.type) {
-		case UPVOTE_POST:
-			// Change the vote count
-			return Object.assign({}, state, {
-				[action.category]: posts(state[action.category], action)
-			});
-		case DOWNVOTE_POST:
-			return Object.assign({}, state, {
-				[action.category]: posts(state[action.category], action)
-			});
-		default:
-			return state;
-	}
-}
-
 export function postsByCategory(state = {}, action) {
 	switch (action.type) {
 		case INVALIDATE_SUBREDDIT:
@@ -110,6 +92,16 @@ export function singlePostDetails(state = {}, action){
 				postId: action.postId
 			});
 		case RECEIVE_SINGLE_POST:
+			return Object.assign({}, state, {
+				singlePost: action.singlePost
+			});
+		case UPVOTE_POST:
+			action.singlePost.voteScore += 1;
+			return Object.assign({}, state, {
+				singlePost: action.singlePost
+			});
+		case DOWNVOTE_POST:
+			action.singlePost.voteScore -= 1;
 			return Object.assign({}, state, {
 				singlePost: action.singlePost
 			});
