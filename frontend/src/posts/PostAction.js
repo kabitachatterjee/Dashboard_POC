@@ -12,22 +12,6 @@ export const DOWNVOTE_POST = 'DOWNVOTE_POST';
 export const REQUEST_SINGLE_POST = 'REQUEST_SINGLE_POST';
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST';
 
-function upVotePost(postId){
-	console.error(postId,"!!");
-	debugger;
-	// return {
-	// 	type: UPVOTE_POST,
-	// 	postId,
-	// }
-}
-
-function downVote(postId){
-	return {
-		type: DOWNVOTE_POST,
-		postId
-	}
-}
-
 export function createPost(postDetails){
 	return {
 		type: CREATE_POST,
@@ -111,6 +95,22 @@ function receiveSinglePost(postId, json){
 	}
 }
 
+function upVotePost(post){
+	return {
+		type: UPVOTE_POST,
+		postId: post.id,
+		singlePost: post
+	}
+}
+
+function downVotePost(post){
+	return {
+		type: DOWNVOTE_POST,
+		postId: post.id,
+		singlePost: post
+	}
+}
+
 /**
  * Fetch posts for a specific category.
  * @param subreddit
@@ -126,21 +126,32 @@ export function fetchPostsForCategory(category) {
 }
 
 
-export function upVoteForPostId(postId){
+export function upVoteForPostId(post){
 	return dispatch => {
-		dispatch(upVotePost(postId));
-		return fetch(`http://localhost:3001/posts/${postId}`, {
+		dispatch(upVotePost(post));
+		return fetch(`http://localhost:3001/posts/${post.id}`, {
 			headers: { 'Authorization': 'whatever-you-want'},
 			method: 'post',
 			body: JSON.stringify({"option": "upVote"})
 		})
-			.then(response => {
-				console.error(response.json());
-				return response.json();
-			})
-			.then(json => console.log("JSON", json))
+			.then(response => response.json())
+			.then(json => dispatch(receiveSinglePost(post.id, json)))
 	}
 }
+
+export function downVoteForPostId(post){
+	return dispatch => {
+		dispatch(downVotePost(post));
+		return fetch(`http://localhost:3001/posts/${post.id}`, {
+			headers: { 'Authorization': 'whatever-you-want'},
+			method: 'post',
+			body: JSON.stringify({"option": "downVote"})
+		})
+			.then(response => response.json())
+			.then(json => dispatch(receiveSinglePost(post.id, json)))
+	}
+}
+
 
 /**
  *
