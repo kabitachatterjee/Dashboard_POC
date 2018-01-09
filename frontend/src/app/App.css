@@ -52,3 +52,7 @@
 .navigationLinks {
   text-decoration: none;
 }
+
+.formControl {
+  min-width: 50%;
+}
