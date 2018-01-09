@@ -54,5 +54,5 @@
 }
 
 .formControl {
-  minWidth: 120
+  min-width: 50%;
 }

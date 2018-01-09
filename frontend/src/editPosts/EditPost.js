@@ -12,21 +12,35 @@ class EditPost extends Component {
 		author: '',
 		deleted: false,
 		category: 'react',
+		authorDisabled: false,
 	};
 
-	componentDidMount(){
-
+	componentWillMount(){
+		const {body, title, author, category} = this.props.singlePostDetails.singlePost;
+		this.setState({body, title, author, category});
+		if(this.props.action === "Edit"){
+			this.setState({authorDisabled: true});
+		}
 	}
 
 	handleChange = (e) => {
-		console.log(e.target.id)
+		this.setState({[e.target.id]: e.target.value});
+	};
+
+
+	submitForm = () => {
+		this.props.submitChanges({
+			title: this.state.title,
+			body: this.state.body
+		});
 	};
 
 	render(){
-		const {categories, singlePostDetails} = this.props;
+		const {categories} = this.props;
 		return (
 			<div>
 				<div>
+					<h2>{this.props.action} Post</h2>
 					<FormControl className='formControl'>
 						<InputLabel htmlFor="title-helper">Title</InputLabel>
 						<Input id="title"
@@ -45,12 +59,15 @@ class EditPost extends Component {
 				<div>
 					<FormControl className='formControl'>
 						<InputLabel htmlFor="author-helper">Author</InputLabel>
-						<Input id="author" value={this.state.author} onChange={this.handleChange} />
+						<Input id="author"
+									 value={this.state.author}
+									 disabled = {(this.state.authorDisabled)? "disabled" : ""}
+									 onChange={this.handleChange} />
 					</FormControl>
 				</div>
 				<div>
 					<FormControl className='formControl'>
-						<InputLabel htmlFor="age-helper">Age</InputLabel>
+						<InputLabel htmlFor="category-helper">Category</InputLabel>
 						<Select
 							id='category'
 							value={this.state.category}
@@ -69,8 +86,8 @@ class EditPost extends Component {
 					<br/>
 				</div>
 				<div>
-					<Button raised color="primary">
-						Primary
+					<Button raised color="primary" onClick={this.submitChanges}>
+						{this.props.action}
 					</Button>
 				</div>
 			</div>

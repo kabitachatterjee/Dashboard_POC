@@ -87,8 +87,10 @@ class PostContainer extends Component {
 							{commentCount} Comments
 							</Link>
 						</Button>
-						<Button dense color="primary" onClick={this.editPost}>
+						<Button dense color="primary">
+							<Link to={`/category/${id}/edit`} className='navigationLinks'>
 							Edit
+							</Link>
 						</Button>
 						<Button dense color="primary">
 							Share

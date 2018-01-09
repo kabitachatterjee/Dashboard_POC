@@ -13,7 +13,27 @@ class PostSwitch extends Component {
 		this.props.dispatch(fetchComments(postId));
 	}
 
+	/**
+	 *
+	 *     POST /comments
+	 USAGE:
+	 Add a comment to a post
+
+	 PARAMS:
+	 id: Any unique ID. As with posts, UUID is probably the best here.
+	 timestamp: timestamp. Get this however you want.
+	 body: String
+	 author: String
+	 parentId: Should match a post id in the database.
+	 */
 	postComment = () => {
+
+	};
+
+	/**
+	 * Makes put action creator ( PUT /posts/:id)
+	 */
+	submitChanges = () => {
 
 	};
 
@@ -21,22 +41,28 @@ class PostSwitch extends Component {
 		const {allComments, singlePostDetails, categories} = this.props;
 		return (
 			<div>
-				{Object.keys(allComments).length === 0 && Object.keys(singlePostDetails).length === 0 &&
-				<div>Loading!!!</div>}
-				{Object.keys(allComments).length > 0 && Object.keys(singlePostDetails).length > 0 &&
 				<div>
+					{Object.keys(allComments).length === 0
+					&& Object.keys(singlePostDetails).length === 0
+					&& categories &&
+					<div>Loading!!!</div>}
 					<Switch>
+
+						{Object.keys(allComments).length > 0 && Object.keys(singlePostDetails).length > 0 &&
 						<Route exact path="/:category/:postId"
 									 render={()=><PostDetails allComments={allComments}
 									 singlePostDetails={singlePostDetails}
 									 postComment={this.postComment}/>}
-						/>
+						/>}
+						{	categories && Object.keys(singlePostDetails).length > 0 &&
 						<Route exact path="/:category/:postId/edit"
-									 render={()=><EditPost singlePostDetails={singlePostDetails} categories={categories}/>}
-						/>
+									 render={()=><EditPost singlePostDetails={singlePostDetails}
+																				 categories={categories}
+																				 submitChanges={this.submitChanges}
+									 action="Edit"/>}
+						/>}
 					</Switch>
 				</div>
-				}
 			</div>
 		);
 	}
