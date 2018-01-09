@@ -4,8 +4,8 @@ import Button from 'material-ui/Button';
 import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import FavoriteIcon from 'material-ui-icons/Favorite';
-import Upvote from 'material-ui-icons/KeyboardArrowUp';
-import Downvote from 'material-ui-icons/KeyboardArrowDown';
+import UpVote from 'material-ui-icons/KeyboardArrowUp';
+import DownVote from 'material-ui-icons/KeyboardArrowDown';
 
 import Avatar from 'material-ui/Avatar';
 import {downVoteForPostId, upVoteForPostId} from "./PostAction";
@@ -49,13 +49,13 @@ class PostContainer extends Component {
 					<div className='cardHeader'>
 						<div className='voteArea'>
 							<div className='arrow-up'>
-								<Upvote onClick={this.upVotePost} className='voteCursor'/>
+								<UpVote onClick={this.upVotePost} className='voteCursor'/>
 							</div>
 							<div className='totalscore'>
 								{voteScore}
 							</div>
 							<div className='arrow-down'>
-								<Downvote onClick={this.downVotePost} className='voteCursor'/>
+								<DownVote onClick={this.downVotePost} className='voteCursor'/>
 							</div>
 						</div>
 						<CardHeader
