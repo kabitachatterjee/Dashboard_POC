@@ -29,10 +29,7 @@ class EditPost extends Component {
 
 
 	submitForm = () => {
-		this.props.submitChanges({
-			title: this.state.title,
-			body: this.state.body
-		});
+		this.props.submitChanges(this.state);
 	};
 
 	render(){
@@ -86,7 +83,7 @@ class EditPost extends Component {
 					<br/>
 				</div>
 				<div>
-					<Button raised color="primary" onClick={this.submitChanges}>
+					<Button raised color="primary" onClick={this.submitForm}>
 						{this.props.action}
 					</Button>
 				</div>
