@@ -33,7 +33,7 @@ class PostSwitch extends Component {
 	/**
 	 * Makes put action creator ( PUT /posts/:id)
 	 */
-	submitChanges = () => {
+	submitChanges = (formObject) => {
 
 	};
 
