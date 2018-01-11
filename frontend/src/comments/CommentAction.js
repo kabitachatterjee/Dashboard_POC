@@ -18,17 +18,17 @@ function receiveComments(json) {
 	}
 }
 
-function createComment(postId, comment){
+function createComment(comment){
 	return {
 		type: CREATE_COMMENT,
 		comment,
 	}
 }
 
-export function postNewComment(postId, params){
+export function postNewComment(params){
 	return dispatch => {
-		dispatch(createComment(postId, params));
-		return fetch(`http://localhost:3001/posts/${postId}/comments`, {
+		dispatch(createComment(params));
+		return fetch(`http://localhost:3001/comments`, {
 			headers: { 'Authorization': 'whatever-you-want'},
 			method: 'POST',
 			body: JSON.stringify(params)

@@ -29,14 +29,15 @@ class PostSwitch extends Component {
 	 parentId: Should match a post id in the database.
 	 */
 	postComment = (commentObject) => {
-		const {parentId, body, author} = commentObject;
+		const {body, author, parentId} = commentObject;
 		const params = {
-			id: UUID.create(),
+			id: UUID.create().hex,
 			timestamp: + new Date(),
 			body,
-			author
+			author,
+			parentId
 		};
-		this.props.dispatch(postNewComment(parentId, params))
+		this.props.dispatch(postNewComment(params))
 	};
 
 	/**

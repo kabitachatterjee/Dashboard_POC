@@ -9,6 +9,7 @@ import Comment from "../comments/CommentsContainer";
 class PostDetails extends Component {
 	state = {
 		body: '',
+		parentId: '',
 		author: 'michaelhuy@google.com',
 	};
 
@@ -17,6 +18,9 @@ class PostDetails extends Component {
 	};
 
 	submitNewComment = () => {
+		this.setState({
+			parentId: this.props.singlePostDetails.singlePost.id
+		});
 		if(this.state.body){
 			this.props.postComment(this.state);
 		}
