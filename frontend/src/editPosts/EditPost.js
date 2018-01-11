@@ -16,10 +16,9 @@ class EditPost extends Component {
 	};
 
 	componentWillMount(){
-		const {body, title, author, category} = this.props.singlePostDetails.singlePost;
-		this.setState({body, title, author, category});
 		if(this.props.action === "Edit"){
-			this.setState({authorDisabled: true});
+			const {body, title, author, category, id, timestamp} = this.props.singlePostDetails.singlePost;
+			this.setState({body, title, author, category, id, timestamp, authorDisabled: true});
 		}
 	}
 

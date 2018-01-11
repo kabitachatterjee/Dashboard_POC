@@ -11,6 +11,8 @@ export const UPVOTE_POST = 'UPVOTE_POST';
 export const DOWNVOTE_POST = 'DOWNVOTE_POST';
 export const REQUEST_SINGLE_POST = 'REQUEST_SINGLE_POST';
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST';
+export const EDIT_POST = 'EDIT_POST';
+export const ADD_POST = 'ADD_POST';
 
 export function createPost(postDetails){
 	return {
@@ -23,6 +25,20 @@ export function deletePost(postId){
 	return {
 		type: DELETE_POST,
 		postId
+	}
+}
+
+export function editPost(postDetails){
+	return {
+		type: EDIT_POST,
+		postDetails,
+	}
+}
+
+export function addPost(postDetails){
+	return {
+		type: ADD_POST,
+		postDetails,
 	}
 }
 
@@ -177,12 +193,43 @@ export function deletePostAction(postId){
 	}
 }
 
+
 export function fetchSinglePost(postId){
 	return dispatch => {
 		dispatch(requestSinglePost(postId));
 		return fetch(`http://localhost:3001/posts/${postId}`, {headers: { 'Authorization': 'whatever-you-want'}} )
 			.then(response => response.json())
 			.then(json => dispatch(receiveSinglePost(postId, json)))	}
+}
+
+
+export function patchSinglePost(postDetails){
+	return dispatch => {
+		dispatch(editPost(postDetails));
+		return fetch(`http://localhost:3001/posts/${postDetails.id}`, {
+			headers: { 'Authorization': 'whatever-you-want'},
+			method: 'PUT',
+			body: JSON.stringify({
+				title: postDetails.title,
+				body: postDetails.body
+			})
+		})
+			.then(response =>  response.json())
+			.then(json => dispatch(receiveSinglePost(postDetails.id, json)))
+	}
+}
+
+export function addNewPost(postDetails){
+	return dispatch => {
+		dispatch(addPost(postDetails));
+		return fetch(`http://localhost:3001/posts/`, {
+			headers: { 'Authorization': 'whatever-you-want'},
+			method: 'POST',
+			body: JSON.stringify(postDetails)
+		})
+			.then(response =>  response.json())
+			.then(json => dispatch(receiveSinglePost(postDetails.id, json)))
+	}
 }
 
 

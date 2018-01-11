@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import {fetchComments} from "../comments/CommentAction";
-import {fetchSinglePost} from "./PostAction";
+import {fetchComments, postNewComment} from "../comments/CommentAction";
+import {addNewPost, fetchSinglePost, patchSinglePost} from "./PostAction";
 import EditPost from "../editPosts/EditPost";
 import PostDetails from "../detailPost/PostDetails";
 import {Route, Switch} from "react-router-dom";
 import {connect} from "react-redux";
+import UUID from 'uuid-js';
+
 
 class PostSwitch extends Component {
 	componentDidMount() {
@@ -26,15 +28,24 @@ class PostSwitch extends Component {
 	 author: String
 	 parentId: Should match a post id in the database.
 	 */
-	postComment = () => {
-
+	postComment = (commentObject) => {
+		const {body, author, parentId} = commentObject;
+		const params = {
+			id: UUID.create().hex,
+			timestamp: + new Date(),
+			body,
+			author,
+			parentId
+		};
+		this.props.dispatch(postNewComment(params))
 	};
 
 	/**
 	 * Makes put action creator ( PUT /posts/:id)
 	 */
 	submitChanges = (formObject) => {
-
+		this.props.dispatch(patchSinglePost(formObject));
+		this.props.history.push(`/category/${formObject.id}`);
 	};
 
 	render(){

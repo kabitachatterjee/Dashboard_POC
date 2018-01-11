@@ -5,7 +5,7 @@ import {
 	REQUEST_COMMENTS,
 	RECEIVE_COMMENTS,
 	UPVOTE_POST,
-	DOWNVOTE_POST, RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST
+	DOWNVOTE_POST, RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST, EDIT_POST, ADD_POST
 } from './PostAction'
 
 export function postsByCategory(state = {}, action) {
@@ -91,6 +91,8 @@ export function singlePostDetails(state = {}, action){
 			return Object.assign({}, state, {
 				postId: action.postId
 			});
+		case EDIT_POST:
+		case ADD_POST:
 		case RECEIVE_SINGLE_POST:
 			return Object.assign({}, state, {
 				singlePost: action.singlePost
