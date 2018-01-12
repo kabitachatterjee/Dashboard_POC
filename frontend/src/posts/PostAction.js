@@ -233,12 +233,3 @@ export function addNewPost(postDetails){
 }
 
 
-function fetchComments(postId) {
-	return dispatch => {
-		dispatch(requestComments(postId));
-		return fetch(`localhost:3001/posts/${postId}/comments`, {headers: { 'Authorization': 'whatever-you-want'}})
-			.then(response => response.json())
-			.then(json => dispatch(receiveComments(postId, json)))
-	}
-}
-

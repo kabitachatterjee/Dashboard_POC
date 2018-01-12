@@ -1,17 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AppBar from 'material-ui/AppBar';
-import Toolbar from 'material-ui/Toolbar';
-import Typography from 'material-ui/Typography';
-import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui-icons/Menu';
+import {IconButton, Toolbar, Typography, AppBar, Tooltip} from "material-ui";
+import NoteAdd from 'material-ui-icons/NoteAdd';
+import {NavLink} from "react-router-dom";
 
 
 class Header extends React.Component {
 
+
 	render() {
 		const { toggleDrawer } = this.props;
-
 		return (
 			<div>
 				<div>
@@ -25,9 +24,20 @@ class Header extends React.Component {
 							</IconButton>
 							<Typography type="title"
 													color="inherit"
+													className="header-title"
 													noWrap>
 								Readdit Redux
 							</Typography>
+							<NavLink to='/addPost'>
+								<Tooltip id="tooltip-left-end"
+												 title="Add Post"
+												 placement="left-end">
+									<IconButton  color="contrast"
+															 aria-label="Add Post">
+										<NoteAdd/>
+									</IconButton>
+								</Tooltip>
+							</NavLink>
 						</Toolbar>
 					</AppBar>
 				</div>

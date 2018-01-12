@@ -23,7 +23,9 @@ class EditPost extends Component {
 	}
 
 	handleChange = (e) => {
-		this.setState({[e.target.id]: e.target.value});
+		const stateProperty = e.target.id ?  e.target.id : e.target.name;
+		console.log(stateProperty, "!!")
+		this.setState({[stateProperty]: e.target.value});
 	};
 
 
@@ -57,7 +59,7 @@ class EditPost extends Component {
 						<InputLabel htmlFor="author-helper">Author</InputLabel>
 						<Input id="author"
 									 value={this.state.author}
-									 disabled = {(this.state.authorDisabled)? "disabled" : ""}
+									 disabled = {this.state.authorDisabled}
 									 onChange={this.handleChange} />
 					</FormControl>
 				</div>
@@ -68,7 +70,7 @@ class EditPost extends Component {
 							id='category'
 							value={this.state.category}
 							onChange={this.handleChange}
-							input={<Input name="category" id="category-helper" />}
+							input={<Input name="category" id="category" />}
 						>
 							<MenuItem value="">
 								<em>None</em>

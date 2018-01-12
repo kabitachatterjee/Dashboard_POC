@@ -6,9 +6,11 @@ const Posts = (props) => {
 			<div>
 			{props.posts.length === 0 &&
 				<div>
-					<p>No Posts</p>
+					<p>Loading</p>
 				</div>}
-				{props.posts.length && props.posts.map((item) => item.deleted ? '': <PostContainer key={item.id} post={item} />)}
+				{props.posts.length > 0
+				&& props.posts.map(
+					(item, index) => item.deleted ? '': <PostContainer key={index} post={item}/>)}
 			</div>
 		)
 };

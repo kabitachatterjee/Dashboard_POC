@@ -22,7 +22,7 @@ class SpecificCategory extends Component {
 				{!isFetching && posts.length === 0 && <h2>Empty.</h2>}
 				{posts.length > 0 &&
 				<div style={{opacity: isFetching ? 0.5 : 1}}>
-					<Posts posts={posts}/>
+					<Posts posts={posts} key={posts.id}/>
 				</div>}
 			</div>
 		);

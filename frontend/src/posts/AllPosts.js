@@ -6,7 +6,6 @@ import {selectCategory} from "../categories/CategoryAction";
 
 class AllPosts extends Component {
 
-//TODO(michaelhuy): Doesn't load categories on initial load
 	componentWillMount() {
 		const {dispatch} = this.props;
 		dispatch(selectCategory('all'));
@@ -22,7 +21,7 @@ class AllPosts extends Component {
 				{!isFetching && items.length === 0 && <h2>Empty.</h2>}
 				{items.length > 0 &&
 				<div style={{ opacity: isFetching ? 0.5 : 1 }}>
-					<Posts posts={items} />
+					<Posts posts={items}/>
 				</div>}
 			</div>
 		)
