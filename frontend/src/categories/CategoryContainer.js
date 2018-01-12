@@ -1,6 +1,6 @@
 import React from 'react';
-import List, { ListItem } from 'material-ui/List';
-import {Link, NavLink} from "react-router-dom";
+import { NavLink} from "react-router-dom";
+import {ListItemText, ListItem, List} from "material-ui";
 
 
 const Categories = (props) => {
@@ -9,9 +9,11 @@ const Categories = (props) => {
 		<div>
 			<List>
 			{categories && categories.map((item, i) => (
-				<ListItem key={i}>
-					<NavLink className='navigationLinks' to={`/${item.name}`}> {item.name} </NavLink>
-				</ListItem>
+				<NavLink key={i} className='navigationLinks' to={`/${item.name}`}>
+					<ListItem button>
+						<ListItemText primary={item.name} />
+					</ListItem>
+				</NavLink>
 				)
 			)}
 			</List>

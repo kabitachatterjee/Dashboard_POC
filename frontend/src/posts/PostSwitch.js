@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {fetchComments, postNewComment} from "../comments/CommentAction";
-import {addNewPost, fetchSinglePost, patchSinglePost} from "./PostAction";
+import {fetchSinglePost, patchSinglePost} from "./PostAction";
 import EditPost from "../editPosts/EditPost";
 import PostDetails from "../detailPost/PostDetails";
 import {Route, Switch} from "react-router-dom";
@@ -37,7 +37,8 @@ class PostSwitch extends Component {
 			author,
 			parentId
 		};
-		this.props.dispatch(postNewComment(params))
+		this.props.dispatch(postNewComment(params));
+		this.props.history.push(`/category/${parentId}`);
 	};
 
 	/**

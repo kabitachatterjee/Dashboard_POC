@@ -29,7 +29,10 @@ export function postNewComment(params){
 	return dispatch => {
 		dispatch(createComment(params));
 		return fetch(`http://localhost:3001/comments`, {
-			headers: { 'Authorization': 'whatever-you-want'},
+			headers: {
+				'Authorization': 'whatever-you-want',
+				'Content-Type': 'application/json'
+			},
 			method: 'POST',
 			body: JSON.stringify(params)
 		})
@@ -41,7 +44,10 @@ export function postNewComment(params){
 export function fetchComments(postId){
 	return dispatch => {
 		dispatch(requestCategories(postId));
-		return fetch(`http://localhost:3001/posts/${postId}/comments`, {headers: { 'Authorization': 'whatever-you-want'}})
+		return fetch(`http://localhost:3001/posts/${postId}/comments`, {
+			headers: { 'Authorization': 'whatever-you-want'
+			}
+		})
 			.then(response => response.json())
 			.then(json => dispatch(receiveComments(json)))
 	}

@@ -1,16 +1,19 @@
 import React, {Component} from 'react';
 import './App.css';
 import {connect} from "react-redux";
-import Header from "./Header";
-import {fetchAllPosts} from "../posts/PostAction";
-import Drawer from 'material-ui/Drawer';
-import List, {ListItem} from 'material-ui/List';
-import Divider from 'material-ui/Divider';
-import Categories from "../categories/CategoryContainer";
+import UUID from "uuid-js";
 import {NavLink, Route, Switch} from "react-router-dom";
+import {ListItemIcon, ListItemText, List, ListItem, Drawer, Divider} from "material-ui";
+import {Home} from 'material-ui-icons';
+
+
+import Header from "./Header";
 import AllPosts from "../posts/AllPosts";
+import Categories from "../categories/CategoryContainer";
 import {fetchCategoriesFirst} from "../categories/CategoryAction";
+import {addNewPost, fetchAllPosts} from "../posts/PostAction";
 import CategorySwitch from "../categories/CategorySwitch";
+import EditPost from "../editPosts/EditPost";
 
 class App extends Component {
 	state = {
@@ -28,6 +31,17 @@ class App extends Component {
 		});
 	};
 
+	submitNewPost = (postDetails) => {
+		const {title, body, author, category} = postDetails;
+		const params = {
+			title, body, author, category,
+			id: UUID.create().hex,
+			timestamp: + new Date(),
+		};
+		this.props.dispatch(addNewPost(params));
+		this.props.history.push(`/`);
+	};
+
 	/**
 	 * Changes the selected category to 'all' and fetches all
 	 * the posts.
@@ -37,7 +51,7 @@ class App extends Component {
 	};
 
 	render() {
-		const {theme, classes, selectedSubreddit, categories} = this.props;
+		const { categories} = this.props;
 		return (
 			<div className='main'>
 				<div className='header'>
@@ -45,7 +59,7 @@ class App extends Component {
 						toggleDrawer={this.toggleDrawer}
 					/>
 				</div>
-				<Drawer open={this.state.left} onRequestClose={this.toggleDrawer(false)}>
+				<Drawer open={this.state.left} onClose={this.toggleDrawer(false)}>
 					<div
 						tabIndex={0}
 						role="button"
@@ -55,9 +69,14 @@ class App extends Component {
 						<div className='sidebarList'>
 							<h3>Navigation</h3>
 							<List>
-								<ListItem>
-									<NavLink className='navigationLinks' to="/">Home</NavLink>
-								</ListItem>
+								<NavLink className='navigationLinks' to="/">
+									<ListItem button>
+										<ListItemIcon>
+											<Home/>
+										</ListItemIcon>
+										<ListItemText primary="Home"/>
+									</ListItem>
+								</NavLink>
 							</List>
 							<Divider/>
 							<h3>Categories</h3>
@@ -69,6 +88,11 @@ class App extends Component {
 					<main>
 						<Switch>
 							<Route exact path="/" component={AllPosts}/>
+							<Route path="/addPost"
+										 render={()=><EditPost categories={categories}
+																					 submitChanges={this.submitNewPost}
+																					 action="Add"/>}
+							/>
 							<Route path="/:category" component={CategorySwitch}/>
 						</Switch>
 					</main>

@@ -10,8 +10,6 @@ import {
 	Route, Switch,
 } from 'react-router-dom'
 import configureStore from './store/configureStore';
-import PostDetails from "./detailPost/PostDetails";
-import SpecificCategory from "./app/SpecificCategory";
 import NotFound from "./NotFound";
 
 const store = configureStore();

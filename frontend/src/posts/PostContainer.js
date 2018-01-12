@@ -31,82 +31,75 @@ class PostContainer extends Component {
 	/**
 	 *
 	 */
-	editPost = () => {
-
-	};
-
-	/**
-	 *
-	 */
 	deletePost = () => {
 	};
 
 	render() {
-		const {voteScore, author, timestamp, title, body, commentCount, id } = this.props.post;
-		return (
-			<div>
-				<Card className='card'>
-					<div className='cardHeader'>
-						<div className='voteArea'>
-							<div className='arrow-up'>
-								<UpVote onClick={this.upVotePost} className='voteCursor'/>
+			const {voteScore, author, timestamp, title, body, commentCount, id } = this.props.post;
+			return (
+				<div>
+					<Card className='card'>
+						<div className='cardHeader'>
+							<div className='voteArea'>
+								<div className='arrow-up'>
+									<UpVote onClick={this.upVotePost} className='voteCursor'/>
+								</div>
+								<div>
+									{voteScore}
+								</div>
+								<div className='arrow-down'>
+									<DownVote onClick={this.downVotePost} className='voteCursor'/>
+								</div>
 							</div>
-							<div className='totalscore'>
-								{voteScore}
-							</div>
-							<div className='arrow-down'>
-								<DownVote onClick={this.downVotePost} className='voteCursor'/>
-							</div>
+							<CardHeader
+								avatar={
+									<Avatar className='avatar' aria-label="Recipe">
+										R
+									</Avatar>
+								}
+								title={author}
+								subheader={timestamp}
+							/>
 						</div>
-						<CardHeader
-							avatar={
-								<Avatar className='avatar' aria-label="Recipe">
-									R
-								</Avatar>
-							}
-							title={author}
-							subheader={timestamp}
-						/>
-					</div>
-					<CardContent>
-						<Typography type="headline" component="h2">
-							<Link to={`/category/${id}`} className='navigationLinks'>
-							{title}
-							</Link>
-						</Typography>
-						<Typography component="p">
-							{body}
-						</Typography>
-					</CardContent>
-					<CardActions>
-						<IconButton aria-label="Add to favorites">
-							<FavoriteIcon/>
-						</IconButton>
-						<Button dense color="primary">
-							<Link to={`/category/${id}`} className='navigationLinks'>
-							{commentCount} Comments
-							</Link>
-						</Button>
-						<Button dense color="primary">
-							<Link to={`/category/${id}/edit`} className='navigationLinks'>
-							Edit
-							</Link>
-						</Button>
-						<Button dense color="primary">
-							Share
-						</Button>
-						<Button dense color="primary" onClick={this.deletePost}>
-							Delete
-						</Button>
-					</CardActions>
-				</Card>
-			</div>
-		)
+						<CardContent>
+							<Typography type="headline" component="h2">
+								<Link to={`/category/${id}`} className='navigationLinks'>
+									{title}
+								</Link>
+							</Typography>
+							<Typography component="p">
+								{body}
+							</Typography>
+						</CardContent>
+						<CardActions>
+							<IconButton aria-label="Add to favorites">
+								<FavoriteIcon/>
+							</IconButton>
+							<Button dense color="primary">
+								<Link to={`/category/${id}`} className='navigationLinks'>
+									{commentCount} Comments
+								</Link>
+							</Button>
+							<Button dense color="primary">
+								<Link to={`/category/${id}/edit`} className='navigationLinks'>
+									Edit
+								</Link>
+							</Button>
+							<Button dense color="primary">
+								Share
+							</Button>
+							<Button dense color="primary" onClick={this.deletePost}>
+								Delete
+							</Button>
+						</CardActions>
+					</Card>
+				</div>
+			)
 	}
 }
 
 function mapStateToProps(state) {
-	return {post: state.singlePostDetails.singlePost};
+	return state;
 }
 
 export default connect(
