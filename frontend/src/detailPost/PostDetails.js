@@ -14,13 +14,14 @@ class PostDetails extends Component {
 	};
 
 	handleCommentChange = (e) => {
-		this.setState({body: e.target.value})
-	};
-
-	submitNewComment = () => {
+		this.setState({body: e.target.value});
 		this.setState({
 			parentId: this.props.singlePostDetails.singlePost.id
 		});
+	};
+
+	submitNewComment = () => {
+
 		if(this.state.body){
 			this.props.postComment(this.state);
 		}

@@ -146,8 +146,11 @@ export function upVoteForPostId(post){
 	return dispatch => {
 		dispatch(upVotePost(post));
 		return fetch(`http://localhost:3001/posts/${post.id}`, {
-			headers: { 'Authorization': 'whatever-you-want'},
-			method: 'post',
+			headers: {
+				'Authorization': 'whatever-you-want',
+				'Content-Type': 'application/json'
+			},
+			method: 'POST',
 			body: JSON.stringify({"option": "upVote"})
 		})
 			.then(response => response.json())
@@ -159,8 +162,11 @@ export function downVoteForPostId(post){
 	return dispatch => {
 		dispatch(downVotePost(post));
 		return fetch(`http://localhost:3001/posts/${post.id}`, {
-			headers: { 'Authorization': 'whatever-you-want'},
-			method: 'post',
+			headers: {
+				'Authorization': 'whatever-you-want',
+				'Content-Type': 'application/json'
+			},
+			method: 'POST',
 			body: JSON.stringify({"option": "downVote"})
 		})
 			.then(response => response.json())
@@ -223,7 +229,10 @@ export function addNewPost(postDetails){
 	return dispatch => {
 		dispatch(addPost(postDetails));
 		return fetch(`http://localhost:3001/posts/`, {
-			headers: { 'Authorization': 'whatever-you-want'},
+			headers: {
+				'Authorization': 'whatever-you-want',
+				'Content-Type': 'application/json'
+			},
 			method: 'POST',
 			body: JSON.stringify(postDetails)
 		})

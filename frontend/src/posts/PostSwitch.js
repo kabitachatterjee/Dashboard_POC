@@ -37,7 +37,8 @@ class PostSwitch extends Component {
 			author,
 			parentId
 		};
-		this.props.dispatch(postNewComment(params))
+		this.props.dispatch(postNewComment(params));
+		this.props.history.push(`/category/${parentId}`);
 	};
 
 	/**
