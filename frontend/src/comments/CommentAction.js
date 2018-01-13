@@ -3,6 +3,7 @@ import fetch from 'cross-fetch';
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
+export const RECEIVE_SINGLE_COMMENTS = 'RECEIVE_SINGLE_COMMENTS';
 
 function requestCategories(postId){
 	return {
@@ -14,6 +15,13 @@ function requestCategories(postId){
 function receiveComments(json) {
 	return {
 		type: RECEIVE_COMMENTS,
+		comments: json,
+	}
+}
+
+function receiveWithNewComment(json) {
+	return {
+		type: RECEIVE_SINGLE_COMMENTS,
 		comments: json,
 	}
 }
@@ -37,7 +45,7 @@ export function postNewComment(params){
 			body: JSON.stringify(params)
 		})
 			.then(response => response.json())
-			.then(json => dispatch(receiveComments(json)))
+			.then(json => dispatch(receiveWithNewComment(json)))
 	}
 }
 
