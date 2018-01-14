@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchComments, postNewComment} from "../comments/CommentAction";
+import {fetchComments, postNewComment, voteComment} from "../comments/CommentAction";
 import {fetchSinglePost, patchSinglePost} from "./PostAction";
 import EditPost from "../editPosts/EditPost";
 import PostDetails from "../detailPost/PostDetails";
@@ -49,6 +49,10 @@ class PostSwitch extends Component {
 		this.props.history.push(`/category/${formObject.id}`);
 	};
 
+	voteOnComment = (voteParams) => {
+		this.props.dispatch(voteComment(voteParams));
+	};
+
 	render(){
 		const {allComments, singlePostDetails, categories} = this.props;
 		return (
@@ -64,6 +68,7 @@ class PostSwitch extends Component {
 						<Route exact path="/:category/:postId"
 									 render={()=><PostDetails allComments={allComments}
 									 singlePostDetails={singlePostDetails}
+																						voteOnComment={this.voteOnComment}
 									 postComment={this.postComment}/>}
 						/>}
 						{	categories && Object.keys(singlePostDetails).length > 0 &&

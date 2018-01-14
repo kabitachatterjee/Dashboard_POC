@@ -1,9 +1,11 @@
 import fetch from 'cross-fetch';
 
-export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const CREATE_COMMENT = 'CREATE_COMMENT';
+export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const RECEIVE_SINGLE_COMMENTS = 'RECEIVE_SINGLE_COMMENTS';
+export const RECEIVE_VOTE_COMMENT = 'RECEIVE_VOTE_COMMENT';
+export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
+export const VOTE_COMMENT = 'VOTE_COMMENT';
 
 function requestCategories(postId){
 	return {
@@ -30,6 +32,36 @@ function createComment(comment){
 	return {
 		type: CREATE_COMMENT,
 		comment,
+	}
+}
+
+function upVoteComment(commentParam){
+	return {
+		type: VOTE_COMMENT,
+		comment: commentParam
+	}
+}
+
+function receiveWithUpdatedComment(updatedComment){
+	return {
+		type: RECEIVE_VOTE_COMMENT,
+		comment: updatedComment,
+	}
+}
+
+export function voteComment(voteParam){
+	return dispatch => {
+		dispatch(upVoteComment(voteParam));
+		return fetch(`http://localhost:3001/comments/${voteParam.commentId}`, {
+			headers: {
+				'Authorization': 'whatever-you-want',
+				'Content-Type': 'application/json'
+			},
+			method: 'POST',
+			body: JSON.stringify({"option": voteParam.vote})
+		})
+			.then(response => response.json())
+			.then(json => dispatch(receiveWithUpdatedComment(json)))
 	}
 }
 

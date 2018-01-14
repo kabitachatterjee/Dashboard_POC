@@ -78,7 +78,11 @@ class PostDetails extends Component {
 					<div>
 						<h1>Comments</h1>
 						{allComments.items.length > 0 && allComments.items.map((comment) => (
-							comment.deleted && comment.parentDeleted ? '' : <Comment key={comment.id} comment={comment}/>
+							comment.deleted && comment.parentDeleted ? '' :
+								<Comment key={comment.id}
+												 comment={comment}
+												 voteOnComment={this.props.voteOnComment}
+								/>
 						))}
 					</div>
 				</div>
