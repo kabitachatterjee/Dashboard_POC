@@ -1,14 +1,16 @@
 import {
 	REQUEST_COMMENTS,
-	RECEIVE_COMMENTS, RECEIVE_SINGLE_COMMENTS, VOTE_COMMENT, RECEIVE_VOTE_COMMENT
+	RECEIVE_COMMENTS, RECEIVE_SINGLE_COMMENTS, VOTE_COMMENT, RECEIVE_VOTE_COMMENT, EDIT_COMMENT, RECEIVE_DELETED_COMMENT
 } from './CommentAction';
 
 export function allComments(state = {}, action){
 	switch (action.type) {
 		case REQUEST_COMMENTS:
 		case RECEIVE_COMMENTS:
+		case RECEIVE_DELETED_COMMENT:
 		case RECEIVE_SINGLE_COMMENTS:
 		case RECEIVE_VOTE_COMMENT:
+		case EDIT_COMMENT:
 		case VOTE_COMMENT:
 			return Object.assign({}, state, comments(state, action)
 			);
@@ -38,9 +40,17 @@ function comments(state = {items: []}, action) {
 					allCommentsWithNewVote = state;
 				}
 			});
-			console.log(allCommentsWithNewVote);
 			return Object.assign({}, state, {
-				items: allCommentsWithNewVote
+				items: allCommentsWithNewVote.items
+			});
+		case RECEIVE_DELETED_COMMENT:
+			const nonDeletedItems = state.items.filter((comment) => {
+				if(comment.id !== action.comments.id){
+					return comment;
+				}
+			});
+			return Object.assign({}, state, {
+				items: nonDeletedItems
 			});
 		default:
 			return state;

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import './App.css';
 import {connect} from "react-redux";
-import Posts from "../posts/Posts";
 import {fetchPostsForCategory} from "../posts/PostAction";
 import { selectCategory} from "../categories/CategoryAction";
+import PostContainer from "../posts/PostContainer";
 
 class SpecificCategory extends Component {
 	componentWillMount() {
@@ -22,7 +22,7 @@ class SpecificCategory extends Component {
 				{!isFetching && posts.length === 0 && <h2>Empty.</h2>}
 				{posts.length > 0 &&
 				<div style={{opacity: isFetching ? 0.5 : 1}}>
-					<Posts posts={posts} key={posts.id}/>
+					<PostContainer posts={posts} key={posts.id}/>
 				</div>}
 			</div>
 		);

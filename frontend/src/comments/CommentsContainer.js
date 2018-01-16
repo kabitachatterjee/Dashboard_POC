@@ -2,14 +2,37 @@ import React, {Component} from 'react';
 import {Button, Card, CardActions, CardContent, TextField, Typography} from "material-ui";
 import UpVote from 'material-ui-icons/KeyboardArrowUp';
 import DownVote from 'material-ui-icons/KeyboardArrowDown';
+import {Edit, Delete, Save} from 'material-ui-icons';
 
 class Comment extends Component {
 	state = {
 		inEditMode: false,
+		commentBody: '',
+		commentId: 0,
 	};
 
-	patchComment = () => {
+	componentDidMount() {
+		this.setState({
+			commentId: this.props.comment.id,
+			commentBody: this.props.comment.body
+		});
+	}
 
+	updateCommentBody = (e) => {
+		this.setState({
+			commentBody: e.target.value,
+		});
+	};
+
+	patchComment = (e) => {
+		this.changeEditMode();
+		if(this.state.commentBody){
+			this.props.editComment(this.state);
+		}
+	};
+
+	removeComment = () => {
+		this.props.deleteComment(this.state.commentId);
 	};
 
 	voteComment = (e) => {
@@ -34,8 +57,7 @@ class Comment extends Component {
 				<Card >
 					<CardContent>
 						<div className="commentAuthor">
-							{!inEditMode && <Typography>Author: {comment.author}</Typography>}
-							{inEditMode && <TextField label="author"/>}
+							<Typography>Author: {comment.author}</Typography>
 						</div>
 						<div className='voteArea'>
 							<div className='arrow-up'>
@@ -55,7 +77,11 @@ class Comment extends Component {
 						<div className="commentBody">
 							{!inEditMode && <Typography type="headline" component="h2">
 								{comment.body}</Typography>}
-							{inEditMode && <TextField label="body"/>}
+							{inEditMode && <TextField
+								label="Comment Body"
+								onChange={this.updateCommentBody}
+								value={this.state.commentBody}
+							/>}
 						</div>
 						<Typography>
 							{readableDate}
@@ -64,12 +90,15 @@ class Comment extends Component {
 					<CardActions>
 						{!inEditMode &&
 						<Button dense color="primary" onClick={this.changeEditMode}>
-							Edit
+							<Edit />
 						</Button>}
 						{inEditMode &&
 						<Button dense color="primary" onClick={this.patchComment}>
-							Save
+							<Save />
 						</Button>}
+						<Button dense color="primary" onClick={this.removeComment}>
+							<Delete />
+						</Button>
 					</CardActions>
 				</Card>
 				<br></br>
