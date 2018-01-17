@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {postsByCategory, singlePostDetails, votesByPostId} from "../posts/PostReducers";
+import {postsByCategory, singlePostDetails} from "../posts/PostReducers";
 import {allCategories, selectedCategory} from "../categories/CategoryReducers"
 import {allComments} from "../comments/CommentReducers";
 

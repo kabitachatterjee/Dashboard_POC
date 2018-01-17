@@ -1,6 +1,5 @@
 import fetch from 'cross-fetch';
 
-export const CREATE_POST = 'CREATE_POST';
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
@@ -15,12 +14,6 @@ export const RECEIVE_DELETE_POST = 'RECEIVE_DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const ADD_POST = 'ADD_POST';
 
-export function createPost(postDetails){
-	return {
-		type: CREATE_POST,
-		postDetails
-	}
-}
 
 export function deletePost(post, category){
 	return {
@@ -61,18 +54,6 @@ export function addPost(postDetails){
  * @param subreddit
  * @returns {{type: string, subreddit: *}}
  */
-export function invalidateSubreddit(subreddit) {
-	return {
-		type: INVALIDATE_SUBREDDIT,
-		subreddit
-	}
-}
-
-/**
- *
- * @param subreddit
- * @returns {{type: string, subreddit: *}}
- */
 function requestPosts(subreddit) {
 	return {
 		type: REQUEST_POSTS,
@@ -92,21 +73,6 @@ function receivePosts(category, json) {
 		category,
 		posts: json,
 		receivedAt: Date.now()
-	}
-}
-
-function requestComments(postId){
-	return {
-		type: REQUEST_COMMENTS,
-		postId
-	}
-}
-
-function receiveComments(postId, json){
-	return {
-		type: RECEIVE_COMMENTS,
-		postId,
-		comments: json
 	}
 }
 

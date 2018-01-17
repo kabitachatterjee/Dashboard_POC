@@ -2,8 +2,7 @@ import {
 	INVALIDATE_SUBREDDIT,
 	REQUEST_POSTS,
 	RECEIVE_POSTS,
-	REQUEST_COMMENTS,
-	RECEIVE_COMMENTS, RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST, EDIT_POST, ADD_POST, REQUEST_VOTE_POST, RECEIVE_VOTE_POST,
+	RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST, EDIT_POST, ADD_POST, REQUEST_VOTE_POST, RECEIVE_VOTE_POST,
 	RECEIVE_DELETE_POST, DELETE_POST
 } from './PostAction'
 
@@ -28,8 +27,8 @@ export function postsByCategory(state = {}, action) {
 			return Object.assign({}, state, {
 				[action.category]: allPostsWithNewVote[action.category]
 			});
-			default:
-				return state
+		default:
+			return state
 	}
 }
 
@@ -78,7 +77,6 @@ export function singlePostDetails(state = {}, action){
 				singlePost: action.singlePost
 			});
 		case RECEIVE_VOTE_POST:
-			console.log(state, action, "!!!")
 			return Object.assign({}, state, {
 				singlePost: action.singlePost
 			});
@@ -87,35 +85,3 @@ export function singlePostDetails(state = {}, action){
 	}
 }
 
-export function commentsByPostId(state = {}, action) {
-	switch (action.type) {
-		case RECEIVE_COMMENTS:
-		case REQUEST_COMMENTS:
-			return Object.assign({}, state, {
-				[action.subreddit]: posts(state[action.subreddit], action)
-			});
-		default:
-			return state
-	}
-}
-
-function comments(
-	state = {
-		comments: []
-	},
-	action
-) {
-	switch (action.type) {
-		case REQUEST_COMMENTS:
-			return Object.assign({}, state, {
-				isFetching: true,
-				didInvalidate: false
-			});
-		case RECEIVE_COMMENTS:
-			return Object.assign({}, state, {
-				comments: action.comments,
-			});
-		default:
-			return state
-	}
-}
