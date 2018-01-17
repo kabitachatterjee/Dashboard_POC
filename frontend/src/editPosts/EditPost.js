@@ -24,7 +24,6 @@ class EditPost extends Component {
 
 	handleChange = (e) => {
 		const stateProperty = e.target.id ?  e.target.id : e.target.name;
-		console.log(stateProperty, "!!")
 		this.setState({[stateProperty]: e.target.value});
 	};
 

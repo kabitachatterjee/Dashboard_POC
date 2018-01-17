@@ -7,10 +7,11 @@ export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
 export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const DELETE_POST = 'DELETE_POST';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
-export const UPVOTE_POST = 'UPVOTE_POST';
-export const DOWNVOTE_POST = 'DOWNVOTE_POST';
+export const REQUEST_VOTE_POST = 'REQUEST_VOTE_POST';
+export const RECEIVE_VOTE_POST = 'RECEIVE_VOTE_POST';
 export const REQUEST_SINGLE_POST = 'REQUEST_SINGLE_POST';
 export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST';
+export const RECEIVE_DELETE_POST = 'RECEIVE_DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const ADD_POST = 'ADD_POST';
 
@@ -21,10 +22,21 @@ export function createPost(postDetails){
 	}
 }
 
-export function deletePost(postId){
+export function deletePost(post, category){
 	return {
 		type: DELETE_POST,
-		postId
+		postId: post.id,
+		singlePost: post,
+		category
+	}
+}
+
+export function receiveDeletePost(post, category){
+	return {
+		type: RECEIVE_DELETE_POST,
+		postId: post.id,
+		singlePost: post,
+		category
 	}
 }
 
@@ -111,19 +123,20 @@ function receiveSinglePost(postId, json){
 	}
 }
 
-function upVotePost(post){
+function requestVotePost(post){
 	return {
-		type: UPVOTE_POST,
+		type: REQUEST_VOTE_POST,
 		postId: post.id,
-		singlePost: post
+		singlePost: post,
 	}
 }
 
-function downVotePost(post){
+function receiveVotePost(postId, json, category){
 	return {
-		type: DOWNVOTE_POST,
-		postId: post.id,
-		singlePost: post
+		type: RECEIVE_VOTE_POST,
+		postId,
+		singlePost: json,
+		category
 	}
 }
 
@@ -142,38 +155,22 @@ export function fetchPostsForCategory(category) {
 }
 
 
-export function upVoteForPostId(post){
+export function voteForPostId(post, voteDirection, category){
+
 	return dispatch => {
-		dispatch(upVotePost(post));
+		dispatch(requestVotePost(post));
 		return fetch(`http://localhost:3001/posts/${post.id}`, {
 			headers: {
 				'Authorization': 'whatever-you-want',
 				'Content-Type': 'application/json'
 			},
 			method: 'POST',
-			body: JSON.stringify({"option": "upVote"})
+			body: JSON.stringify({"option": voteDirection})
 		})
 			.then(response => response.json())
-			.then(json => dispatch(receiveSinglePost(post.id, json)))
+			.then(json => dispatch(receiveVotePost(post.id, json, category)))
 	}
 }
-
-export function downVoteForPostId(post){
-	return dispatch => {
-		dispatch(downVotePost(post));
-		return fetch(`http://localhost:3001/posts/${post.id}`, {
-			headers: {
-				'Authorization': 'whatever-you-want',
-				'Content-Type': 'application/json'
-			},
-			method: 'POST',
-			body: JSON.stringify({"option": "downVote"})
-		})
-			.then(response => response.json())
-			.then(json => dispatch(receiveSinglePost(post.id, json)))
-	}
-}
-
 
 /**
  *
@@ -189,13 +186,15 @@ export function fetchAllPosts() {
 	}
 }
 
-export function deletePostAction(postId){
+export function deleteSinglePost(post, currentPage){
 	return dispatch => {
-		dispatch(deletePost(postId));
-		return fetch(`http://localhost:3001/posts/${postId}`, {headers: { 'Authorization': 'whatever-you-want'}} )
+		dispatch(deletePost(post, currentPage));
+		return fetch(`http://localhost:3001/posts/${post.id}`, {
+			headers: { 'Authorization': 'whatever-you-want'},
+			method: 'DELETE',
+			} )
 			.then(response => response.json())
-			//TODO(michaelhuy): receivePosts of last category, so "selectedCategory"??
-			.then(json => dispatch(receivePosts('all', json)))
+			.then(json => dispatch(receiveDeletePost(json, currentPage)))
 	}
 }
 

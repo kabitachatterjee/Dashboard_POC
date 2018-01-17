@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Posts from "../posts/Posts";
 import {connect} from "react-redux";
 import {fetchAllPosts} from "./PostAction";
 import {selectCategory} from "../categories/CategoryAction";
+import PostContainer from "./PostContainer";
 
 class AllPosts extends Component {
 
@@ -21,7 +21,7 @@ class AllPosts extends Component {
 				{!isFetching && items.length === 0 && <h2>Empty.</h2>}
 				{items.length > 0 &&
 				<div style={{ opacity: isFetching ? 0.5 : 1 }}>
-					<Posts posts={items}/>
+					<PostContainer posts={items}/>
 				</div>}
 			</div>
 		)

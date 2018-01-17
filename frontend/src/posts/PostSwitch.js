@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {fetchComments, postNewComment} from "../comments/CommentAction";
+import {deleteComment, editCommentBody, fetchComments, postNewComment, voteComment} from "../comments/CommentAction";
 import {fetchSinglePost, patchSinglePost} from "./PostAction";
 import EditPost from "../editPosts/EditPost";
 import PostDetails from "../detailPost/PostDetails";
@@ -42,11 +42,35 @@ class PostSwitch extends Component {
 	};
 
 	/**
+	 * Params for API: timestamp, id, body
+	 * @param commentParams
+	 */
+	editComment = (commentParams) => {
+		const putParams = {
+				timestamp: +new Date(),
+				body: commentParams.commentBody
+		};
+		this.props.dispatch(editCommentBody(putParams, commentParams.commentId));
+	};
+
+	/**
+	 *
+	 * @param {number} commentId
+	 */
+	deleteComment = (commentId) => {
+		this.props.dispatch(deleteComment(commentId));
+	};
+
+	/**
 	 * Makes put action creator ( PUT /posts/:id)
 	 */
 	submitChanges = (formObject) => {
 		this.props.dispatch(patchSinglePost(formObject));
 		this.props.history.push(`/category/${formObject.id}`);
+	};
+
+	voteOnComment = (voteParams) => {
+		this.props.dispatch(voteComment(voteParams));
 	};
 
 	render(){
@@ -64,6 +88,9 @@ class PostSwitch extends Component {
 						<Route exact path="/:category/:postId"
 									 render={()=><PostDetails allComments={allComments}
 									 singlePostDetails={singlePostDetails}
+									 voteOnComment={this.voteOnComment}
+									 deleteComment={this.deleteComment}
+									 editComment={this.editComment}
 									 postComment={this.postComment}/>}
 						/>}
 						{	categories && Object.keys(singlePostDetails).length > 0 &&

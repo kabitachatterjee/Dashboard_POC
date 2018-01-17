@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import PostContainer from "../posts/PostContainer";
+import PostContainer from "../posts/Post";
 import {FormControl} from 'material-ui/Form';
 import {MenuItem} from 'material-ui/Menu';
 import Input, {InputLabel} from 'material-ui/Input';
@@ -21,7 +21,6 @@ class PostDetails extends Component {
 	};
 
 	submitNewComment = () => {
-
 		if(this.state.body){
 			this.props.postComment(this.state);
 		}
@@ -77,8 +76,14 @@ class PostDetails extends Component {
 					</div>
 					<div>
 						<h1>Comments</h1>
-						{allComments.items && allComments.items.map((comment) => (
-							comment.deleted && comment.parentDeleted ? '' : <Comment key={comment.id} comment={comment}/>
+						{allComments.items.length > 0 && allComments.items.map((comment) => (
+							comment.deleted && comment.parentDeleted ? '' :
+								<Comment key={comment.id}
+												 comment={comment}
+												 voteOnComment={this.props.voteOnComment}
+												 deleteComment={this.props.deleteComment}
+												 editComment={this.props.editComment}
+								/>
 						))}
 					</div>
 				</div>
@@ -86,6 +91,6 @@ class PostDetails extends Component {
 			</div>
 		)
 	}
-};
+}
 
 export default PostDetails;
