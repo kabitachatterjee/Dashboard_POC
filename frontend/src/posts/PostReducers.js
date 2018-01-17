@@ -12,6 +12,7 @@ export function postsByCategory(state = {}, action) {
 		case INVALIDATE_SUBREDDIT:
 		case RECEIVE_POSTS:
 		case REQUEST_POSTS:
+		case EDIT_POST:
 			return Object.assign({}, state, {
 				[action.category]: posts(state[action.category], action)
 			});
@@ -77,9 +78,9 @@ export function singlePostDetails(state = {}, action){
 				singlePost: action.singlePost
 			});
 		case RECEIVE_VOTE_POST:
-		case RECEIVE_DELETE_POST:
+			console.log(state, action, "!!!")
 			return Object.assign({}, state, {
-				singlePost: action.postId
+				singlePost: action.singlePost
 			});
 		default:
 			return state

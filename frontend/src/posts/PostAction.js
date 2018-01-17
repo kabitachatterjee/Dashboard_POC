@@ -40,10 +40,12 @@ export function receiveDeletePost(post, category){
 	}
 }
 
-export function editPost(postDetails){
+export function editPost(post, category){
 	return {
 		type: EDIT_POST,
-		postDetails,
+		postId: post.id,
+		singlePost: post,
+		category
 	}
 }
 
@@ -132,6 +134,7 @@ function requestVotePost(post){
 }
 
 function receiveVotePost(postId, json, category){
+	console.log("WTF", json, category)
 	return {
 		type: RECEIVE_VOTE_POST,
 		postId,
@@ -208,11 +211,14 @@ export function fetchSinglePost(postId){
 }
 
 
-export function patchSinglePost(postDetails){
+export function patchSinglePost(postDetails, category){
 	return dispatch => {
-		dispatch(editPost(postDetails));
+		dispatch(editPost(postDetails, category));
 		return fetch(`http://localhost:3001/posts/${postDetails.id}`, {
-			headers: { 'Authorization': 'whatever-you-want'},
+			headers: {
+				'Authorization': 'whatever-you-want',
+				'Content-Type': 'application/json'
+			},
 			method: 'PUT',
 			body: JSON.stringify({
 				title: postDetails.title,
@@ -220,7 +226,7 @@ export function patchSinglePost(postDetails){
 			})
 		})
 			.then(response =>  response.json())
-			.then(json => dispatch(receiveSinglePost(postDetails.id, json)))
+			.then(json => dispatch(receiveVotePost(postDetails.id, json, category)))
 	}
 }
 
