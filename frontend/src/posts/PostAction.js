@@ -2,8 +2,6 @@ import fetch from 'cross-fetch';
 
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const DELETE_POST = 'DELETE_POST';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 export const REQUEST_VOTE_POST = 'REQUEST_VOTE_POST';
@@ -13,6 +11,7 @@ export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST';
 export const RECEIVE_DELETE_POST = 'RECEIVE_DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const ADD_POST = 'ADD_POST';
+export const SET_SORTING = 'SET_SORTING';
 
 
 export function deletePost(post, category){
@@ -100,12 +99,21 @@ function requestVotePost(post){
 }
 
 function receiveVotePost(postId, json, category){
-	console.log("WTF", json, category)
 	return {
 		type: RECEIVE_VOTE_POST,
 		postId,
 		singlePost: json,
 		category
+	}
+}
+
+
+export function setPostSortOrder(sortOrder){
+	return dispatch => {
+		dispatch({
+			type: SET_SORTING,
+			sortOrder,
+		});
 	}
 }
 
@@ -125,7 +133,6 @@ export function fetchPostsForCategory(category) {
 
 
 export function voteForPostId(post, voteDirection, category){
-
 	return dispatch => {
 		dispatch(requestVotePost(post));
 		return fetch(`http://localhost:3001/posts/${post.id}`, {
@@ -134,7 +141,7 @@ export function voteForPostId(post, voteDirection, category){
 				'Content-Type': 'application/json'
 			},
 			method: 'POST',
-			body: JSON.stringify({"option": voteDirection})
+			body: JSON.stringify({option: voteDirection})
 		})
 			.then(response => response.json())
 			.then(json => dispatch(receiveVotePost(post.id, json, category)))

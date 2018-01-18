@@ -3,7 +3,7 @@ import {
 	REQUEST_POSTS,
 	RECEIVE_POSTS,
 	RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST, EDIT_POST, ADD_POST, REQUEST_VOTE_POST, RECEIVE_VOTE_POST,
-	RECEIVE_DELETE_POST, DELETE_POST
+	RECEIVE_DELETE_POST, DELETE_POST, SET_SORTING
 } from './PostAction'
 
 export function postsByCategory(state = {}, action) {
@@ -20,9 +20,14 @@ export function postsByCategory(state = {}, action) {
 			let allPostsWithNewVote = [];
 			state[action.category].items.forEach((post, index) => {
 				if(post.id === action.postId){
+					console.log(state[action.category], "before")
+
 					state[action.category].items.splice(index, 1, action.singlePost);
+					console.log(state[action.category], "after", action.singlePost)
+
 					allPostsWithNewVote = state;
 				}
+				console.log([action.category], allPostsWithNewVote)
 			});
 			return Object.assign({}, state, {
 				[action.category]: allPostsWithNewVote[action.category]
@@ -85,3 +90,14 @@ export function singlePostDetails(state = {}, action){
 	}
 }
 
+export function postSortReducer(state = {sortOrder: 'timestamp'}, action){
+	switch (action.type){
+		case SET_SORTING:
+			return {
+				...state,
+				sortOrder: action.sortOrder,
+			};
+			default:
+				return state;
+	}
+}
