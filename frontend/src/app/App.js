@@ -3,7 +3,10 @@ import './App.css';
 import {connect} from "react-redux";
 import UUID from "uuid-js";
 import {NavLink, Route, Switch} from "react-router-dom";
-import {ListItemIcon, ListItemText, List, ListItem, Drawer, Divider} from "material-ui";
+import {
+	ListItemIcon, ListItemText, List, ListItem, Drawer, Divider, MenuItem, Input, Select,
+	InputLabel, FormControl
+} from "material-ui";
 import {Home} from 'material-ui-icons';
 
 
@@ -11,13 +14,14 @@ import Header from "./Header";
 import AllPosts from "../posts/AllPosts";
 import Categories from "../categories/CategoryContainer";
 import {fetchCategoriesFirst} from "../categories/CategoryAction";
-import {addNewPost, fetchAllPosts} from "../posts/PostAction";
+import {addNewPost, fetchAllPosts, setPostSortOrder} from "../posts/PostAction";
 import CategorySwitch from "../categories/CategorySwitch";
 import EditPost from "../editPosts/EditPost";
 
 class App extends Component {
 	state = {
 		left: false,
+		sortOrder: 'timestamp',
 	};
 
 	/**
@@ -40,6 +44,12 @@ class App extends Component {
 		};
 		this.props.dispatch(addNewPost(params));
 		this.props.history.push(`/`);
+	};
+
+	setSortOrder = (e) => {
+		const sortOrder = e.target.value;
+		this.setState({sortOrder});
+		this.props.dispatch(setPostSortOrder(sortOrder));
 	};
 
 	/**
@@ -86,6 +96,19 @@ class App extends Component {
 				</Drawer>
 				<div className='mainBody'>
 					<main>
+						<div>
+							<FormControl className="sortPosts">
+								<InputLabel htmlFor="sort-helper">Sort Posts</InputLabel>
+								<Select
+									value={this.state.sortOrder}
+									onChange={this.setSortOrder}
+									input={<Input name="Sort Post" id="sort-helper" />}
+								>
+									<MenuItem value='timestamp'>Newest</MenuItem>
+									<MenuItem value='voteScore'>Highest Rated</MenuItem>
+								</Select>
+							</FormControl>
+						</div>
 						<Switch>
 							<Route exact path="/" component={AllPosts}/>
 							<Route path="/addPost"

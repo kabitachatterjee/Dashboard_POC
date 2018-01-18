@@ -29,8 +29,9 @@ class PostContainer extends Component {
 					<p>Loading</p>
 				</div>}
 				{this.props.posts.length > 0
-				&& this.props.posts.map(
-					(item, index) => item.deleted ? '' :
+				&& this.props.posts
+					.sort((a, b) => b[this.props.sortOrder] - a[this.props.sortOrder])
+					.map((item, index) => item.deleted ? '' :
 						<Post key={index}
 									votePost={this.voteForPost}
 									deletePost={this.deletePost}
@@ -42,7 +43,10 @@ class PostContainer extends Component {
 
 
 function mapStateToProps(state) {
-	return state;
+	return {
+		sortOrder: state.postSortReducer.sortOrder,
+		selectedCategory: state.selectedCategory
+	};
 }
 
 export default connect(

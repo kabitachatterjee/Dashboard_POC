@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {postsByCategory, singlePostDetails, votesByPostId} from "../posts/PostReducers";
+import {postsByCategory, postSortReducer, singlePostDetails} from "../posts/PostReducers";
 import {allCategories, selectedCategory} from "../categories/CategoryReducers"
 import {allComments} from "../comments/CommentReducers";
 
@@ -9,6 +9,7 @@ const rootReducer = combineReducers({
 	allCategories,
 	allComments,
 	singlePostDetails,
+	postSortReducer
 });
 
 export default rootReducer;

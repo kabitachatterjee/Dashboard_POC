@@ -1,10 +1,7 @@
 import fetch from 'cross-fetch';
 
-export const CREATE_POST = 'CREATE_POST';
 export const REQUEST_POSTS = 'REQUEST_POSTS';
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
-export const REQUEST_COMMENTS = 'REQUEST_COMMENTS';
-export const RECEIVE_COMMENTS = 'RECEIVE_COMMENTS';
 export const DELETE_POST = 'DELETE_POST';
 export const INVALIDATE_SUBREDDIT = 'INVALIDATE_SUBREDDIT';
 export const REQUEST_VOTE_POST = 'REQUEST_VOTE_POST';
@@ -14,13 +11,8 @@ export const RECEIVE_SINGLE_POST = 'RECEIVE_SINGLE_POST';
 export const RECEIVE_DELETE_POST = 'RECEIVE_DELETE_POST';
 export const EDIT_POST = 'EDIT_POST';
 export const ADD_POST = 'ADD_POST';
+export const SET_SORTING = 'SET_SORTING';
 
-export function createPost(postDetails){
-	return {
-		type: CREATE_POST,
-		postDetails
-	}
-}
 
 export function deletePost(post, category){
 	return {
@@ -40,10 +32,12 @@ export function receiveDeletePost(post, category){
 	}
 }
 
-export function editPost(postDetails){
+export function editPost(post, category){
 	return {
 		type: EDIT_POST,
-		postDetails,
+		postId: post.id,
+		singlePost: post,
+		category
 	}
 }
 
@@ -51,18 +45,6 @@ export function addPost(postDetails){
 	return {
 		type: ADD_POST,
 		postDetails,
-	}
-}
-
-/**
- *
- * @param subreddit
- * @returns {{type: string, subreddit: *}}
- */
-export function invalidateSubreddit(subreddit) {
-	return {
-		type: INVALIDATE_SUBREDDIT,
-		subreddit
 	}
 }
 
@@ -90,21 +72,6 @@ function receivePosts(category, json) {
 		category,
 		posts: json,
 		receivedAt: Date.now()
-	}
-}
-
-function requestComments(postId){
-	return {
-		type: REQUEST_COMMENTS,
-		postId
-	}
-}
-
-function receiveComments(postId, json){
-	return {
-		type: RECEIVE_COMMENTS,
-		postId,
-		comments: json
 	}
 }
 
@@ -140,6 +107,16 @@ function receiveVotePost(postId, json, category){
 	}
 }
 
+
+export function setPostSortOrder(sortOrder){
+	return dispatch => {
+		dispatch({
+			type: SET_SORTING,
+			sortOrder,
+		});
+	}
+}
+
 /**
  * Fetch posts for a specific category.
  * @param subreddit
@@ -156,7 +133,6 @@ export function fetchPostsForCategory(category) {
 
 
 export function voteForPostId(post, voteDirection, category){
-
 	return dispatch => {
 		dispatch(requestVotePost(post));
 		return fetch(`http://localhost:3001/posts/${post.id}`, {
@@ -165,7 +141,7 @@ export function voteForPostId(post, voteDirection, category){
 				'Content-Type': 'application/json'
 			},
 			method: 'POST',
-			body: JSON.stringify({"option": voteDirection})
+			body: JSON.stringify({option: voteDirection})
 		})
 			.then(response => response.json())
 			.then(json => dispatch(receiveVotePost(post.id, json, category)))
@@ -208,11 +184,14 @@ export function fetchSinglePost(postId){
 }
 
 
-export function patchSinglePost(postDetails){
+export function patchSinglePost(postDetails, category){
 	return dispatch => {
-		dispatch(editPost(postDetails));
+		dispatch(editPost(postDetails, category));
 		return fetch(`http://localhost:3001/posts/${postDetails.id}`, {
-			headers: { 'Authorization': 'whatever-you-want'},
+			headers: {
+				'Authorization': 'whatever-you-want',
+				'Content-Type': 'application/json'
+			},
 			method: 'PUT',
 			body: JSON.stringify({
 				title: postDetails.title,
@@ -220,7 +199,7 @@ export function patchSinglePost(postDetails){
 			})
 		})
 			.then(response =>  response.json())
-			.then(json => dispatch(receiveSinglePost(postDetails.id, json)))
+			.then(json => dispatch(receiveVotePost(postDetails.id, json, category)))
 	}
 }
 

@@ -2,9 +2,8 @@ import {
 	INVALIDATE_SUBREDDIT,
 	REQUEST_POSTS,
 	RECEIVE_POSTS,
-	REQUEST_COMMENTS,
-	RECEIVE_COMMENTS, RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST, EDIT_POST, ADD_POST, REQUEST_VOTE_POST, RECEIVE_VOTE_POST,
-	RECEIVE_DELETE_POST, DELETE_POST
+	RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST, EDIT_POST, ADD_POST, REQUEST_VOTE_POST, RECEIVE_VOTE_POST,
+	RECEIVE_DELETE_POST, DELETE_POST, SET_SORTING
 } from './PostAction'
 
 export function postsByCategory(state = {}, action) {
@@ -12,6 +11,7 @@ export function postsByCategory(state = {}, action) {
 		case INVALIDATE_SUBREDDIT:
 		case RECEIVE_POSTS:
 		case REQUEST_POSTS:
+		case EDIT_POST:
 			return Object.assign({}, state, {
 				[action.category]: posts(state[action.category], action)
 			});
@@ -20,15 +20,20 @@ export function postsByCategory(state = {}, action) {
 			let allPostsWithNewVote = [];
 			state[action.category].items.forEach((post, index) => {
 				if(post.id === action.postId){
+					console.log(state[action.category], "before")
+
 					state[action.category].items.splice(index, 1, action.singlePost);
+					console.log(state[action.category], "after", action.singlePost)
+
 					allPostsWithNewVote = state;
 				}
+				console.log([action.category], allPostsWithNewVote)
 			});
 			return Object.assign({}, state, {
 				[action.category]: allPostsWithNewVote[action.category]
 			});
-			default:
-				return state
+		default:
+			return state
 	}
 }
 
@@ -77,44 +82,22 @@ export function singlePostDetails(state = {}, action){
 				singlePost: action.singlePost
 			});
 		case RECEIVE_VOTE_POST:
-		case RECEIVE_DELETE_POST:
 			return Object.assign({}, state, {
-				singlePost: action.postId
+				singlePost: action.singlePost
 			});
 		default:
 			return state
 	}
 }
 
-export function commentsByPostId(state = {}, action) {
-	switch (action.type) {
-		case RECEIVE_COMMENTS:
-		case REQUEST_COMMENTS:
-			return Object.assign({}, state, {
-				[action.subreddit]: posts(state[action.subreddit], action)
-			});
-		default:
-			return state
-	}
-}
-
-function comments(
-	state = {
-		comments: []
-	},
-	action
-) {
-	switch (action.type) {
-		case REQUEST_COMMENTS:
-			return Object.assign({}, state, {
-				isFetching: true,
-				didInvalidate: false
-			});
-		case RECEIVE_COMMENTS:
-			return Object.assign({}, state, {
-				comments: action.comments,
-			});
-		default:
-			return state
+export function postSortReducer(state = {sortOrder: 'timestamp'}, action){
+	switch (action.type){
+		case SET_SORTING:
+			return {
+				...state,
+				sortOrder: action.sortOrder,
+			};
+			default:
+				return state;
 	}
 }

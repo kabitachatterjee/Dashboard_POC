@@ -65,7 +65,7 @@ class PostSwitch extends Component {
 	 * Makes put action creator ( PUT /posts/:id)
 	 */
 	submitChanges = (formObject) => {
-		this.props.dispatch(patchSinglePost(formObject));
+		this.props.dispatch(patchSinglePost(formObject, this.props.selectedCategory));
 		this.props.history.push(`/category/${formObject.id}`);
 	};
 
