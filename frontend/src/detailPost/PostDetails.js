@@ -1,9 +1,5 @@
 import React, {Component} from 'react';
 import PostContainer from "../posts/Post";
-import {FormControl} from 'material-ui/Form';
-import {MenuItem} from 'material-ui/Menu';
-import Input, {InputLabel} from 'material-ui/Input';
-import Select from 'material-ui/Select';
 import Comment from "../comments/CommentsContainer";
 
 class PostDetails extends Component {
@@ -35,25 +31,11 @@ class PostDetails extends Component {
 		return (
 			<div className='postDetail'>
 				{post && <div>
-					<h2>Post Details</h2>
+					<h1>Post Details</h1>
 					<PostContainer key={post.id} post={post}/>
 					<div className='sortingComments'>
 						<div className="menuarea">
 							<div className="spacer">
-								<FormControl className="formControl">
-									<InputLabel htmlFor="sort">Sorted By:</InputLabel>
-									<Select
-										className='selectOptions'
-										value='14'
-										onChange={this.handleChange}
-										input={<Input name="age" id="age-simple"/>}
-									>
-										<MenuItem value=""><em>None</em></MenuItem>
-										<MenuItem value='best'>Best</MenuItem>
-										<MenuItem value='top'>Top</MenuItem>
-										<MenuItem value='newest'>Newest</MenuItem>
-									</Select>
-								</FormControl>
 							</div>
 						</div>
 					</div>

@@ -85,6 +85,7 @@ class PostSwitch extends Component {
 					<Switch>
 
 						{Object.keys(allComments).length > 0 && Object.keys(singlePostDetails).length > 0 &&
+							singlePostDetails.singlePost.deleted === false &&
 						<Route exact path="/:category/:postId"
 									 render={()=><PostDetails allComments={allComments}
 									 singlePostDetails={singlePostDetails}
