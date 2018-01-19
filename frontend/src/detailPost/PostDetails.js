@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PostContainer from "../posts/Post";
 import Comment from "../comments/CommentsContainer";
 import {Button, TextField} from "material-ui";
+import {setPostSortOrder} from "../posts/PostAction";
 
 class PostDetails extends Component {
 	state = {
@@ -12,6 +13,7 @@ class PostDetails extends Component {
 
 	componentDidMount(){
 	//	trigger hiding of the sorting drop down
+		this.props.hideSortDropDown()
 	}
 
 	handleCommentChange = (e) => {

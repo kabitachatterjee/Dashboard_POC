@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {fetchAllPosts} from "./PostAction";
+import {fetchAllPosts, setPostSortOrder} from "./PostAction";
 import {selectCategory} from "../categories/CategoryAction";
 import PostContainer from "./PostContainer";
 
@@ -10,6 +10,7 @@ class AllPosts extends Component {
 		const {dispatch} = this.props;
 		dispatch(selectCategory('all'));
 		dispatch(fetchAllPosts());
+		dispatch(setPostSortOrder("timestamp", false));
 	}
 
 	redirectHome = () => {

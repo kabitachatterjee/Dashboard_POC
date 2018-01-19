@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {deleteComment, editCommentBody, fetchComments, postNewComment, voteComment} from "../comments/CommentAction";
-import {fetchSinglePost, patchSinglePost} from "./PostAction";
+import {fetchSinglePost, patchSinglePost, setPostSortOrder} from "./PostAction";
 import EditPost from "../editPosts/EditPost";
 import PostDetails from "../detailPost/PostDetails";
 import {Route, Switch} from "react-router-dom";
@@ -73,6 +73,10 @@ class PostSwitch extends Component {
 		this.props.dispatch(voteComment(voteParams));
 	};
 
+	hideSortDropDown = () => {
+		this.props.dispatch(setPostSortOrder("timestamp", true));
+	};
+
 	render(){
 		const {allComments, singlePostDetails, categories} = this.props;
 		return (
@@ -92,6 +96,7 @@ class PostSwitch extends Component {
 									 voteOnComment={this.voteOnComment}
 									 deleteComment={this.deleteComment}
 									 editComment={this.editComment}
+									 hideSortDropDown={this.hideSortDropDown}
 									 postComment={this.postComment}/>}
 						/>}
 						{	categories && Object.keys(singlePostDetails).length > 0 &&
