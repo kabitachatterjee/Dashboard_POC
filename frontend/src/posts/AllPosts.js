@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {fetchAllPosts} from "./PostAction";
+import {fetchAllPosts, setPostSortOrder} from "./PostAction";
 import {selectCategory} from "../categories/CategoryAction";
 import PostContainer from "./PostContainer";
 
@@ -10,7 +10,12 @@ class AllPosts extends Component {
 		const {dispatch} = this.props;
 		dispatch(selectCategory('all'));
 		dispatch(fetchAllPosts());
+		dispatch(setPostSortOrder("timestamp", false));
 	}
+
+	redirectHome = () => {
+		this.props.history.push(`/`);
+	};
 
 	render(){
 		const { items, isFetching} = this.props;
@@ -21,7 +26,7 @@ class AllPosts extends Component {
 				{!isFetching && items.length === 0 && <h2>Empty.</h2>}
 				{items.length > 0 &&
 				<div style={{ opacity: isFetching ? 0.5 : 1 }}>
-					<PostContainer posts={items}/>
+					<PostContainer posts={items} comeHome={this.redirectHome}/>
 				</div>}
 			</div>
 		)

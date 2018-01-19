@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import PostContainer from "../posts/Post";
-import {FormControl} from 'material-ui/Form';
-import {MenuItem} from 'material-ui/Menu';
-import Input, {InputLabel} from 'material-ui/Input';
-import Select from 'material-ui/Select';
 import Comment from "../comments/CommentsContainer";
+import {Button, TextField} from "material-ui";
+import {setPostSortOrder} from "../posts/PostAction";
 
 class PostDetails extends Component {
 	state = {
@@ -12,6 +10,11 @@ class PostDetails extends Component {
 		parentId: '',
 		author: 'michaelhuy@google.com',
 	};
+
+	componentDidMount(){
+	//	trigger hiding of the sorting drop down
+		this.props.hideSortDropDown()
+	}
 
 	handleCommentChange = (e) => {
 		this.setState({body: e.target.value});
@@ -24,6 +27,9 @@ class PostDetails extends Component {
 		if(this.state.body){
 			this.props.postComment(this.state);
 		}
+		this.setState=({
+			body: 'Another?',
+		})
 	};
 
 	render() {
@@ -35,44 +41,27 @@ class PostDetails extends Component {
 		return (
 			<div className='postDetail'>
 				{post && <div>
-					<h2>Post Details</h2>
+					<h1>Post Details</h1>
 					<PostContainer key={post.id} post={post}/>
-					<div className='sortingComments'>
-						<div className="menuarea">
-							<div className="spacer">
-								<FormControl className="formControl">
-									<InputLabel htmlFor="sort">Sorted By:</InputLabel>
-									<Select
-										className='selectOptions'
-										value='14'
-										onChange={this.handleChange}
-										input={<Input name="age" id="age-simple"/>}
-									>
-										<MenuItem value=""><em>None</em></MenuItem>
-										<MenuItem value='best'>Best</MenuItem>
-										<MenuItem value='top'>Top</MenuItem>
-										<MenuItem value='newest'>Newest</MenuItem>
-									</Select>
-								</FormControl>
-							</div>
-						</div>
-					</div>
 					<div className="commentArea">
-					<textarea
-						className='commentArea_textbox'
-						rows="1"
-						cols="1"
-						name="text"
-						data-event-action="comment"
-						data-limit="10000"
-						onChange={this.handleCommentChange}
-					>
-					</textarea>
+						<TextField
+							id="multiline-static"
+							label="New Comment"
+							multiline
+							rows="4"
+							placeholder="Enter a new comment here..."
+							className='commentArea_textbox'
+							margin="normal"
+							onChange={this.handleCommentChange}
+						/>
 					</div>
 					<div className="usertext-buttons">
-						<button type="submit"
+						<Button raised
+										color="primary"
 										onClick={this.submitNewComment}
-										className="save">save</button>
+										className='submitCommentButton'>
+							Save
+						</Button>
 					</div>
 					<div>
 						<h1>Comments</h1>

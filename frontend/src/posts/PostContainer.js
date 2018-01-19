@@ -19,23 +19,23 @@ class PostContainer extends Component {
 	 */
 	deletePost = (postDetails) => {
 		this.props.dispatch(deleteSinglePost(postDetails, this.props.selectedCategory));
+		this.props.comeHome();
 	};
 
 	render() {
 		return (
 			<div>
-				{this.props.posts.length === 0 &&
-				<div>
-					<p>Loading</p>
-				</div>}
-				{this.props.posts.length > 0
-				&& this.props.posts
+				{this.props.posts.length === 0 && <div><p>Loading</p></div>}
+				{this.props.posts.length > 0 && this.props.posts
 					.sort((a, b) => b[this.props.sortOrder] - a[this.props.sortOrder])
-					.map((item, index) => item.deleted ? '' :
+					.map((item, index) => item.deleted ?
+						<div>Deleted Post</div> :
 						<Post key={index}
-									votePost={this.voteForPost}
 									deletePost={this.deletePost}
-									post={item}/>)}
+									post={item}
+									votePostWithId={this.voteForPost}
+						/>)
+				}
 			</div>
 		)
 	}

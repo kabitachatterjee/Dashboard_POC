@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import {Button, Card, CardActions, CardContent, TextField, Typography} from "material-ui";
-import UpVote from 'material-ui-icons/KeyboardArrowUp';
-import DownVote from 'material-ui-icons/KeyboardArrowDown';
 import {Edit, Delete, Save} from 'material-ui-icons';
+import VoteComponent from "../app/voteComponent";
 
 class Comment extends Component {
 	state = {
@@ -55,25 +54,12 @@ class Comment extends Component {
  		return (
  			<div>
 				<Card >
-					<CardContent>
-						<div className="commentAuthor">
-							<Typography>Author: {comment.author}</Typography>
-						</div>
-						<div className='voteArea'>
-							<div className='arrow-up'>
-								<UpVote onClick={this.voteComment}
-												className='voteCursor'
-												id='upVote'/>
-							</div>
-							<div>
-								{comment.voteScore}
-							</div>
-							<div className='arrow-down'>
-								<DownVote onClick={this.voteComment}
-													className='voteCursor'
-													id='downVote'/>
-							</div>
-						</div>
+					<CardContent class="commentCardContent">
+						<VoteComponent
+							voteComment={this.voteComment}
+							voteScore={comment.voteScore}
+						/>
+						<div className="commentMeat">
 						<div className="commentBody">
 							{!inEditMode && <Typography type="headline" component="h2">
 								{comment.body}</Typography>}
@@ -83,9 +69,13 @@ class Comment extends Component {
 								value={this.state.commentBody}
 							/>}
 						</div>
+						<div className="commentAuthor">
+							<Typography>Author: {comment.author}</Typography>
+						</div>
 						<Typography>
 							{readableDate}
 						</Typography>
+						</div>
 					</CardContent>
 					<CardActions>
 						{!inEditMode &&

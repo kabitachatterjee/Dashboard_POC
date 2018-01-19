@@ -1,9 +1,10 @@
 import React, {Component}  from 'react';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import {Typography, Avatar, IconButton, Button} from 'material-ui';
-import {Favorite, KeyboardArrowUp, KeyboardArrowDown} from 'material-ui-icons';
+import {Favorite} from 'material-ui-icons';
 
 import {Link} from "react-router-dom";
+import VoteComponent from "../app/voteComponent";
 
 class Post extends Component {
 	state = {
@@ -21,7 +22,7 @@ class Post extends Component {
 	 * @param e
 	 */
 	vote = (e) => {
-		this.props.votePost(this.state.post, e.target.id);
+		this.props.votePostWithId(this.state.post, e.target.id);
 	};
 
 	deletePost = () => {
@@ -32,45 +33,30 @@ class Post extends Component {
 		const {voteScore, author, timestamp, title, body, commentCount, id} = this.props.post;
 		return (
 			<div>
-				<Card className='card'>
+				<Card className='postDetails'>
 					<div className='cardHeader'>
 						<CardHeader
 							avatar={
 								<Avatar className='avatar' aria-label="Recipe">
-									R
+									{author.substring(0,1)}
 								</Avatar>
 							}
 							title={author}
 							subheader={timestamp}
 						/>
 					</div>
-					<CardContent>
-						<div className='commentBody'>
-							<div className='voteArea'>
-								<div className='arrow-up'>
-									<KeyboardArrowUp
-										id='upVote'
-										onClick={this.vote}
-										className='voteCursor'/>
-								</div>
-								<div>
-									{voteScore}
-								</div>
-								<div className='arrow-down'>
-									<KeyboardArrowDown
-										id='downVote'
-										onClick={this.vote}
-										className='voteCursor'/>
-								</div>
+					<CardContent className="postCardContent">
+						<div className='postBody'>
+							<VoteComponent
+								voteComment={this.vote}
+								voteScore={voteScore}
+							/>
+							<div className="postMeat">
+								<Typography type="headline" component="h2">
+									<Link to={`/category/${id}`} className='navigationLinks'>
+										{title}</Link></Typography>
+								<Typography component="p">{body}</Typography>
 							</div>
-							<Typography type="headline" component="h2">
-								<Link to={`/category/${id}`} className='navigationLinks'>
-									{title}
-								</Link>
-							</Typography>
-							<Typography component="p">
-								{body}
-							</Typography>
 						</div>
 					</CardContent>
 					<CardActions>
@@ -86,9 +72,6 @@ class Post extends Component {
 							<Link to={`/category/${id}/edit`} className='navigationLinks'>
 								Edit
 							</Link>
-						</Button>
-						<Button dense color="primary">
-							Share
 						</Button>
 						<Button dense color="primary" onClick={this.deletePost}>
 							Delete

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import {connect} from "react-redux";
-import {fetchPostsForCategory} from "../posts/PostAction";
+import {fetchPostsForCategory, setPostSortOrder} from "../posts/PostAction";
 import { selectCategory} from "../categories/CategoryAction";
 import PostContainer from "../posts/PostContainer";
 
@@ -10,10 +10,9 @@ class SpecificCategory extends Component {
 		const {dispatch} = this.props;
 		dispatch(selectCategory(this.props.match.params.category));
 		dispatch(fetchPostsForCategory(this.props.match.params.category));
+		dispatch(setPostSortOrder("timestamp", false));
 	}
-
-
-
+	
 	render() {
 		const { posts, isFetching} = this.props;
 		return (

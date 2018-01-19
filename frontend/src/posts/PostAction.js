@@ -90,11 +90,12 @@ function receiveSinglePost(postId, json){
 	}
 }
 
-function requestVotePost(post){
+function requestVotePost(post, category){
 	return {
 		type: REQUEST_VOTE_POST,
 		postId: post.id,
 		singlePost: post,
+		category
 	}
 }
 
@@ -107,12 +108,12 @@ function receiveVotePost(postId, json, category){
 	}
 }
 
-
-export function setPostSortOrder(sortOrder){
+export function setPostSortOrder(sortOrder, boolean){
 	return dispatch => {
 		dispatch({
 			type: SET_SORTING,
 			sortOrder,
+			hideSortDropDown: boolean,
 		});
 	}
 }

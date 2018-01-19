@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import {SET_SORTING} from "../posts/PostAction";
 
 export const CREATE_COMMENT = 'CREATE_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';

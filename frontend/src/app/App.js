@@ -49,7 +49,7 @@ class App extends Component {
 	setSortOrder = (e) => {
 		const sortOrder = e.target.value;
 		this.setState({sortOrder});
-		this.props.dispatch(setPostSortOrder(sortOrder));
+		this.props.dispatch(setPostSortOrder(sortOrder, false));
 	};
 
 	/**
@@ -61,7 +61,7 @@ class App extends Component {
 	};
 
 	render() {
-		const { categories} = this.props;
+		const { categories, hideSortDropDown} = this.props;
 		return (
 			<div className='main'>
 				<div className='header'>
@@ -96,8 +96,8 @@ class App extends Component {
 				</Drawer>
 				<div className='mainBody'>
 					<main>
-						<div>
-							<FormControl className="sortPosts">
+						{!hideSortDropDown && <div className='sortRow'>
+							<FormControl className="sortPosts" >
 								<InputLabel htmlFor="sort-helper">Sort Posts</InputLabel>
 								<Select
 									value={this.state.sortOrder}
@@ -108,7 +108,7 @@ class App extends Component {
 									<MenuItem value='voteScore'>Highest Rated</MenuItem>
 								</Select>
 							</FormControl>
-						</div>
+						</div>}
 						<Switch>
 							<Route exact path="/" component={AllPosts}/>
 							<Route path="/addPost"
@@ -127,12 +127,13 @@ class App extends Component {
 
 
 function mapStateToProps(state) {
-	const {selectedCategory, allCategories} = state;
+	const {selectedCategory, allCategories, postSortReducer} = state;
 	const categories = allCategories.items;
-
+	const hideSortDropDown = postSortReducer.hideSortDropDown;
 	return {
 		selectedCategory,
-		categories
+		categories,
+		hideSortDropDown
 	}
 }
 
