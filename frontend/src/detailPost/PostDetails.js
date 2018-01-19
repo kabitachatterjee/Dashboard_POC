@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PostContainer from "../posts/Post";
 import Comment from "../comments/CommentsContainer";
+import {Button, TextField} from "material-ui";
 
 class PostDetails extends Component {
 	state = {
@@ -8,6 +9,10 @@ class PostDetails extends Component {
 		parentId: '',
 		author: 'michaelhuy@google.com',
 	};
+
+	componentDidMount(){
+	//	trigger hiding of the sorting drop down
+	}
 
 	handleCommentChange = (e) => {
 		this.setState({body: e.target.value});
@@ -20,6 +25,9 @@ class PostDetails extends Component {
 		if(this.state.body){
 			this.props.postComment(this.state);
 		}
+		this.setState=({
+			body: 'Another?',
+		})
 	};
 
 	render() {
@@ -33,28 +41,25 @@ class PostDetails extends Component {
 				{post && <div>
 					<h1>Post Details</h1>
 					<PostContainer key={post.id} post={post}/>
-					<div className='sortingComments'>
-						<div className="menuarea">
-							<div className="spacer">
-							</div>
-						</div>
-					</div>
 					<div className="commentArea">
-					<textarea
-						className='commentArea_textbox'
-						rows="1"
-						cols="1"
-						name="text"
-						data-event-action="comment"
-						data-limit="10000"
-						onChange={this.handleCommentChange}
-					>
-					</textarea>
+						<TextField
+							id="multiline-static"
+							label="New Comment"
+							multiline
+							rows="4"
+							placeholder="Enter a new comment here..."
+							className='commentArea_textbox'
+							margin="normal"
+							onChange={this.handleCommentChange}
+						/>
 					</div>
 					<div className="usertext-buttons">
-						<button type="submit"
+						<Button raised
+										color="primary"
 										onClick={this.submitNewComment}
-										className="save">save</button>
+										className='submitCommentButton'>
+							Save
+						</Button>
 					</div>
 					<div>
 						<h1>Comments</h1>

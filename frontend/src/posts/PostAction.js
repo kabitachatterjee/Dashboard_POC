@@ -108,12 +108,12 @@ function receiveVotePost(postId, json, category){
 	}
 }
 
-
-export function setPostSortOrder(sortOrder){
+export function setPostSortOrder(sortOrder, boolean){
 	return dispatch => {
 		dispatch({
 			type: SET_SORTING,
 			sortOrder,
+			hideSortDropDown: boolean,
 		});
 	}
 }

@@ -49,7 +49,7 @@ class App extends Component {
 	setSortOrder = (e) => {
 		const sortOrder = e.target.value;
 		this.setState({sortOrder});
-		this.props.dispatch(setPostSortOrder(sortOrder));
+		this.props.dispatch(setPostSortOrder(sortOrder, false));
 	};
 
 	/**
@@ -97,7 +97,7 @@ class App extends Component {
 				<div className='mainBody'>
 					<main>
 						<div>
-							<FormControl className="sortPosts">
+							<FormControl className="sortPosts" >
 								<InputLabel htmlFor="sort-helper">Sort Posts</InputLabel>
 								<Select
 									value={this.state.sortOrder}

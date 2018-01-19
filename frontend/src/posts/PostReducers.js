@@ -21,8 +21,6 @@ export function postsByCategory(state = {}, action) {
 			state[action.category].items.forEach((post, index) => {
 				if(post.id === action.postId){
 					state[action.category].items.splice(index, 1, action.singlePost);
-					console.log(state[action.category], "after", action.singlePost)
-
 					allPostsWithNewVote = state;
 				}
 			});
@@ -87,12 +85,14 @@ export function singlePostDetails(state = {}, action){
 	}
 }
 
-export function postSortReducer(state = {sortOrder: 'timestamp'}, action){
+export function postSortReducer(
+	state = {sortOrder: 'timestamp', hideSortDropDown: false}, action){
 	switch (action.type){
 		case SET_SORTING:
 			return {
 				...state,
 				sortOrder: action.sortOrder,
+				hideSortDropDown: action.hideSortDropDown
 			};
 			default:
 				return state;

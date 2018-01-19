@@ -30,7 +30,6 @@ class Post extends Component {
 	};
 
 	render() {
-		console.log(this.props, "PROPS")
 		const {voteScore, author, timestamp, title, body, commentCount, id} = this.props.post;
 		return (
 			<div>

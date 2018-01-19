@@ -12,6 +12,10 @@ class AllPosts extends Component {
 		dispatch(fetchAllPosts());
 	}
 
+	redirectHome = () => {
+		this.props.history.push(`/`);
+	};
+
 	render(){
 		const { items, isFetching} = this.props;
 
@@ -21,7 +25,7 @@ class AllPosts extends Component {
 				{!isFetching && items.length === 0 && <h2>Empty.</h2>}
 				{items.length > 0 &&
 				<div style={{ opacity: isFetching ? 0.5 : 1 }}>
-					<PostContainer posts={items}/>
+					<PostContainer posts={items} comeHome={this.redirectHome}/>
 				</div>}
 			</div>
 		)

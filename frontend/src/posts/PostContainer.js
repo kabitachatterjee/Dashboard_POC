@@ -19,10 +19,10 @@ class PostContainer extends Component {
 	 */
 	deletePost = (postDetails) => {
 		this.props.dispatch(deleteSinglePost(postDetails, this.props.selectedCategory));
+		this.props.comeHome();
 	};
 
 	render() {
-		console.log("INSIDE")
 		return (
 			<div>
 				{this.props.posts.length === 0 && <div><p>Loading</p></div>}
@@ -31,7 +31,6 @@ class PostContainer extends Component {
 					.map((item, index) => item.deleted ?
 						<div>Deleted Post</div> :
 						<Post key={index}
-									test="TEST"
 									deletePost={this.deletePost}
 									post={item}
 									votePostWithId={this.voteForPost}
