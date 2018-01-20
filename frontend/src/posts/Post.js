@@ -63,16 +63,18 @@ class Post extends Component {
 						<IconButton aria-label="Add to favorites">
 							<Favorite/>
 						</IconButton>
-						<Button dense color="primary">
-							<Link to={`/category/${id}`} className='navigationLinks'>
+						<Link to={`/category/${id}`} className='navigationLinks'>
+
+							<Button dense color="primary">
 								{commentCount} Comments
-							</Link>
-						</Button>
-						<Button dense color="primary">
-							<Link to={`/category/${id}/edit`} className='navigationLinks'>
+							</Button>
+						</Link>
+						<Link to={`/category/${id}/edit`} className='navigationLinks'>
+
+							<Button dense color="primary">
 								Edit
-							</Link>
-						</Button>
+							</Button>
+						</Link>
 						<Button dense color="primary" onClick={this.deletePost}>
 							Delete
 						</Button>
