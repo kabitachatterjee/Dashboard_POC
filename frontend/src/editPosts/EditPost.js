@@ -16,6 +16,7 @@ class EditPost extends Component {
 	};
 
 	componentWillMount(){
+		this.props.hideSortDropDown();
 		if(this.props.action === "Edit"){
 			const {body, title, author, category, id, timestamp} = this.props.singlePostDetails.singlePost;
 			this.setState({body, title, author, category, id, timestamp, authorDisabled: true});
@@ -38,7 +39,7 @@ class EditPost extends Component {
 			<div>
 				<div>
 					<h2>{this.props.action} Post</h2>
-					<FormControl className='formControl'>
+					<FormControl fullWidth className='formControl'>
 						<InputLabel htmlFor="title-helper">Title</InputLabel>
 						<Input id="title"
 									 value={this.state.title}
@@ -46,7 +47,7 @@ class EditPost extends Component {
 					</FormControl>
 				</div>
 				<div>
-					<FormControl className='formControl'>
+					<FormControl fullWidth className='formControl'>
 						<InputLabel htmlFor="body-helper">Body</InputLabel>
 						<Input id="body"
 									 value={this.state.body}
@@ -54,7 +55,7 @@ class EditPost extends Component {
 					</FormControl>
 				</div>
 				<div>
-					<FormControl className='formControl'>
+					<FormControl fullWidth className='formControl'>
 						<InputLabel htmlFor="author-helper">Author</InputLabel>
 						<Input id="author"
 									 value={this.state.author}
@@ -62,8 +63,8 @@ class EditPost extends Component {
 									 onChange={this.handleChange} />
 					</FormControl>
 				</div>
-				<div>
-					<FormControl className='formControl'>
+				<div className='categoryDropDown'>
+					<FormControl fullWidth className='formControl'>
 						<InputLabel htmlFor="category-helper">Category</InputLabel>
 						<Select
 							id='category'

@@ -23,15 +23,13 @@ export function allCategories(state = {}, action){
 	}
 }
 
-function categories(state = {didInvalidate: false, items: []}, action) {
+function categories(state = {items: []}, action) {
 	switch (action.type) {
 		case REQUEST_CATEGORIES:
 			return Object.assign({}, state, {
-				didInvalidate: false
 			});
 		case RECEIVE_CATEGORIES:
 			return Object.assign({}, state, {
-				didInvalidate: false,
 				items: action.categories.categories
 			});
 		default:

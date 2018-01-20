@@ -28,13 +28,12 @@ class PostContainer extends Component {
 				{this.props.posts.length === 0 && <div><p>Loading</p></div>}
 				{this.props.posts.length > 0 && this.props.posts
 					.sort((a, b) => b[this.props.sortOrder] - a[this.props.sortOrder])
-					.map((item, index) => item.deleted ?
+					.map((item) => item.deleted ?
 						<div>Deleted Post</div> :
-						<Post key={index}
+						<Post key={item.id}
 									deletePost={this.deletePost}
 									post={item}
-									votePostWithId={this.voteForPost}
-						/>)
+									votePostWithId={this.voteForPost}/>)
 				}
 			</div>
 		)

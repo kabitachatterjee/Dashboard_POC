@@ -7,6 +7,22 @@
   height: 80px;
 }
 
+.errorPage {
+  padding: 10px;
+  align-content: center;
+  margin: auto;
+  width: 50%;
+}
+
+.categoryDropDown{
+  padding-top: 10px;
+  padding-bottom: 30px;
+}
+
+.errorTitle {
+  text-align: center;
+}
+
 .App-header {
   background-color: #222;
   height: 150px;

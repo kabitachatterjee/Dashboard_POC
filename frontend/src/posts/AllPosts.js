@@ -18,7 +18,7 @@ class AllPosts extends Component {
 	};
 
 	render(){
-		const { items, isFetching} = this.props;
+		const {items, isFetching} = this.props;
 
 		return(
 			<div>

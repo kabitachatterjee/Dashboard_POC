@@ -11,8 +11,13 @@ import UUID from 'uuid-js';
 class PostSwitch extends Component {
 	componentDidMount() {
 		const postId = this.props.match.params.postId;
-		this.props.dispatch(fetchSinglePost(postId));
-		this.props.dispatch(fetchComments(postId));
+		this.props.dispatch(fetchSinglePost(postId)).then((response) => {
+			if(response.singlePost.error){
+				this.props.history.push(`/404`);
+			} else {
+				this.props.dispatch(fetchComments(postId));
+			}
+		});
 	}
 
 	/**
@@ -104,6 +109,7 @@ class PostSwitch extends Component {
 									 render={()=><EditPost singlePostDetails={singlePostDetails}
 																				 categories={categories}
 																				 submitChanges={this.submitChanges}
+																				 hideSortDropDown={this.hideSortDropDown}
 									 action="Edit"/>}
 						/>}
 					</Switch>

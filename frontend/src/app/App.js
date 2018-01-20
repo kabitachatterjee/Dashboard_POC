@@ -13,7 +13,7 @@ import {Home} from 'material-ui-icons';
 import Header from "./Header";
 import AllPosts from "../posts/AllPosts";
 import Categories from "../categories/CategoryContainer";
-import {fetchCategoriesFirst} from "../categories/CategoryAction";
+import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
 import {addNewPost, fetchAllPosts, setPostSortOrder} from "../posts/PostAction";
 import CategorySwitch from "../categories/CategorySwitch";
 import EditPost from "../editPosts/EditPost";
@@ -50,6 +50,13 @@ class App extends Component {
 		const sortOrder = e.target.value;
 		this.setState({sortOrder});
 		this.props.dispatch(setPostSortOrder(sortOrder, false));
+	};
+
+	/**
+	 *
+	 */
+	hideSortDropDown = () => {
+		this.props.dispatch(setPostSortOrder("timestamp", true));
 	};
 
 	/**
@@ -114,6 +121,7 @@ class App extends Component {
 							<Route path="/addPost"
 										 render={()=><EditPost categories={categories}
 																					 submitChanges={this.submitNewPost}
+																					 hideSortDropDown={this.hideSortDropDown}
 																					 action="Add"/>}
 							/>
 							<Route path="/:category" component={CategorySwitch}/>
