@@ -1,31 +1,22 @@
 import {
-	INVALIDATE_SUBREDDIT,
 	REQUEST_POSTS,
 	RECEIVE_POSTS,
 	RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST, EDIT_POST, ADD_POST, REQUEST_VOTE_POST, RECEIVE_VOTE_POST,
 	RECEIVE_DELETE_POST, DELETE_POST, SET_SORTING
 } from './PostAction'
+import {SELECT_CATEGORY} from "../categories/CategoryAction";
 
 export function postsByCategory(state = {}, action) {
 	switch (action.type) {
-		case INVALIDATE_SUBREDDIT:
 		case RECEIVE_POSTS:
 		case REQUEST_POSTS:
 		case EDIT_POST:
-			return Object.assign({}, state, {
-				[action.category]: posts(state[action.category], action)
-			});
 		case RECEIVE_VOTE_POST:
 		case RECEIVE_DELETE_POST:
-			let allPostsWithNewVote = [];
-			state[action.category].items.forEach((post, index) => {
-				if(post.id === action.postId){
-					state[action.category].items.splice(index, 1, action.singlePost);
-					allPostsWithNewVote = state;
-				}
-			});
+		case SELECT_CATEGORY:
+			const defaultCategory = (!action.category) ? 'all' : action.category;
 			return Object.assign({}, state, {
-				[action.category]: allPostsWithNewVote[action.category]
+				[defaultCategory]: posts(state[action.category], action)
 			});
 		default:
 			return state
@@ -41,10 +32,6 @@ function posts(
 	action
 ) {
 	switch (action.type) {
-		case INVALIDATE_SUBREDDIT:
-			return Object.assign({}, state, {
-				didInvalidate: true
-			});
 		case REQUEST_POSTS:
 			return Object.assign({}, state, {
 				isFetching: true,
@@ -55,6 +42,20 @@ function posts(
 				isFetching: false,
 				didInvalidate: false,
 				items: action.posts,
+				lastUpdated: action.receivedAt
+			});
+		case RECEIVE_VOTE_POST:
+		case RECEIVE_DELETE_POST:
+			const diff =  state.items.map((post) => {
+				if(post.id === action.postId){
+					return Object.assign({}, state.items[0], action.singlePost);
+				}
+				return post;
+			});
+			return Object.assign({}, state, {
+				isFetching: false,
+				didInvalidate: false,
+				items: diff,
 				lastUpdated: action.receivedAt
 			});
 		default:

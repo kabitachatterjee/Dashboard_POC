@@ -135,7 +135,7 @@ export function fetchPostsForCategory(category) {
 
 export function voteForPostId(post, voteDirection, category){
 	return dispatch => {
-		dispatch(requestVotePost(post));
+		dispatch(requestVotePost(post, category));
 		return fetch(`http://localhost:3001/posts/${post.id}`, {
 			headers: {
 				'Authorization': 'whatever-you-want',

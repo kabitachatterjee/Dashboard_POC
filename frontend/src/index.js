@@ -18,8 +18,8 @@ ReactDOM.render(
 	<Provider store={store}>
 		<Router>
 			<Switch>
+				<Route exact path="/404" component={NotFound} />
 				<Route path="/" component={App}/>
-				<Route component={NotFound} />
 			</Switch>
 		</Router>
 	</Provider>,

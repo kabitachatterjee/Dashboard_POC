@@ -2,7 +2,6 @@ import React from 'react';
 import { NavLink} from "react-router-dom";
 import {ListItemText, ListItem, List} from "material-ui";
 
-
 const Categories = (props) => {
 	const {categories} = props;
 	return (

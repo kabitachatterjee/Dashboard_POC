@@ -33,15 +33,14 @@ function comments(state = {items: []}, action) {
 				items: allComments
 			});
 		case RECEIVE_VOTE_COMMENT:
-			let allCommentsWithNewVote = [];
-			state.items.forEach((comment, index) => {
+			const allCommentsWithNewVote = state.items.map((comment) => {
 				if(comment.id === action.comment.id){
-					state.items.splice(index, 1, action.comment);
-					allCommentsWithNewVote = state;
+					return Object.assign({}, comment, action.comment);
 				}
+				return comment;
 			});
 			return Object.assign({}, state, {
-				items: allCommentsWithNewVote.items
+				items: allCommentsWithNewVote
 			});
 		case RECEIVE_DELETED_COMMENT:
 			const nonDeletedItems = state.items.filter((comment) => {
