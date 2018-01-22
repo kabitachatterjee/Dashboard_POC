@@ -11,6 +11,10 @@ class SpecificCategory extends Component {
 		this.props.dispatch(setPostSortOrder("timestamp", false));
 	}
 
+	/**
+	 * Selects the category based off the current path, then finds the
+	 * posts related to that category.
+	 */
 	initializeSpecificCategoryPage = () => {
 		const {dispatch} = this.props;
 		const correctPath = this.props.match.path.substr(1);
@@ -18,10 +22,18 @@ class SpecificCategory extends Component {
 		dispatch(fetchPostsForCategory(correctPath));
 	};
 
+	/**
+	 * Takes care of the switching between the category pages.
+	 * @param nextProps
+	 * @returns {*}
+	 */
 	componentWillReceiveProps(nextProps) {
 		return nextProps;
 	}
 
+	/**
+	 * Redirects the user back to the home page.
+	 */
 	redirectHome = () => {
 		this.props.history.push(`/`);
 	};

@@ -3,7 +3,7 @@ import {deleteComment, editCommentBody, fetchComments, postNewComment, voteComme
 import {deleteSinglePost, fetchSinglePost, patchSinglePost, setPostSortOrder, voteForPostId} from "./PostAction";
 import EditPost from "../editPosts/EditPost";
 import PostDetails from "../detailPost/PostDetails";
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import {connect} from "react-redux";
 import UUID from 'uuid-js';
 
@@ -112,6 +112,10 @@ class PostSwitch extends Component {
 
 	render(){
 		const {allComments, singlePostDetails, categories} = this.props;
+		if(allComments.items){
+			console.log(Object.keys(singlePostDetails.singlePost).length === 0)
+
+		}
 		return (
 			<div>
 				<div>
@@ -120,7 +124,6 @@ class PostSwitch extends Component {
 					&& categories &&
 					<div>Loading!!!</div>}
 					<Switch>
-
 						{Object.keys(allComments).length > 0 && Object.keys(singlePostDetails).length > 0 &&
 							singlePostDetails.singlePost.deleted === false &&
 						<Route exact path="/:category/:postId"
@@ -142,6 +145,10 @@ class PostSwitch extends Component {
 																				 hideSortDropDown={this.hideSortDropDown}
 									 action="Edit"/>}
 						/>}
+						{allComments.items &&
+						Object.keys(singlePostDetails.singlePost).length === 0  &&
+						<Redirect to="/404" />
+						}
 					</Switch>
 				</div>
 			</div>

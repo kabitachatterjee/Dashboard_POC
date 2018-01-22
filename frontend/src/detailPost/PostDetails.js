@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import Post from "../posts/Post";
 import Comment from "../comments/CommentsContainer";
 import {Button, TextField} from "material-ui";
-import _ from 'underscore';
 
 class PostDetails extends Component {
 	state = {

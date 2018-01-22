@@ -8,10 +8,10 @@
 }
 
 .errorPage {
-  padding: 10px;
   align-content: center;
   margin: auto;
   width: 50%;
+  padding: 110px;
 }
 
 .categoryDropDown{
@@ -21,6 +21,7 @@
 
 .errorTitle {
   text-align: center;
+  padding: 20px;
 }
 
 .App-header {

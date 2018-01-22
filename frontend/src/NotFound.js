@@ -14,7 +14,7 @@ const NotFound = (props) =>
 				We are sorry but the page you are looking for does not exist.
 			</Typography>
 			<br></br>
-			<Button raised color="accent"
+			<Button raised color="primary"
 							className="errorButton"
 							onClick={() => props.history.push('/')}>
 				Back
