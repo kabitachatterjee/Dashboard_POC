@@ -4,7 +4,6 @@ import {connect} from "react-redux";
 import {fetchPostsForCategory, setPostSortOrder} from "../posts/PostAction";
 import { selectCategory} from "../categories/CategoryAction";
 import PostContainer from "../posts/PostContainer";
-import {withRouter} from "react-router-dom";
 
 class SpecificCategory extends Component {
 	componentWillMount() {
@@ -18,6 +17,10 @@ class SpecificCategory extends Component {
 		dispatch(selectCategory(correctPath));
 		dispatch(fetchPostsForCategory(correctPath));
 	};
+
+	componentWillReceiveProps(nextProps) {
+		return nextProps;
+	}
 
 	redirectHome = () => {
 		this.props.history.push(`/`);

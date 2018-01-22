@@ -17,7 +17,7 @@ class Header extends React.Component {
 					<AppBar>
 						<Toolbar>
 							<IconButton className='menuButton'
-													color="contrast"
+													color="default"
 													aria-label="Menu"
 													onClick={toggleDrawer(true)}>
 								<MenuIcon />
@@ -32,7 +32,7 @@ class Header extends React.Component {
 								<Tooltip id="tooltip-left-end"
 												 title="Add Post"
 												 placement="left-end">
-									<IconButton  color="contrast"
+									<IconButton  color="default"
 															 aria-label="Add Post">
 										<NoteAdd/>
 									</IconButton>

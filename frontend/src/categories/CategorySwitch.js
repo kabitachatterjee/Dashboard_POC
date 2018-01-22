@@ -10,7 +10,7 @@ const CategorySwitch = (props) => {
 		<div>
 			<Switch>
 				{formattedCategories && formattedCategories.map(path => (
-					<Route path={path} component={SpecificCategory} />
+					<Route key={path} path={path} component={SpecificCategory} />
 				))}
 				<Route path="/:category/:postId" component={PostSwitch}/>
 			</Switch>

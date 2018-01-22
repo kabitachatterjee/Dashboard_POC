@@ -1,7 +1,6 @@
 import React, {Component}  from 'react';
 import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
-import {Typography, Avatar, IconButton, Button} from 'material-ui';
-import {Favorite} from 'material-ui-icons';
+import {Typography, Avatar, Button} from 'material-ui';
 
 import {Link} from "react-router-dom";
 import VoteComponent from "../app/voteComponent";
@@ -18,13 +17,16 @@ class Post extends Component {
 	}
 
 	/**
-	 *
-	 * @param e
+	 * Votes on the post according the button (up or down).
+	 * @param {!Event} e
 	 */
 	vote = (e) => {
 		this.props.votePostWithId(this.state.post, e.target.id);
 	};
 
+	/**
+	 * Delete this specific post.
+	 */
 	deletePost = () => {
 		this.props.deletePost(this.state.post);
 	};

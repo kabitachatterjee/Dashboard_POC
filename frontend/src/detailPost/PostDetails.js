@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import PostContainer from "../posts/Post";
+import Post from "../posts/Post";
 import Comment from "../comments/CommentsContainer";
 import {Button, TextField} from "material-ui";
+import _ from 'underscore';
 
 class PostDetails extends Component {
 	state = {
@@ -10,38 +11,50 @@ class PostDetails extends Component {
 		author: 'michaelhuy@google.com',
 	};
 
+	/**
+	 * Whenever there is a change in the comment box, it is passes to the debounce function.
+	 * @param {!Event} e
+	 */
+	handleCommentChange = (e) => {
+		if(e.target.value){
+			this.setState({body: e.target.value});
+		}
+	};
+
 	componentDidMount(){
 	//	trigger hiding of the sorting drop down
-		this.props.hideSortDropDown()
-	}
-
-	handleCommentChange = (e) => {
-		this.setState({body: e.target.value});
+		this.props.hideSortDropDown();
 		this.setState({
 			parentId: this.props.singlePostDetails.singlePost.id
 		});
-	};
+	}
 
+	/**
+	 * If there is a comment value, it is sends that comment to the backend.
+	 * Resets the comment value.
+	 */
 	submitNewComment = () => {
 		if(this.state.body){
 			this.props.postComment(this.state);
 		}
-		this.setState=({
-			body: 'Another?',
-		})
+		this.setState({body: "Another Comment?"});
 	};
+
 
 	render() {
 		if (!this.props.allComments || !this.props.singlePostDetails) {
 			return (<div>LOADING!!</div>)
 		}
-		const {allComments, singlePostDetails} = this.props;
+		const {allComments, singlePostDetails, deleteOnPost, voteOnPost} = this.props;
 		const post = singlePostDetails.singlePost ? singlePostDetails.singlePost : '';
 		return (
 			<div className='postDetail'>
 				{post && <div>
 					<h1>Post Details</h1>
-					<PostContainer key={post.id} post={post}/>
+					<Post key={post.id}
+								post={post}
+								deletePost={deleteOnPost}
+								votePostWithId={voteOnPost}/>
 					<div className="commentArea">
 						<TextField
 							id="multiline-static"
@@ -51,6 +64,7 @@ class PostDetails extends Component {
 							placeholder="Enter a new comment here..."
 							className='commentArea_textbox'
 							margin="normal"
+							value={this.state.body}
 							onChange={this.handleCommentChange}
 						/>
 					</div>
