@@ -29,7 +29,7 @@ class PostContainer extends Component {
 				{this.props.posts.length > 0 && this.props.posts
 					.sort((a, b) => b[this.props.sortOrder] - a[this.props.sortOrder])
 					.map((item) => item.deleted ?
-						<div>Deleted Post</div> :
+						"" :
 						<Post key={item.id}
 									deletePost={this.deletePost}
 									post={item}

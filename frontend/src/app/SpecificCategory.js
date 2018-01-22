@@ -10,19 +10,13 @@ class SpecificCategory extends Component {
 	componentWillMount() {
 		this.initializeSpecificCategoryPage();
 		this.props.dispatch(setPostSortOrder("timestamp", false));
-		console.log(this.props.match.params.category, "PROPS")
 	}
-	//
-	// shouldComponentUpdate(this.props.selectedCategory, this.props.match.params.category) {
-	// 	// if (this.props.selectedCategory !== this.props.match.params.category) {
-	// 	// 	this.initializeSpecificCategoryPage();
-	// 	// }
-	// }
 
 	initializeSpecificCategoryPage = () => {
 		const {dispatch} = this.props;
-		dispatch(selectCategory(this.props.match.params.category));
-		dispatch(fetchPostsForCategory(this.props.match.params.category));
+		const correctPath = this.props.match.path.substr(1);
+		dispatch(selectCategory(correctPath));
+		dispatch(fetchPostsForCategory(correctPath));
 	};
 
 	redirectHome = () => {
@@ -57,6 +51,6 @@ function mapStateToProps(state) {
 	};
 }
 
-export default connect(
-	mapStateToProps,
-)(SpecificCategory);
+export default connect(mapStateToProps, null, null, {
+	pure: false
+})(SpecificCategory);

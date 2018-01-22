@@ -5,7 +5,7 @@ import UUID from "uuid-js";
 import {NavLink, Route, Switch} from "react-router-dom";
 import {
 	ListItemIcon, ListItemText, List, ListItem, Drawer, Divider, MenuItem, Input, Select,
-	InputLabel, FormControl
+	InputLabel, FormControl, Typography
 } from "material-ui";
 import {Home} from 'material-ui-icons';
 
@@ -68,7 +68,7 @@ class App extends Component {
 	};
 
 	render() {
-		const { categories, hideSortDropDown} = this.props;
+		const { categories, hideSortDropDown, selectedCategory} = this.props;
 		return (
 			<div className='main'>
 				<div className='header'>
@@ -104,6 +104,9 @@ class App extends Component {
 				<div className='mainBody'>
 					<main>
 						{!hideSortDropDown && <div className='sortRow'>
+							<Typography type="headline" component="h1">
+								Category: {selectedCategory}
+							</Typography>
 							<FormControl className="sortPosts" >
 								<InputLabel htmlFor="sort-helper">Sort Posts</InputLabel>
 								<Select
@@ -124,7 +127,8 @@ class App extends Component {
 																					 hideSortDropDown={this.hideSortDropDown}
 																					 action="Add"/>}
 							/>
-							<Route path="/:category" component={CategorySwitch}/>
+							<Route path="/:category"
+										 render={()=><CategorySwitch categories={categories}/>}/>
 						</Switch>
 					</main>
 				</div>

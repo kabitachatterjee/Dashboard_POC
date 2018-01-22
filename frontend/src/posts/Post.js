@@ -30,7 +30,7 @@ class Post extends Component {
 	};
 
 	render() {
-		const {voteScore, author, timestamp, title, body, commentCount, id} = this.props.post;
+		const {voteScore, author, timestamp, title, body, commentCount, id, category} = this.props.post;
 		return (
 			<div>
 				<Card className='postDetails'>
@@ -41,8 +41,8 @@ class Post extends Component {
 									{author.substring(0,1)}
 								</Avatar>
 							}
-							title={author}
-							subheader={timestamp}
+							title={`Author: ${author}`}
+							subheader={(new Date(timestamp)).toString()}
 						/>
 					</div>
 					<CardContent className="postCardContent">
@@ -60,19 +60,24 @@ class Post extends Component {
 						</div>
 					</CardContent>
 					<CardActions>
-						<IconButton aria-label="Add to favorites">
-							<Favorite/>
-						</IconButton>
-						<Button dense color="primary">
-							<Link to={`/category/${id}`} className='navigationLinks'>
+						<Link to={`/${category}`} className='navigationLinks'>
+							<Button dense color="primary">
+								Category: {category}
+							</Button>
+						</Link>
+						<span>•</span>
+						<Link to={`/category/${id}`} className='navigationLinks'>
+							<Button dense color="primary">
 								{commentCount} Comments
-							</Link>
-						</Button>
-						<Button dense color="primary">
-							<Link to={`/category/${id}/edit`} className='navigationLinks'>
+							</Button>
+						</Link>
+						<span>•</span>
+						<Link to={`/category/${id}/edit`} className='navigationLinks'>
+							<Button dense color="primary">
 								Edit
-							</Link>
-						</Button>
+							</Button>
+						</Link>
+						<span>•</span>
 						<Button dense color="primary" onClick={this.deletePost}>
 							Delete
 						</Button>
