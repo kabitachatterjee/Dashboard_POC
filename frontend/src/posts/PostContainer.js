@@ -6,7 +6,7 @@ import Post from "./Post";
 class PostContainer extends Component {
 
 	/**
-	 *
+	 * Votes the post's vote score.
 	 * @param {{id: number}} postDetails
 	 * @param {string} voteDirection
 	 */
@@ -15,7 +15,16 @@ class PostContainer extends Component {
 	};
 
 	/**
-	 *
+	 * Sets the property (Deleted) on the post to true. Then, re-routes to home page.
+	 * @param {{
+	 * parentId: string,
+   * timestamp: number,
+   * body: string,
+   * author: string,
+   * voteScore: number,
+   * deleted: boolean,
+   * parentDeleted: boolean,
+	 * }} postDetails
 	 */
 	deletePost = (postDetails) => {
 		this.props.dispatch(deleteSinglePost(postDetails, this.props.selectedCategory));

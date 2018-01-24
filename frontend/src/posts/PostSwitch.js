@@ -1,12 +1,11 @@
 import React, {Component} from 'react';
 import {deleteComment, editCommentBody, fetchComments, postNewComment, voteComment} from "../comments/CommentAction";
-import {fetchSinglePost, patchSinglePost, setPostSortOrder} from "./PostAction";
+import {deleteSinglePost, fetchSinglePost, patchSinglePost, setPostSortOrder, voteForPostId} from "./PostAction";
 import EditPost from "../editPosts/EditPost";
 import PostDetails from "../detailPost/PostDetails";
-import {Route, Switch} from "react-router-dom";
+import {Redirect, Route, Switch} from "react-router-dom";
 import {connect} from "react-redux";
 import UUID from 'uuid-js';
-
 
 class PostSwitch extends Component {
 	componentDidMount() {
@@ -21,17 +20,13 @@ class PostSwitch extends Component {
 	}
 
 	/**
-	 *
-	 *     POST /comments
-	 USAGE:
-	 Add a comment to a post
-
-	 PARAMS:
-	 id: Any unique ID. As with posts, UUID is probably the best here.
-	 timestamp: timestamp. Get this however you want.
-	 body: String
-	 author: String
-	 parentId: Should match a post id in the database.
+	 * Posts a new comment to the backend.
+	 * @param {{
+	 * id: string,
+	 * body: string,
+	 * author: string
+	 * parentId: number,
+	 * }} commentObject
 	 */
 	postComment = (commentObject) => {
 		const {body, author, parentId} = commentObject;
@@ -59,7 +54,7 @@ class PostSwitch extends Component {
 	};
 
 	/**
-	 *
+	 * Delete a particular comment.
 	 * @param {number} commentId
 	 */
 	deleteComment = (commentId) => {
@@ -67,23 +62,60 @@ class PostSwitch extends Component {
 	};
 
 	/**
-	 * Makes put action creator ( PUT /posts/:id)
+	 * Makes PUT action creator for a particular post.
 	 */
 	submitChanges = (formObject) => {
 		this.props.dispatch(patchSinglePost(formObject, this.props.selectedCategory));
 		this.props.history.push(`/category/${formObject.id}`);
 	};
 
+	/**
+	 * Vote on a particular comment.
+	 * @param voteParams
+	 */
 	voteOnComment = (voteParams) => {
 		this.props.dispatch(voteComment(voteParams));
 	};
 
+	/**
+	 * Hides the sort drop down.
+	 */
 	hideSortDropDown = () => {
 		this.props.dispatch(setPostSortOrder("timestamp", true));
 	};
 
+	/**
+	 * Vote for a particular post.
+	 * @param {{id: number}} postDetails
+	 * @param {string} voteDirection
+	 */
+	voteForPost = (postDetails, voteDirection) => {
+		this.props.dispatch(voteForPostId(postDetails, voteDirection, this.props.selectedCategory));
+	};
+
+	/**
+	 * Delete this post and return the user to the home page.
+	 * @param {{
+	 * parentId: string,
+   * timestamp: number,
+   * body: string,
+   * author: string,
+   * voteScore: number,
+   * deleted: boolean,
+   * parentDeleted: boolean,
+	 * }} postDetails
+	 */
+	deletePost = (postDetails) => {
+		this.props.dispatch(deleteSinglePost(postDetails, this.props.selectedCategory));
+		this.props.history.push(`/`);
+	};
+
 	render(){
 		const {allComments, singlePostDetails, categories} = this.props;
+		if(allComments.items){
+			console.log(Object.keys(singlePostDetails.singlePost).length === 0)
+
+		}
 		return (
 			<div>
 				<div>
@@ -92,7 +124,6 @@ class PostSwitch extends Component {
 					&& categories &&
 					<div>Loading!!!</div>}
 					<Switch>
-
 						{Object.keys(allComments).length > 0 && Object.keys(singlePostDetails).length > 0 &&
 							singlePostDetails.singlePost.deleted === false &&
 						<Route exact path="/:category/:postId"
@@ -100,6 +131,8 @@ class PostSwitch extends Component {
 									 singlePostDetails={singlePostDetails}
 									 voteOnComment={this.voteOnComment}
 									 deleteComment={this.deleteComment}
+									 voteOnPost={this.voteForPost}
+									 deleteOnPost={this.deletePost}
 									 editComment={this.editComment}
 									 hideSortDropDown={this.hideSortDropDown}
 									 postComment={this.postComment}/>}
@@ -112,6 +145,10 @@ class PostSwitch extends Component {
 																				 hideSortDropDown={this.hideSortDropDown}
 									 action="Edit"/>}
 						/>}
+						{allComments.items &&
+						Object.keys(singlePostDetails.singlePost).length === 0  &&
+						<Redirect to="/404" />
+						}
 					</Switch>
 				</div>
 			</div>

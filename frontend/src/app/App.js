@@ -9,11 +9,10 @@ import {
 } from "material-ui";
 import {Home} from 'material-ui-icons';
 
-
 import Header from "./Header";
 import AllPosts from "../posts/AllPosts";
 import Categories from "../categories/CategoryContainer";
-import {fetchCategoriesFirst, selectCategory} from "../categories/CategoryAction";
+import {fetchCategoriesFirst} from "../categories/CategoryAction";
 import {addNewPost, fetchAllPosts, setPostSortOrder} from "../posts/PostAction";
 import CategorySwitch from "../categories/CategorySwitch";
 import EditPost from "../editPosts/EditPost";
@@ -25,8 +24,8 @@ class App extends Component {
 	};
 
 	/**
-	 *
-	 * @param open
+	 * Opens sidebar drawer.
+	 * @param {boolean} open
 	 */
 	toggleDrawer = (open) => () => {
 		fetchAllPosts();
@@ -35,6 +34,15 @@ class App extends Component {
 		});
 	};
 
+	/**
+	 * Submits the post details necesary for creating a new post.
+	 * @param {{
+	 * title: string,
+   * id: number,
+   * author: string,
+   * category: string,
+	 * }} postDetails
+	 */
 	submitNewPost = (postDetails) => {
 		const {title, body, author, category} = postDetails;
 		const params = {
@@ -46,6 +54,10 @@ class App extends Component {
 		this.props.history.push(`/`);
 	};
 
+	/**
+	 * Calls the action creator based off the sort dropdown.
+	 * @param {!Event} e
+	 */
 	setSortOrder = (e) => {
 		const sortOrder = e.target.value;
 		this.setState({sortOrder});
@@ -53,7 +65,7 @@ class App extends Component {
 	};
 
 	/**
-	 *
+	 * Hides the post sort drop on non-applicable pages.
 	 */
 	hideSortDropDown = () => {
 		this.props.dispatch(setPostSortOrder("timestamp", true));

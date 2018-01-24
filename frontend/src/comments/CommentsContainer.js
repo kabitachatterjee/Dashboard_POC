@@ -54,7 +54,7 @@ class Comment extends Component {
  		return (
  			<div>
 				<Card >
-					<CardContent class="commentCardContent">
+					<CardContent className="commentCardContent">
 						<VoteComponent
 							voteComment={this.voteComment}
 							voteScore={comment.voteScore}
