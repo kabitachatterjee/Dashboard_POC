@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import Post from "../posts/Post";
 import Comment from "../comments/CommentsContainer";
-import {Button, TextField} from "material-ui";
+import {Button, FormControl, InputLabel, MenuItem, Select, TextField} from "material-ui";
 
 class PostDetails extends Component {
 	state = {
 		body: '',
 		parentId: '',
 		author: 'michaelhuy@google.com',
+		commentSort: 'timestamp'
 	};
 
 	/**
@@ -16,7 +17,7 @@ class PostDetails extends Component {
 	 */
 	handleCommentChange = (e) => {
 		if(e.target.value){
-			this.setState({body: e.target.value});
+			this.setState({[e.target.id]: e.target.value});
 		}
 	};
 
@@ -39,6 +40,13 @@ class PostDetails extends Component {
 		this.setState({body: "Another Comment?"});
 	};
 
+	/**
+	 * Handles and sorts the comments by time or score.
+	 * @param {!Event} e
+	 */
+	handleChange = (e) => {
+		this.setState({commentSort: e.target.value})
+	};
 
 	render() {
 		if (!this.props.allComments || !this.props.singlePostDetails) {
@@ -56,7 +64,7 @@ class PostDetails extends Component {
 								votePostWithId={voteOnPost}/>
 					<div className="commentArea">
 						<TextField
-							id="multiline-static"
+							id="body"
 							label="New Comment"
 							multiline
 							rows="4"
@@ -64,6 +72,15 @@ class PostDetails extends Component {
 							className='commentArea_textbox'
 							margin="normal"
 							value={this.state.body}
+							onChange={this.handleCommentChange}
+						/>
+						<TextField
+							id="author"
+							label="Author name"
+							placeholder="Author..."
+							className='commentArea_textbox'
+							margin="normal"
+							value={this.state.author}
 							onChange={this.handleCommentChange}
 						/>
 					</div>
@@ -77,7 +94,24 @@ class PostDetails extends Component {
 					</div>
 					<div>
 						<h1>Comments</h1>
-						{allComments.items.length > 0 && allComments.items.map((comment) => (
+						<FormControl className='sort-comments'>
+							<InputLabel htmlFor="sort-comments-select">Comments</InputLabel>
+							<Select
+								value={this.state.commentSort}
+								onChange={this.handleChange}
+								inputProps={{
+									name: 'comments',
+									id: 'sort-comments-select',
+								}}
+							>
+								<MenuItem value='timestamp'>Newest</MenuItem>
+								<MenuItem value='voteScore'>Vote Score</MenuItem>
+							</Select>
+						</FormControl>
+
+						{allComments.items.length > 0 && allComments.items
+							.sort((a, b) => b[this.state.commentSort] - a[this.state.commentSort])
+							.map((comment) => (
 							comment.deleted && comment.parentDeleted ? '' :
 								<Comment key={comment.id}
 												 comment={comment}
