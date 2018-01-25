@@ -7,13 +7,13 @@ Preview of Application
 This project is React + Redux + React Router +  Material UI clone of Reddit. 
 
 # Features:
-   React Router V4
-   Node for API management
-   Redux for state management of categories (subreddits), posts and comments.
-   User can CRUD categories, posts and comments.
-   Users can vote on posts and comments. 
-   Sorting of posts and comments by votes or timestamp.
-   Navigate to posts only specific to one type of category (subreddit).
+   * React Router V4
+   * Node for API management
+   * Redux for state management of categories (subreddits), posts and comments.
+   * User can CRUD categories, posts and comments.
+   * Users can vote on posts and comments. 
+   * Sorting of posts and comments by votes or timestamp.
+   * Navigate to posts only specific to one type of category (subreddit).
 
 This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
 
