@@ -112,10 +112,6 @@ class PostSwitch extends Component {
 
 	render(){
 		const {allComments, singlePostDetails, categories} = this.props;
-		if(allComments.items){
-			console.log(Object.keys(singlePostDetails.singlePost).length === 0)
-
-		}
 		return (
 			<div>
 				<div>
@@ -126,7 +122,7 @@ class PostSwitch extends Component {
 					<Switch>
 						{Object.keys(allComments).length > 0 && Object.keys(singlePostDetails).length > 0 &&
 							singlePostDetails.singlePost.deleted === false &&
-						<Route exact path="/:category/:postId"
+						<Route exact path={`${this.props.match.url}`}
 									 render={()=><PostDetails allComments={allComments}
 									 singlePostDetails={singlePostDetails}
 									 voteOnComment={this.voteOnComment}
@@ -138,7 +134,7 @@ class PostSwitch extends Component {
 									 postComment={this.postComment}/>}
 						/>}
 						{	categories && Object.keys(singlePostDetails).length > 0 &&
-						<Route exact path="/:category/:postId/edit"
+						<Route exact path={`${this.props.match.url}/edit`}
 									 render={()=><EditPost singlePostDetails={singlePostDetails}
 																				 categories={categories}
 																				 submitChanges={this.submitChanges}
