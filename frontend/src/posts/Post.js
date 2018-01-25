@@ -55,7 +55,7 @@ class Post extends Component {
 							/>
 							<div className="postMeat">
 								<Typography type="headline" component="h2">
-									<Link to={`/category/${id}`} className='navigationLinks'>
+									<Link to={`/${category}/${id}`} className='navigationLinks'>
 										{title}</Link></Typography>
 								<Typography component="p">{body}</Typography>
 							</div>
@@ -68,13 +68,13 @@ class Post extends Component {
 							</Button>
 						</Link>
 						<span>•</span>
-						<Link to={`/category/${id}`} className='navigationLinks'>
+						<Link to={`/${category}/${id}`} className='navigationLinks'>
 							<Button dense color="primary">
 								{commentCount} Comments
 							</Button>
 						</Link>
 						<span>•</span>
-						<Link to={`/category/${id}/edit`} className='navigationLinks'>
+						<Link to={`/${category}/${id}/edit`} className='navigationLinks'>
 							<Button dense color="primary">
 								Edit
 							</Button>
