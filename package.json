@@ -1,6 +1,0 @@
-{
-  "dependencies": {
-    "cross-fetch": "^1.1.1",
-    "redux-logger": "^3.0.6"
-  }
-}
