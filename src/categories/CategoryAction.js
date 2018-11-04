@@ -33,7 +33,7 @@ export function selectCategory(category) {
 function fetchCategories(){
 	return dispatch => {
 		dispatch(requestCategories());
-		return fetch(`http://localhost:3001/categories`, {headers: { 'Authorization': 'whatever-you-want'}})
+		return fetch(`window.location.origin/categories`, {headers: { 'Authorization': 'whatever-you-want'}})
 			.then(response => response.json())
 			.then(json => dispatch(receiveCategories(json)))
 	}

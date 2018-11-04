@@ -126,7 +126,7 @@ export function setPostSortOrder(sortOrder, boolean){
 export function fetchPostsForCategory(category) {
 	return dispatch => {
 		dispatch(requestPosts(category));
-		return fetch(`http://localhost:3001/${category}/posts`, {headers: { 'Authorization': 'whatever-you-want'}})
+		return fetch(`window.location.origin/${category}/posts`, {headers: { 'Authorization': 'whatever-you-want'}})
 			.then(response => response.json())
 			.then(json => dispatch(receivePosts(category, json)))
 	}
@@ -136,7 +136,7 @@ export function fetchPostsForCategory(category) {
 export function voteForPostId(post, voteDirection, category){
 	return dispatch => {
 		dispatch(requestVotePost(post, category));
-		return fetch(`http://localhost:3001/posts/${post.id}`, {
+		return fetch/posts/${post.id}`, {
 			headers: {
 				'Authorization': 'whatever-you-want',
 				'Content-Type': 'application/json'
@@ -157,7 +157,7 @@ export function voteForPostId(post, voteDirection, category){
 export function fetchAllPosts() {
 	return dispatch => {
 		dispatch(requestPosts());
-		return fetch(`http://localhost:3001/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
+		return fetch(`window.location.origin/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
 			.then(response => response.json())
 			.then(json => dispatch(receivePosts('all', json)))
 	}
@@ -166,7 +166,7 @@ export function fetchAllPosts() {
 export function deleteSinglePost(post, currentPage){
 	return dispatch => {
 		dispatch(deletePost(post, currentPage));
-		return fetch(`http://localhost:3001/posts/${post.id}`, {
+		return fetch(`window.location.origin/posts/${post.id}`, {
 			headers: { 'Authorization': 'whatever-you-want'},
 			method: 'DELETE',
 			} )
@@ -179,7 +179,7 @@ export function deleteSinglePost(post, currentPage){
 export function fetchSinglePost(postId){
 	return dispatch => {
 		dispatch(requestSinglePost(postId));
-		return fetch(`http://localhost:3001/posts/${postId}`, {headers: { 'Authorization': 'whatever-you-want'}} )
+		return fetch(`window.location.origin/posts/${postId}`, {headers: { 'Authorization': 'whatever-you-want'}} )
 			.then(response => response.json())
 			.then(json => dispatch(receiveSinglePost(postId, json)))	}
 }
@@ -188,7 +188,7 @@ export function fetchSinglePost(postId){
 export function patchSinglePost(postDetails, category){
 	return dispatch => {
 		dispatch(editPost(postDetails, category));
-		return fetch(`http://localhost:3001/posts/${postDetails.id}`, {
+		return fetch(`window.location.origin/posts/${postDetails.id}`, {
 			headers: {
 				'Authorization': 'whatever-you-want',
 				'Content-Type': 'application/json'
@@ -207,7 +207,7 @@ export function patchSinglePost(postDetails, category){
 export function addNewPost(postDetails){
 	return dispatch => {
 		dispatch(addPost(postDetails));
-		return fetch(`http://localhost:3001/posts/`, {
+		return fetch(`window.location.origin/posts/`, {
 			headers: {
 				'Authorization': 'whatever-you-want',
 				'Content-Type': 'application/json'
