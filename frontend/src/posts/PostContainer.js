@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {deleteSinglePost, voteForPostId} from "./PostAction";
+import * as PostAction from "./PostAction";
 import {connect} from "react-redux";
 import Post from "./Post";
 
@@ -11,7 +11,7 @@ class PostContainer extends Component {
 	 * @param {string} voteDirection
 	 */
 	voteForPost = (postDetails, voteDirection) => {
-		this.props.dispatch(voteForPostId(postDetails, voteDirection, this.props.selectedCategory));
+		this.props.voteForPostId(postDetails, voteDirection, this.props.selectedCategory);
 	};
 
 	/**
@@ -27,7 +27,7 @@ class PostContainer extends Component {
 	 * }} postDetails
 	 */
 	deletePost = (postDetails) => {
-		this.props.dispatch(deleteSinglePost(postDetails, this.props.selectedCategory));
+		this.props.deleteSinglePost(postDetails, this.props.selectedCategory);
 		this.props.comeHome();
 	};
 
@@ -58,5 +58,5 @@ function mapStateToProps(state) {
 }
 
 export default connect(
-	mapStateToProps,
+	mapStateToProps, PostAction
 )(PostContainer);

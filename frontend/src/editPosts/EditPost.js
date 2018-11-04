@@ -70,6 +70,7 @@ class EditPost extends Component {
 							id='category'
 							value={this.state.category}
 							onChange={this.handleChange}
+							required
 							input={<Input name="category" id="category" />}
 						>
 							<MenuItem value="">

@@ -3,10 +3,7 @@ import './App.css';
 import {connect} from "react-redux";
 import UUID from "uuid-js";
 import {NavLink, Route, Switch} from "react-router-dom";
-import {
-	ListItemIcon, ListItemText, List, ListItem, Drawer, Divider, MenuItem, Input, Select,
-	InputLabel, FormControl, Typography
-} from "material-ui";
+import {ListItemIcon, ListItemText, List, ListItem, Drawer, Divider} from "material-ui";
 import {Home} from 'material-ui-icons';
 
 import Header from "./Header";
@@ -16,11 +13,11 @@ import {fetchCategoriesFirst} from "../categories/CategoryAction";
 import {addNewPost, fetchAllPosts, setPostSortOrder} from "../posts/PostAction";
 import CategorySwitch from "../categories/CategorySwitch";
 import EditPost from "../editPosts/EditPost";
+import SortPostContainer from "./SortPostContainer";
 
 class App extends Component {
 	state = {
 		left: false,
-		sortOrder: 'timestamp',
 	};
 
 	/**
@@ -55,12 +52,10 @@ class App extends Component {
 	};
 
 	/**
-	 * Calls the action creator based off the sort dropdown.
-	 * @param {!Event} e
+	 * Gets value from SortPostContainer.
+	 * @param {string} sortOrder
 	 */
-	setSortOrder = (e) => {
-		const sortOrder = e.target.value;
-		this.setState({sortOrder});
+	passSortOrder = (sortOrder) => {
 		this.props.dispatch(setPostSortOrder(sortOrder, false));
 	};
 
@@ -115,22 +110,7 @@ class App extends Component {
 				</Drawer>
 				<div className='mainBody'>
 					<main>
-						{!hideSortDropDown && <div className='sortRow'>
-							<Typography type="headline" component="h1">
-								Category: {selectedCategory}
-							</Typography>
-							<FormControl className="sortPosts" >
-								<InputLabel htmlFor="sort-helper">Sort Posts</InputLabel>
-								<Select
-									value={this.state.sortOrder}
-									onChange={this.setSortOrder}
-									input={<Input name="Sort Post" id="sort-helper" />}
-								>
-									<MenuItem value='timestamp'>Newest</MenuItem>
-									<MenuItem value='voteScore'>Highest Rated</MenuItem>
-								</Select>
-							</FormControl>
-						</div>}
+						{!hideSortDropDown && <SortPostContainer passSortOrder={this.passSortOrder}/>}
 						<Switch>
 							<Route exact path="/" component={AllPosts}/>
 							<Route path="/addPost"
@@ -150,8 +130,7 @@ class App extends Component {
 }
 
 
-function mapStateToProps(state) {
-	const {selectedCategory, allCategories, postSortReducer} = state;
+function mapStateToProps({selectedCategory, allCategories, postSortReducer}) {
 	const categories = allCategories.items;
 	const hideSortDropDown = postSortReducer.hideSortDropDown;
 	return {
