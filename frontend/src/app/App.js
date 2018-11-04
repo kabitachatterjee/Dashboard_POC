@@ -32,7 +32,7 @@ class App extends Component {
 	};
 
 	/**
-	 * Submits the post details necesary for creating a new post.
+	 * Submits the post details necessary for creating a new post.
 	 * @param {{
 	 * title: string,
    * id: number,
