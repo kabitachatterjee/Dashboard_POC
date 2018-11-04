@@ -1,58 +1,45 @@
-Preview of Application
+# API Server
 
-[![Preview_Readdit](https://img.youtube.com/vi/coiIsXuIlX4/0.jpg)](https://www.youtube.com/watch?v=coiIsXuIlX4)
+To install and start the API server, run the following commands in this directory:
 
-# Readable API Server
+* `npm install`
+* `node server`
 
-This project is React + Redux + React Router +  Material UI clone of Reddit. 
+## Using The Server
 
-# Features:
-   * React Router V4
-   * Node for API management
-   * Redux for state management of categories (subreddits), posts and comments.
-   * User can CRUD categories, posts and comments.
-   * Users can vote on posts and comments. 
-   * Sorting of posts and comments by votes or timestamp.
-   * Navigate to posts only specific to one type of category (subreddit).
+### Include An Authorization Header
 
-This repository includes the code for the backend API Server that you'll use to develop and interact with the front-end portion of the project.
+All requests should use an **Authorization header** to work with your own data:
 
-## Start Developing
+```js
+fetch(
+    url,
+    {
+        headers: { 'Authorization': 'whatever-you-want' }
+    }
+)
+```
 
-To get started developing right away:
+### Comment Counts
+Posts retrieved in a list or individually now contain comment counts in the format `post: { commentCount: 0 }`.  This should make it easier to display the number of comments a post has without having to call the comments endpoint for each post.   This count is updated whenever a comment is added or deleted via the `POST /comments` or `DELETE /comments/:id` endpoints.
 
-* Install and start the API server
-    - `cd api-server`
-    - `npm install`
-    - `node server`
-* In another terminal window, use Create React App to scaffold out the front-end
-    - `create-react-app frontend`
-    - `cd frontend`
-    - `npm start`
+### API Endpoint
 
-## API Server
+The following endpoints are available:
 
-Information about the API server and how to use it can be found in its [README file](api-server/README.md).
-
-## License
-The MIT License (MIT)
-
-Copyright (c) 2016 MichaelHuyTran@gmail.com
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+| Endpoints       | Usage          | Params         |
+|-----------------|----------------|----------------|
+| `GET /categories` | Get all of the categories available for the app. List is found in `categories.js`. Feel free to extend this list as you desire. |  |
+| `GET /:category/posts` | Get all of the posts for a particular category. |  |
+| `GET /posts` | Get all of the posts. Useful for the main page when no category is selected. |  |
+| `POST /posts` | Add a new post. | **id** - UUID should be fine, but any unique id will work <br> **timestamp** - [Timestamp] Can in whatever format you like, you can use `Date.now()` if you like. <br> **title** - [String] <br> **body** - [String] <br> **author** - [String] <br> **category** -  Any of the categories listed in `categories.js`. Feel free to extend this list as you desire. |
+| `GET /posts/:id` | Get the details of a single post. | |
+| `POST /posts/:id` | Used for voting on a post. | **option** - [String]: Either `"upVote"` or `"downVote"`. |
+| `PUT /posts/:id` | Edit the details of an existing post. | **title** - [String] <br> **body** - [String] |
+| `DELETE /posts/:id` | Sets the deleted flag for a post to 'true'. <br> Sets the parentDeleted flag for all child comments to 'true'. | |
+| `GET /posts/:id/comments` | Get all the comments for a single post. | |
+| `POST /comments` | Add a comment to a post. | **id** - Any unique ID. As with posts, UUID is probably the best here. <br> **timestamp** - [Timestamp] Get this however you want. <br> **body** - [String] <br> **author** - [String] <br> **parentId** - Should match a post id in the database. |
+| `GET /comments/:id` | Get the details for a single comment. | |
+| `POST /comments/:id` | Used for voting on a comment. | **option** - [String]: Either `"upVote"` or `"downVote"`.  |
+| `PUT /comments/:id` | Edit the details of an existing comment. | **timestamp** - timestamp. Get this however you want. <br> **body** - [String] |
+| `DELETE /comments/:id` | Sets a comment's deleted flag to `true`. | &nbsp; |
