@@ -13,6 +13,11 @@ export const EDIT_POST = 'EDIT_POST';
 export const ADD_POST = 'ADD_POST';
 export const SET_SORTING = 'SET_SORTING';
 
+const standardHeaders = {
+	'Authorization': 'whatever-you-want',
+	'Content-Type': 'application/json',
+	'Accept': 'application/json'
+};
 
 export function deletePost(post, category){
 	return {
@@ -126,7 +131,8 @@ export function setPostSortOrder(sortOrder, boolean){
 export function fetchPostsForCategory(category) {
 	return dispatch => {
 		dispatch(requestPosts(category));
-		return fetch(`http://localhost:3001/${category}/posts`, {headers: { 'Authorization': 'whatever-you-want'}})
+		return fetch(`/${category}/posts`, {
+			headers: standardHeaders})
 			.then(response => response.json())
 			.then(json => dispatch(receivePosts(category, json)))
 	}
@@ -136,11 +142,8 @@ export function fetchPostsForCategory(category) {
 export function voteForPostId(post, voteDirection, category){
 	return dispatch => {
 		dispatch(requestVotePost(post, category));
-		return fetch(`http://localhost:3001/posts/${post.id}`, {
-			headers: {
-				'Authorization': 'whatever-you-want',
-				'Content-Type': 'application/json'
-			},
+		return fetch(`//posts/${post.id}`, {
+			headers: standardHeaders,
 			method: 'POST',
 			body: JSON.stringify({option: voteDirection})
 		})
@@ -150,14 +153,15 @@ export function voteForPostId(post, voteDirection, category){
 }
 
 /**
- *
- * @param subreddit
+ * Grab all posts.
  * @returns {function(*)}
  */
 export function fetchAllPosts() {
 	return dispatch => {
 		dispatch(requestPosts());
-		return fetch(`http://localhost:3001/posts`, {headers: { 'Authorization': 'whatever-you-want'}} )
+		return fetch(`/posts`, {
+			headers: standardHeaders
+		})
 			.then(response => response.json())
 			.then(json => dispatch(receivePosts('all', json)))
 	}
@@ -166,8 +170,8 @@ export function fetchAllPosts() {
 export function deleteSinglePost(post, currentPage){
 	return dispatch => {
 		dispatch(deletePost(post, currentPage));
-		return fetch(`http://localhost:3001/posts/${post.id}`, {
-			headers: { 'Authorization': 'whatever-you-want'},
+		return fetch(`posts/${post.id}`, {
+			headers: standardHeaders,
 			method: 'DELETE',
 			} )
 			.then(response => response.json())
@@ -179,7 +183,9 @@ export function deleteSinglePost(post, currentPage){
 export function fetchSinglePost(postId){
 	return dispatch => {
 		dispatch(requestSinglePost(postId));
-		return fetch(`http://localhost:3001/posts/${postId}`, {headers: { 'Authorization': 'whatever-you-want'}} )
+		return fetch(`/posts/${postId}`, {
+			headers: standardHeaders
+		})
 			.then(response => response.json())
 			.then(json => dispatch(receiveSinglePost(postId, json)))	}
 }
@@ -188,11 +194,8 @@ export function fetchSinglePost(postId){
 export function patchSinglePost(postDetails, category){
 	return dispatch => {
 		dispatch(editPost(postDetails, category));
-		return fetch(`http://localhost:3001/posts/${postDetails.id}`, {
-			headers: {
-				'Authorization': 'whatever-you-want',
-				'Content-Type': 'application/json'
-			},
+		return fetch(`/posts/${postDetails.id}`, {
+			headers: standardHeaders,
 			method: 'PUT',
 			body: JSON.stringify({
 				title: postDetails.title,
@@ -207,11 +210,8 @@ export function patchSinglePost(postDetails, category){
 export function addNewPost(postDetails){
 	return dispatch => {
 		dispatch(addPost(postDetails));
-		return fetch(`http://localhost:3001/posts/`, {
-			headers: {
-				'Authorization': 'whatever-you-want',
-				'Content-Type': 'application/json'
-			},
+		return fetch(`/posts/`, {
+			headers: standardHeaders,
 			method: 'POST',
 			body: JSON.stringify(postDetails)
 		})

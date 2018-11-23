@@ -76,7 +76,7 @@ function receiveWithUpdatedComment(updatedComment){
 export function voteComment(voteParam){
 	return dispatch => {
 		dispatch(upVoteComment(voteParam));
-		return fetch(`http://localhost:3001/comments/${voteParam.commentId}`, {
+		return fetch(`window.location.origin/comments/${voteParam.commentId}`, {
 			headers: {
 				'Authorization': 'whatever-you-want',
 				'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ export function voteComment(voteParam){
 export function postNewComment(params){
 	return dispatch => {
 		dispatch(createComment(params));
-		return fetch(`http://localhost:3001/comments`, {
+		return fetch(`window.location.origin/comments`, {
 			headers: {
 				'Authorization': 'whatever-you-want',
 				'Content-Type': 'application/json'
@@ -108,7 +108,7 @@ export function postNewComment(params){
 export function editCommentBody(params, id){
 	return dispatch => {
 		dispatch(editSingleComment(params));
-		return fetch(`http://localhost:3001/comments/${id}`, {
+		return fetch(`window.location.origin/comments/${id}`, {
 			headers: {
 				'Authorization': 'whatever-you-want',
 				'Content-Type': 'application/json'
@@ -124,7 +124,7 @@ export function editCommentBody(params, id){
 export function deleteComment(postId){
 	return dispatch => {
 		dispatch(deleteSingleComment(postId));
-		return fetch(`http://localhost:3001/comments/${postId}`, {
+		return fetch(`window.location.origin/comments/${postId}`, {
 			headers: { 'Authorization': 'whatever-you-want'},
 			method: 'DELETE',
 		})
@@ -136,7 +136,7 @@ export function deleteComment(postId){
 export function fetchComments(postId){
 	return dispatch => {
 		dispatch(requestCategories(postId));
-		return fetch(`http://localhost:3001/posts/${postId}/comments`, {
+		return fetch(`window.location.origin/posts/${postId}/comments`, {
 			headers: { 'Authorization': 'whatever-you-want'
 			}
 		})
