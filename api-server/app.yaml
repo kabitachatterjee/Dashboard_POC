@@ -1,0 +1,15 @@
+runtime: nodejs10 # For Node.js 8, use runtime: nodejs8
+
+instance_class: F2
+
+env_variables:
+  USE_CLOUD: true
+  BROWSER_STACK_USERNAME: oleg211
+  BROWSER_STACK_ACCESS_KEY: UqtJLSjHNvqTXnKHQDi7
+  NODE_VERSION_BROWSERSTACK: 5
+  PROJECT_ID: 515843568515
+
+- url: /.*
+  secure: always
+  redirect_http_response_code: 301
+  script: auto
