@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "readdit-clone",
+  "private_key_id": "6f0aaa9d0a553efb03196e55b3818d10823bc584",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCx+xSQVsshYAu9\nbIQfL+spkNz4iFVCbJmR88gfP83gydzQy0Xfbq38qHy0rtcMyqjTJ2wP586F5i3N\ny5CFudG39F+slf7eM7DvrEd267M18EkfTNUgLkBsZvTNvf3Cx3C87BiHWP6Z413O\n73HM9e8RRR3mHpkorjHJsHTQ8oGXNO34bxuMZn/ob49Bu2Eso4MrrdaY6Tu/oBn0\nd0RlUBOkt6QJWApRku8YxJqKcnRIVI/Nr35hy4vZ41qwmMrUlFR9QZNELaTRk8Rd\n8LoamqfC8atXKhomldabF+GScLKCx64qNp3VtRn4kXurtcAJqO4xcxa+jNFqcxRg\nuenvo2YjAgMBAAECggEAVpJw0DzHlbZoP313Tsw6MP+73FBEWIkGsg3IfBrHA95s\nwEr/88ycaNdzwVeCV0CEmiEE2T/CHzN1eDLaW5GlRzthBkv3qxGtsQc1w8ymYUg9\n6TGwQXT99TynOyR9OK9WUS7uR3escCI+URf7XN0LqnTaNEMR8M26fgaM683p5ygR\nhdO7ltw9QxIAShtS7aq5CwZ0KwfmZ7TTwn5CXQCtwP/IHb0YAbEk1HiQh3nty9Wx\n0ABixgGghMfFttqR3f6V+N9uZW6Sf8IdAKZ5TEt/RygxKHkxRGi/JPo53mO+8Z/g\nE6CSJtvlX70WuysH/2LrVMJQYxO34eUwmq7NPZ6jYQKBgQDm0e64n15iPD3bm/R2\nwVOtId1jvvGJAuwCP/Kc9rbzpVUP+XA96C9GOSSAYR2id3I19BBAfJ9WU9hUhdLn\nTxM2hEnDnnTVF8bYU+qzTZGDvTsnvZxgngGJIl0vrEGvTfXqCOxc1JnzLDT3Yj5b\n7Foh2cKzSOvFpvY/nk3u1z3bawKBgQDFZYQFXU0U9Pk4Mzcgkdh2msE+wMA6Kymq\nRPTqSOj9zkoj6Q9HbzXVMIfbliiXwamHd2fvzWYbCQ1ddHGPvdfxwqM9EMtc2mp6\nA6rhJa/0w9Fl5bJ1eB3Ocg2ILuVcbnj/gy2WHgxLBPD/w4BkXjxrHEPq9PpOfC7l\n4brbsTRGKQKBgQC3HWTdYtFl7ZTFXHwcmlLfzzXro9fKcl75ifHXRILv2AIboi/B\nbSnT9BFZJ7Jy6X/Z/b3G6xcdTXcZ1vDyQHFllp1Oa68UPsCpbimMBcWjVcRQSsR8\ngd2GBZUX9PhHMvocqOea3a8kk7WRbIc8Nc1rfW5Q/VDOhR5mahg5mtif8QKBgAHX\n5Ne3+1RKxVkFAWrIceEJqOxRGHpylL0GT9MwQxy7pG2Za48bNsF65oniaRahtFeT\ngeD3ZhCykPFieP0CpNWZH7UeRwfi8kOZbSsVEwOSII53CqeWK5EV95Jh/bpTPcYF\nD5PrS+oXbbi1tqk5SA8oAGpdR0kcV8PFy9zpVrehAoGBAMMHx35OMwHCT2OZ/EQ1\nlIC++F6PAdMlIS6+9U+ddj0NUnrYG/lEQ+hCEbHuMUcQjadZxrsllUX1ZeH2dxtK\nbmYewsk6KG1s0IlYkrAX8FX1H14cabYcJjxNSpRB3lfmdSSKlts8ewussY1ZgwAF\nblHWDZtQfO7V3K59rZBMh7Tw\n-----END PRIVATE KEY-----\n",
+  "client_email": "app-readit@readdit-clone.iam.gserviceaccount.com",
+  "client_id": "118375987027276183011",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/app-readit%40readdit-clone.iam.gserviceaccount.com"
+}
