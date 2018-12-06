@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import {postsByCategory, postSortReducer, singlePostDetails} from "../posts/PostReducers";
-import {allCategories, selectedCategory} from "../categories/CategoryReducers"
+import {postsByCategory, postSortReducer, singlePostDetails} from "./actions/AudienceReducers";
+import {allCategories, selectedCategory} from "./actions/CategoryReducers"
 import {allComments} from "../comments/CommentReducers";
 
 const rootReducer = combineReducers({

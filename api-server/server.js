@@ -4,7 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const config = require('./config');
-const categories = require('./categories');
+const audiences = require('./audiences');
 const posts = require('./posts');
 const comments = require('./comments');
 
@@ -17,7 +17,7 @@ app.use(cors());
 app.get('/', (req, res) => {
   const help = `
   <pre>
-    Welcome to the Udacity Readable API!
+    Welcome to the Readable API!
 
     Use an Authorization header to work with your own data:
 
@@ -126,8 +126,8 @@ app.use((req, res, next) => {
 });
 
 
-app.get('/categories', (req, res) => {
-    categories.getAll(req.token)
+app.get('/audiences', (req, res) => {
+    audiences.getAll(req.token)
       .then(
           (data) => res.send(data),
           (error) => {

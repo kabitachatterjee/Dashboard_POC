@@ -4,7 +4,7 @@ import App from './App';
 import {connect} from "react-redux";
 jest.mock('./App');
 
-import {fetchAllPosts} from "../posts/PostAction";
+import {fetchAllPosts} from "./actions/AudienceAction";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');

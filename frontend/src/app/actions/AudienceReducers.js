@@ -1,19 +1,19 @@
 import {
-	REQUEST_POSTS,
-	RECEIVE_POSTS,
-	RECEIVE_SINGLE_POST, REQUEST_SINGLE_POST, EDIT_POST, ADD_POST, REQUEST_VOTE_POST, RECEIVE_VOTE_POST,
-	RECEIVE_DELETE_POST, DELETE_POST, SET_SORTING
-} from './PostAction'
-import {SELECT_CATEGORY} from "../categories/CategoryAction";
+	REQUEST_AUDIENCES,
+	RECEIVE_AUDIENCES,
+	RECEIVE_SINGLE_AUDIENCE, REQUEST_SINGLE_AUDIENCE, EDIT_AUDIENCE, ADD_AUDIENCE, REQUEST_VOTE_AUDIENCE, RECEIVE_VOTE_AUDIENCE,
+	RECEIVE_DELETE_AUDIENCE, DELETE_AUDIENCE, SET_SORTING
+} from './AudienceAction'
+import {SELECT_AUDIENCES} from "./AudiencesAction";
 
-export function postsByCategory(state = {}, action) {
+export function audiencesByCategory(state = {}, action) {
 	switch (action.type) {
-		case RECEIVE_POSTS:
-		case REQUEST_POSTS:
-		case EDIT_POST:
-		case RECEIVE_VOTE_POST:
-		case RECEIVE_DELETE_POST:
-		case SELECT_CATEGORY:
+		case RECEIVE_AUDIENCES:
+		case REQUEST_AUDIENCES:
+		case EDIT_AUDIENCE:
+		case RECEIVE_VOTE_AUDIENCE:
+		case RECEIVE_DELETE_AUDIENCE:
+		case SELECT_AUDIENCES:
 			const defaultCategory = (!action.category) ? 'all' : action.category;
 			return Object.assign({}, state, {
 				[defaultCategory]: posts(state[action.category], action)
@@ -23,7 +23,7 @@ export function postsByCategory(state = {}, action) {
 	}
 }
 
-function posts(
+function audiences(
 	state = {
 		isFetching: false,
 		didInvalidate: false,
@@ -32,20 +32,20 @@ function posts(
 	action
 ) {
 	switch (action.type) {
-		case REQUEST_POSTS:
+		case REQUEST_AUDIENCES:
 			return Object.assign({}, state, {
 				isFetching: true,
 				didInvalidate: false
 			});
-		case RECEIVE_POSTS:
+		case RECEIVE_AUDIENCES:
 			return Object.assign({}, state, {
 				isFetching: false,
 				didInvalidate: false,
-				items: action.posts,
+				items: action.audiences,
 				lastUpdated: action.receivedAt
 			});
-		case RECEIVE_VOTE_POST:
-		case RECEIVE_DELETE_POST:
+		case RECEIVE_VOTE_AUDIENCE:
+		case RECEIVE_DELETE_AUDIENCE:
 			const diff =  state.items.map((post) => {
 				if(post.id === action.postId){
 					return Object.assign({}, state.items[0], action.singlePost);
@@ -65,19 +65,19 @@ function posts(
 
 export function singlePostDetails(state = {}, action){
 	switch(action.type){
-		case REQUEST_SINGLE_POST:
+		case REQUEST_SINGLE_AUDIENCE:
 			return Object.assign({}, state, {
 				postId: action.postId
 			});
-		case EDIT_POST:
-		case ADD_POST:
-		case RECEIVE_SINGLE_POST:
-		case REQUEST_VOTE_POST:
-		case DELETE_POST:
+		case EDIT_AUDIENCE:
+		case ADD_AUDIENCE:
+		case RECEIVE_SINGLE_AUDIENCE:
+		case REQUEST_VOTE_AUDIENCE:
+		case DELETE_AUDIENCE:
 			return Object.assign({}, state, {
 				singlePost: action.singlePost
 			});
-		case RECEIVE_VOTE_POST:
+		case RECEIVE_VOTE_AUDIENCE:
 			return Object.assign({}, state, {
 				singlePost: action.singlePost
 			});

@@ -3,9 +3,9 @@ import Card, { CardActions, CardContent, CardHeader } from 'material-ui/Card';
 import {Typography, Avatar, Button} from 'material-ui';
 
 import {Link} from "react-router-dom";
-import VoteComponent from "../app/voteComponent";
+import VoteComponent from "../../voteComponent";
 
-class Post extends Component {
+class AudienceRow extends Component {
 	state = {
 		post: {},
 	};
@@ -90,4 +90,4 @@ class Post extends Component {
 	}
 }
 
-export default Post;
+export default AudienceRow;
