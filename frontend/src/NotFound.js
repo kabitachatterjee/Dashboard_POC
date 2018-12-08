@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Paper, Typography} from "material-ui";
+import {Button, Paper, Typography} from "@material-ui/core";
 
 const NotFound = (props) =>
 	<div className="errorPage">

@@ -1,16 +1,11 @@
 import React from 'react';
 import {Route, Switch} from "react-router-dom";
 import AllPosts from "../Audience/Audiences/AudiencesContainer";
-import EditPost from "../../editPosts/EditPost";
 
-const Routes = (props) => {
+const Routes = () => {
   return (
     <Switch>
-      <Route exact path="/" component={AllPosts}/>
-      <Route path="/addPost"
-             render={()=><EditPost {...props}
-                                   action="Add"/>}
-      />
+      <Route exact path="/Audience" component={AllPosts}/>
     </Switch>
   );
 };

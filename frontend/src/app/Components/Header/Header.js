@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import MenuIcon from 'material-ui-icons/Menu';
-import {IconButton, Toolbar, Typography, AppBar, Tooltip} from "material-ui";
-import NoteAdd from 'material-ui-icons/NoteAdd';
+import MenuIcon from '@material-ui/icons/Menu';
+import {IconButton, Toolbar, Typography, AppBar, Tooltip} from "@material-ui/core";
+import NoteAdd from '@material-ui/icons/NoteAdd';
 import {NavLink} from "react-router-dom";
 
 const Header = (props) => {

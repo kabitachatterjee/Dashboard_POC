@@ -4,7 +4,7 @@ import App from './App';
 import {connect} from "react-redux";
 jest.mock('./App');
 
-import {fetchAllPosts} from "./actions/AudienceAction";
+import {fetchAllAudiences} from "./actions/AudienceAction";
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -17,8 +17,8 @@ describe('toggleDrawer', () => {
 		App.toggleDrawer(true);
   });
 
-  it('fetchAllPosts', () => {
-    expect(fetchAllPosts).toHaveBeenCalled();
+  it('fetchAllAudiences', () => {
+    expect(fetchAllAudiences).toHaveBeenCalled();
   });
 
   it

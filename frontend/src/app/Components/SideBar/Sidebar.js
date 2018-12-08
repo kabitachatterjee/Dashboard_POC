@@ -1,9 +1,7 @@
 import React from 'react';
-import Divider from 'material-ui/Divider';
-import List, {ListItem, ListItemIcon, ListItemText} from 'material-ui/List';
+import {Drawer, Divider, List, ListItem, ListItemIcon, ListItemText} from '@material-ui/core';
 import {NavLink} from "react-router-dom";
-import {Home} from "material-ui-icons";
-import {Drawer} from "material-ui";
+import Home from "@material-ui/icons/Home";
 
 const Sidebar = (props) => {
   const {onToggleDrawer, left} = props;
@@ -20,18 +18,18 @@ const Sidebar = (props) => {
           <h3>Navigation</h3>
           <List>
             <NavLink className='navigationLinks' to="/">
-              <ListItem button>
-                <ListItemIcon>
-                  <Home/>
-                </ListItemIcon>
-                <ListItemText primary="Home"/>
-              </ListItem>
-            </NavLink>
+            <ListItem button>
+              <ListItemIcon>
+                <Home/>
+              </ListItemIcon>
+              <ListItemText primary="Home"/>
+            </ListItem>
+          </NavLink>
           </List>
           <Divider/>
           <h3>Audiences</h3>
           <h3>Campaigns</h3>
-          <h3>Whatever</h3>
+          <h3>Product Sets</h3>
         </div>
       </div>
     </Drawer>

@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import {standardHeaders} from './config';
 
 export const REQUEST_AUDIENCES = 'REQUEST_AUDIENCES';
 export const RECEIVE_AUDIENCES = 'RECEIVE_AUDIENCES';
@@ -9,12 +10,6 @@ export const RECEIVE_DELETE_AUDIENCE = 'RECEIVE_DELETE_AUDIENCE';
 export const EDIT_AUDIENCE = 'EDIT_AUDIENCE';
 export const ADD_AUDIENCE = 'ADD_AUDIENCE';
 export const SET_SORTING = 'SET_SORTING';
-
-const standardHeaders = {
-	'Authorization': 'whatever-you-want',
-	'Content-Type': 'application/json',
-	'Accept': 'application/json'
-};
 
 export function deleteAudience(post, category){
 	return {
@@ -50,11 +45,6 @@ export function addAudience(audienceDetails){
 	}
 }
 
-/**
- *
- * @param subreddit
- * @returns {{type: string, subreddit: *}}
- */
 function requestAudiences(subreddit) {
 	return {
 		type: REQUEST_AUDIENCES,
@@ -62,12 +52,6 @@ function requestAudiences(subreddit) {
 	}
 }
 
-/**
- *
- * @param subreddit
- * @param json
- * @returns {{type: string, category: *, posts: *, receivedAt: number}}
- */
 function receiveAudiences(category, json) {
 	return {
 		type: RECEIVE_AUDIENCES,
@@ -92,16 +76,6 @@ function receiveSingleAudience(postId, json){
 	}
 }
 
-export function setAudienceSortOrder(sortOrder, boolean){
-	return dispatch => {
-		dispatch({
-			type: SET_SORTING,
-			sortOrder,
-			hideSortDropDown: boolean,
-		});
-	}
-}
-
 /**
  * Fetch posts for a specific category.
  * @param subreddit
@@ -114,21 +88,6 @@ export function fetchAudiencesForCategory(category) {
 			headers: standardHeaders})
 			.then(response => response.json())
 			.then(json => dispatch(receiveAudiences(category, json)))
-	}
-}
-
-/**
- * Grab all posts.
- * @returns {function(*)}
- */
-export function fetchAllAudiences() {
-	return dispatch => {
-		dispatch(requestAudiences());
-		return fetch(`/posts`, {
-			headers: standardHeaders
-		})
-			.then(response => response.json())
-			.then(json => dispatch(receiveAudiences('all', json)))
 	}
 }
 
@@ -154,21 +113,6 @@ export function fetchSingleAudience(postId){
 			.then(json => dispatch(receiveSingleAudience(postId, json)))	}
 }
 
-export function patchSingleAudience(audienceDetails, category){
-	return dispatch => {
-		dispatch(editAudience(audienceDetails, category));
-		return fetch(`/posts/${audienceDetails.id}`, {
-			headers: standardHeaders,
-			method: 'PUT',
-			body: JSON.stringify({
-				title: audienceDetails.title,
-				body: audienceDetails.body
-			})
-		})
-			.then(response =>  response.json())
-			.then(json => dispatch(receiveVoteAudience(audienceDetails.id, json, category)))
-	}
-}
 
 export function addNewAudience(audienceDetails){
 	return dispatch => {

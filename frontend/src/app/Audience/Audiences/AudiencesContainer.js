@@ -1,17 +1,17 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {fetchAllPosts} from "../../actions/AudienceAction";
-import Post from "./AudienceRow";
+import {fetchAllAudiences} from "../../actions/AudiencesAction";
+import AudienceRow from "./AudienceRow";
 
 class AudiencesContainer extends Component {
-	componentWillMount() {
-		const {dispatch} = this.props;
-		dispatch(fetchAllPosts());
-	}
+  componentWillMount() {
+    const {dispatch} = this.props;
+    dispatch(fetchAllAudiences());
+  }
 
-	redirectHome = () => {
-		this.props.history.push(`/`);
-	};
+  redirectHome = () => {
+    this.props.history.push(`/`);
+  };
 
   /**
    * Votes the post's vote score.
@@ -39,47 +39,27 @@ class AudiencesContainer extends Component {
     this.props.comeHome();
   };
 
-  render(){
-		const {items, isFetching} = this.props;
-		console.log(this.props,"!!")
-		return(
-			<div>
-				{isFetching && items.length === 0 && <h2>Loading...</h2>}
-				{!isFetching && items.length === 0 && <h2>Empty.</h2>}
-				{items.length > 0 &&
-				<div style={{ opacity: isFetching ? 0.5 : 1 }}>
-          <div>
-            {this.props.posts.length === 0 && <div><p>Loading</p></div>}
-            {this.props.posts.length > 0 && this.props.posts
-              .sort((a, b) => b[this.props.sortOrder] - a[this.props.sortOrder])
-              .map((item) => item.deleted ?
-                "" :
-                <Post key={item.id}
-                      deletePost={this.deletePost}
-                      post={item}
-                      votePostWithId={this.voteForPost}/>)
-            }
-          </div>
-				</div>}
-			</div>
-		)
-	}
+  render() {
+    const {audienceData, isFetching} = this.props;
+    return (
+      <div>
+        {isFetching && audienceData.length === 0 && <h2>Loading...</h2>}
+        {!isFetching && audienceData.length === 0 && <h2>Empty.</h2>}
+        {audienceData.length > 0 &&
+        <div style={{opacity: isFetching ? 0.5 : 1}}>
+          <AudienceRow audiences={audienceData}/>
+        </div>}
+      </div>
+    )
+  }
 }
 
 
 function mapStateToProps(state) {
-	const { postsByCategory, selectedCategory} = state;
-	const { isFetching, lastUpdated, items } = postsByCategory[selectedCategory] ||
-	{
-		isFetching: true,
-		items: []
-	};
-	return {
+  const {audienceData, isFetching} = state.audiences;
+  return {
+    audienceData,
     isFetching,
-    items,
-    lastUpdated,
-    selectedCategory: state.selectedCategory,
-    sortOrder: state.postSortReducer.sortOrder,
   };
 }
 

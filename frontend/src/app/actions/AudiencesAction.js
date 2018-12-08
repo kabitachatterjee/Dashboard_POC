@@ -1,32 +1,19 @@
 import fetch from 'cross-fetch';
+import {backEndUrl, standardHeaders} from './config';
 
 export const REQUEST_AUDIENCES = 'REQUEST_AUDIENCES';
 export const RECEIVE_AUDIENCES = 'RECEIVE_AUDIENCES';
-export const SELECT_AUDIENCES = 'SELECT_AUDIENCES';
-
 
 function requestAudiences(){
-	return {
+  return {
 		type: REQUEST_AUDIENCES,
 	}
 }
 
-function receiveAudiences(json){
+function receiveAudiences({audiences}){
 	return {
-		type: RECEIVE_AUDIENCES,
-		categories: json,
-	}
-}
-
-/**
- *
- * @param audience
- * @returns {{type: string, audience: *}}
- */
-export function selectAudience(audience) {
-	return {
-		type: SELECT_AUDIENCES,
-		audience
+    audiences,
+    type: RECEIVE_AUDIENCES,
 	}
 }
 
@@ -34,17 +21,14 @@ export function selectAudience(audience) {
  *
  * @returns {function(*): PromiseLike<T | never>}
  */
-function fetchAudiences(){
+export function fetchAllAudiences(){
 	return dispatch => {
 		dispatch(requestAudiences());
-		return fetch(`http://localhost:3001/audiences`, {headers: { 'Authorization': 'whatever-you-want'}})
+		return fetch(`${backEndUrl}/audiences`, {headers: standardHeaders})
 			.then(response => response.json())
-			.then(json => dispatch(receiveAudiences(json)))
+			.then(json => {
+				return dispatch(receiveAudiences(json))
+      })
 	}
 }
 
-export function fetchAudiencesFirst(){
-	return (dispatch) => {
-		return dispatch(fetchAudiences())
-	}
-}
