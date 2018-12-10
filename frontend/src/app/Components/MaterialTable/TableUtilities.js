@@ -40,3 +40,28 @@ export function stableSort(array, cmp) {
 export function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
+
+/**
+ * Checks if the row is selected, and if it is selected, add/ subtracts it from the selected array.
+ * @param {!Event} event
+ * @param {number} id
+ * @param selected
+ */
+export function handleClickSelection(event, id, selected) {
+  const selectedIndex = selected.indexOf(id);
+  let newSelected = [];
+
+  if (selectedIndex === -1) {
+    newSelected = newSelected.concat(selected, id);
+  } else if (selectedIndex === 0) {
+    newSelected = newSelected.concat(selected.slice(1));
+  } else if (selectedIndex === selected.length - 1) {
+    newSelected = newSelected.concat(selected.slice(0, -1));
+  } else if (selectedIndex > 0) {
+    newSelected = newSelected.concat(
+      selected.slice(0, selectedIndex),
+      selected.slice(selectedIndex + 1),
+    );
+  }
+  return newSelected;
+};
